@@ -11,23 +11,11 @@ define('MODEL', 'model/');
 define('MODULE', 'module/');
 define('CHEMIN_MODEL', 'model/');
 
-
-
-// Chemins à utiliser pour accéder aux vues/modèles/librairies
-// [...]
-
-// Configurations relatives à l'avatar
-define('AVATAR_LARGEUR_MAXI', 100);
-define('AVATAR_HAUTEUR_MAXI', 100);
-
 $config = array(
 	"db_name" => "demosql",
 	"db_user" => "titi",
 	"db_password" => "gQ8$2jh0",
 	"db_host" => "localhost"
 );
-
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 session_start();
