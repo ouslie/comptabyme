@@ -73,7 +73,6 @@ class JobManager extends Manager
         $req = $db->prepare('SELECT * FROM base WHERE id_user = :id_user');
         $req->execute(array('id_user' => $user_id));
         return $req;
-
     }
 
     public function GetTransaction($id_base)
