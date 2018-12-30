@@ -8,13 +8,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>ComptaGy</title>
+  <title>ComptaByMe</title>
 
-  <script src="public/js/jquery-1.11.1.min.js"></script>
-  <script src="public/js/editablegrid-2.1.0-49.js"></script>
-  <!-- EditableGrid test if jQuery UI is present. If present, a datepicker is automatically used for date type -->
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-  <script src="public/js/demo.js"></script>
+ 
 
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,9 +33,9 @@
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="index.php">
       <i class="fas fa-bars"></i>
     </button>
-    <a class="navbar-brand mr-1" href=#>
-      Base active = <?= $_SESSION['activebase'] ?></a>
-
+    <a class="nav-link" style="color : #fff">
+      Base active = <?= $_SESSION['activebasename'] ?>
+</a>
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
@@ -47,7 +43,7 @@
       </form>
       <form action="index.php?action=setbase" method="POST">
         <select id="id_base" name="id_base">
-          <option value="">--Base--</option>
+          <option value="">--Changer de Base--</option>
           <?php
           $jobManager = new JobManager();
           $base = $jobManager->GetBase($_SESSION['id']);
@@ -58,7 +54,7 @@
             <?=$row['name'];?>
           </option>
         <?php endforeach;?>
-
+        
       </select>
       <input type="submit" name="submit" value="Valider">
     </form>
@@ -174,16 +170,10 @@ aria-hidden="true">
 </div>
 
 <!-- Bootstrap core JavaScript-->
+<script src="public/js/jquery-1.11.1.min.js"></script>
+<script src="public/js/editablegrid-2.1.0-49.js"></script>
+<script src="public/js/demo.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="public/js/sb-admin.min.js"></script>
-
-<!-- Demo scripts for this page-->
-
 
 </body>
 

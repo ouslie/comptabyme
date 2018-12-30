@@ -1,7 +1,4 @@
 <?php ob_start();?>
-<!-- DataTables Example -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
 <div class="card mb-3">
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -33,7 +30,6 @@
       </table>
     </div>
   </div>
-  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
 <?php
 $content = ob_get_clean();

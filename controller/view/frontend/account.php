@@ -1,12 +1,4 @@
 <?php ob_start();?>
-<link rel="stylesheet" href="public/css/style.css" type="text/css" media="screen">
-<!-- Breadcrumbs-->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="#">Dashboard</a>
-  </li>
-  <li class="breadcrumb-item active">Tables</li>
-</ol>
 <div class="card mb-3">
   <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -53,7 +45,6 @@
     </table>
   </div>
 </div>
-<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 
 <?php
 

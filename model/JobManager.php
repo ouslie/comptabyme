@@ -75,6 +75,27 @@ class JobManager extends Manager
         return $req;
     }
 
+    public function GetBaseName($baseid)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM base WHERE id = :baseid');
+        $req->execute(array('baseid' => $baseid));
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function GetBaseDefault($user_id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM base WHERE id_user = :id_user AND defaultbase = 1');
+        $req->execute(array('id_user' => $user_id));
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+
     public function GetTransaction($id_base)
     {
         $db = $this->dbConnect();

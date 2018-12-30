@@ -1,5 +1,4 @@
 <?php
-
 /*
  *
  * http://editablegrid.net
@@ -9,7 +8,6 @@
  * http://editablegrid.net/license
  */
 
-//require_once('../../global/config.php');
 $pdo = PDO2::getInstance();
 
 // Get all parameter provided by the javascript

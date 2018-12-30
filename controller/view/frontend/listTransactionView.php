@@ -68,6 +68,7 @@
   <?php $jobManager = new JobManager();?>
 
   <div id="addform">
+  
     <div class="row">
       <input type="date" id="date" name="date" />
     </div>
