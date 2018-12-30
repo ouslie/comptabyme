@@ -215,3 +215,18 @@ function Disconnect()
     session_destroy();
     header('Location: index.php');
 }
+function ByCa()
+{
+    
+        $jobManager = new JobManager(); // Création d'un objet
+        $date = $jobManager->GetDate();
+        $ca = $jobManager->GetCa($_SESSION['activebase']);
+        foreach ($ca as $row) {
+            $tblTotal[$row['month']] = $row['amount'];
+        }
+    
+        require 'view/frontend/byca.php';
+    
+    
+
+}

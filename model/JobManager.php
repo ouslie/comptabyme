@@ -315,4 +315,23 @@ class JobManager extends Manager
         return $data;
     }
 
+    public function Getca($id_base)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT MONTH(date) AS month, SUM(amount) AS amount
+              FROM demo
+              INNER JOIN category ON demo.id_category = category.id
+              WHERE demo.id_base = :id_base
+              AND demo.id_type = 1
+              AND category.is_recette = 1
+              AND demo.tally = "1"
+              GROUP BY  month
+              ');
+        $req->execute(array('id_base' => $id_base));
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        if (!isset($data['amount'])) {
+            $data['amount'] = 0;
+        }
+        return $data;
+    }
 }

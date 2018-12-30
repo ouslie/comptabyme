@@ -22,7 +22,7 @@
           foreach ($tblaccount as $bank => $bank)
           {
             $total = isset($tblTotal[$row['id']][$bank]) ? $tblTotal[$row['id']][$bank] : 0;
-            echo '<td>' . $total . '</td>';
+            echo '<td>' . $total . '&nbsp;€</td>';
           }
           echo '<tr>';
         }

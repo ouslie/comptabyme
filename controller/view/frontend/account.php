@@ -17,7 +17,7 @@
           foreach ($account as $toto)
           {
             $tblaccount[$toto['id']] = $toto['name'];
-            echo '<th colspan="3">' . $toto['name'] . '</th>';
+            echo '<th colspan="3" style="text-align:center">' . $toto['name'] . '</th>';
           }
           ?>
         </tr>
@@ -42,9 +42,9 @@
             $total = isset($tblAchat[$row['id']][$bank]) ? $tblAchat[$row['id']][$bank] : 0;
             $recette = isset($tblRecette[$row['id']][$bank]) ? $tblRecette[$row['id']][$bank] : 0;
             $depense = isset($tblDepense[$row['id']][$bank]) ? $tblDepense[$row['id']][$bank] : 0;
-            echo '<td>' . $recette . '</td>';
-            echo '<td>' . $depense . '</td>';
-            echo '<td>' . $total . '</td>';
+            echo '<td>' . $recette . '&nbsp;€</td>';
+            echo '<td>' . $depense . '&nbsp;€</td>';
+            echo '<td>' . $total . '&nbsp;€</td>';
           }
           echo '<tr>';
         }

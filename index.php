@@ -2,7 +2,6 @@
 require 'controller/frontend.php';
 require 'global/config.php';
 
-//toto
 try {
     if (!utilisateur_est_connecte()) {
 
@@ -47,6 +46,9 @@ try {
             }
             if ($_GET['action'] == 'updatetransaction') {
                 UpdateTransaction();
+            }
+            if ($_GET['action'] == 'byca') {
+                ByCa();
             }
             if ($_GET['action'] == 'addaccount') {
                 AddAccount();

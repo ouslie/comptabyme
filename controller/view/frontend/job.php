@@ -21,8 +21,10 @@
             foreach ($categories as $row) {
               echo '<tr><td>' . $row['name'] . '</td>';
               foreach ($tblDate as $month => $month) {
-                $achat = isset($tblAchat[$row['name']][$month]) ? $tblAchat[$row['name']][$month][1]-$tblAchat[$row['name']][$month][2] : 0;
-                echo '<td>' . $achat . '</td>';
+                $achat = isset($tblAchat[$row['name']][$month][1]) ? $tblAchat[$row['name']][$month][1] : 0;
+                $depense = isset($tblAchat[$row['name']][$month][2]) ? $tblAchat[$row['name']][$month][2] : 0;
+                $total = $achat - $depense;
+                echo '<td>' . $total . '&nbsp;€</td>';
               }
               echo '<tr>';
             }
