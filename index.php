@@ -2,7 +2,7 @@
 require 'controller/frontend.php';
 require 'global/config.php';
 
-
+//toto
 try {
     if (!utilisateur_est_connecte()) {
 
