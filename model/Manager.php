@@ -5,7 +5,7 @@ class Manager
     protected function dbConnect()
     {
         try {
-            $dbh = new PDO('mysql:host=localhost;dbname=demosql', 'titi', 'gQ8$2jh0');
+            $dbh = new PDO(SQL_DSN, SQL_USERNAME, SQL_PASSWORD);
             $dbh->exec("SET CHARACTER SET utf8");
 
         } catch (PDOException $e) {
