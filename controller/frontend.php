@@ -50,11 +50,10 @@ function ListTransaction()
 
 function GetDashboard()
 {
+    $jobManager = new JobManager();
     //base par défaut 
     $base = $jobManager->GetBase($_SESSION['id']);
     print_r($base);
-    
-    $jobManager = new JobManager();
     $month = date('m');
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
     $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
