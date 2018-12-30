@@ -207,3 +207,9 @@ function SetBase()
 
     require CHEMIN_VUE . 'dashboard.php';
 }
+
+function Disconnect()
+{
+    session_destroy();
+    header('Location: index.php');
+}

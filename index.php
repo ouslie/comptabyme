@@ -63,6 +63,10 @@ try {
             if ($_GET['action'] == 'cron') {
                 Cron();
             }
+            if ($_GET['action'] == 'disconnect') {
+                Disconnect();
+            }
+            
         } else {
             GetDashboard();
         }
