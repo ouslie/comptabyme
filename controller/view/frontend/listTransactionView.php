@@ -27,11 +27,10 @@
                         <div class="card">
                         <div id="toolbar" class="card-header">
       <input type="text" id="filter" name="filter" placeholder="Filter par tiers" />
-      <a id="showaddformbutton" class="button green"><i class="fa fa-plus"></i>Ajouter une transaction</a>
+      <a id="showaddformbutton" class="btn btn-outline-primary">Ajouter une transaction</a>
     </div>                            
                             <div class="card-body">
 
-    
 
     <!-- Grid contents -->
     <div id="tablecontent"></div>
@@ -134,8 +133,8 @@
 </div>
 
 <div class="row tright">
-  <a id="addbutton" class="button green"><i class="fa fa-save"></i> Apply</a>
-  <a id="cancelbutton" class="button delete">Cancel</a>
+  <a id="addbutton" class="btn btn-rounded btn-success"><i class="fa fa-save"></i> Apply</a>
+  <a id="cancelbutton" class="btn btn-rounded btn-danger">Annuler</a>
 </div>
 </div>
 

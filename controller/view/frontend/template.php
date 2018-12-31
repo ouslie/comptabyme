@@ -172,23 +172,28 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="index.php?action=dashboard" aria-expanded="false"  aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                            <a class="nav-link <?php if($_GET['action']=='dashboard'){echo 'active';}?>" href="index.php?action=dashboard" aria-expanded="false"  aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=listtransaction" aria-expanded="false"  aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Transaction</a>
+                                <a class="nav-link <?php if($_GET['action']=='listtransaction'){echo 'active';}?>" href="index.php?action=listtransaction" aria-expanded="false"  aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Transaction</a>
                   
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=byjob" aria-expanded="false"  aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Par catégories</a>
+                            <a class="nav-link <?php if($_GET['action']=='byjob'){echo 'active';}?>" href="index.php?action=byjob" aria-expanded="false"  aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Par catégories</a>
                   
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=byaccount"  aria-expanded="false"  aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Par comptes</a>
+                            <a class="nav-link <?php if($_GET['action']=='byaccount'){echo 'active';}?>" href="index.php?action=byaccount"  aria-expanded="false"  aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Par comptes</a>
                                 
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=treso"  aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Trésorerie</a>
+                            <a class="nav-link <?php if($_GET['action']=='treso'){echo 'active';}?>" href="index.php?action=treso"  aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Trésorerie</a>
+                                
+                            </li>
+
+                            <li class="nav-item">
+                            <a class="nav-link <?php if($_GET['action']=='byca'){echo 'active';}?>" href="index.php?action=byca"  aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>CA</a>
                                 
                             </li>
                             <li class="nav-divider">
@@ -340,28 +345,7 @@
         <div class="dashboard-wrapper">
             <div class="dashboard-finance">
                 <div class="container-fluid dashboard-content">
-                    <!-- ============================================================== -->
-                    <!-- pageheader  -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="page-header">
-                                <h3 class="mb-2">Finance Dashboard </h3>
-                                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                                <div class="page-breadcrumb">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Finance Dashboard Template</li>
-                                        </ol>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end pageheader  -->
-                    <!-- ============================================================== -->
+       
                     
                   <?=$content?> 
 

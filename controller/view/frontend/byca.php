@@ -1,4 +1,5 @@
 <?php ob_start();?>
+
 <div class="card mb-3">
   <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,19 +37,67 @@
 
           echo '<tr>';
         }
-        echo 'Trimestre 1 :&nbsp;'.$trim1.'&nbsp;€</br>';
-        echo 'Trimestre 2 :&nbsp;'.$trim2.'&nbsp;€</br>';
-        echo 'Trimestre 3 :&nbsp;'.$trim3.'&nbsp;€</br>';
-        echo 'Trimestre 4 :&nbsp;'.$trim4.'&nbsp;€</br>';
-
 
         ?>
+    
+
       </tbody>
     </table>
   </div>
 </div>
-<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>
+<div class="row">
+                    <!-- metric -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">Trimestre 1</h5>
+                                <div class="metric-value d-inline-block">
+                                    <h1 class="mb-1 text-primary"><?= $trim1?> €</h1>
+                                </div>                         
+                        </div>
+                    </div>
+                    </div>
+                    <!-- /. metric -->
+                    <!-- metric -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">Trimestre 2</h5>
+                                <div class="metric-value d-inline-block">
+                                    <h1 class="mb-1 text-primary"><?= $trim2?> € </h1>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /. metric -->
+                    <!-- metric -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">Trimestre 3</h5>
+                                <div class="metric-value d-inline-block">
+                                    <h1 class="mb-1 text-primary"><?= $trim3?> €</h1>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /. metric -->
+                    <!-- metric -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">Trimestre 4</h5>
+                                <div class="metric-value d-inline-block">
+                                    <h1 class="mb-1 text-primary"><?= $trim4?> €</h1>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /. metric -->
+                </div>
 
 <?php
 $content = ob_get_clean();
