@@ -1,21 +1,26 @@
 <?php ob_start();?>
-<div class="card mb-3">
-  <div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-      <thead>
-        <tr>
-          <th>Mois</th>
-          <?php
+<div class="row">
+                    <!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                    <th> Mois </th>
+
+                                                <?php
           foreach ($account as $taccount)
           {
             $tblaccount[$taccount['id']] = $taccount['name'];
             echo '<th>' . $taccount['name'] .  '</th>';
           }
           ?>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
         foreach ($date as $row)
         {
           echo '<tr><td>' . $row['name'] . '</td>';
@@ -27,12 +32,14 @@
           echo '<tr>';
         }
         ?>
-      </tbody>
-    </table>
-  </div>
+                                        </tbody>
+</table>
 </div>
-<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
+</div>
+</div>
+
+
 
 <?php
 $content = ob_get_clean();

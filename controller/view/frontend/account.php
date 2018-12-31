@@ -1,10 +1,13 @@
 <?php ob_start();?>
-<div class="card mb-3">
-  <div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-      <thead>
-        <tr>
-          <th>Mois</th>
+<!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                    <th> Mois </th>
           <?php
           foreach ($account as $toto)
           {
@@ -45,6 +48,7 @@
     </table>
   </div>
 </div>
+</div></div>
 
 <?php
 
