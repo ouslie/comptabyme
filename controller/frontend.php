@@ -232,9 +232,5 @@ function ByCa()
         foreach ($ca as $row) {
             $tblTotal[$row['month']] = $row['amount'];
         }
-    
         require 'view/frontend/byca.php';
-    
-    
-
 }

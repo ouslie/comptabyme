@@ -6,7 +6,6 @@
         <tr>
           <th>Mois</th>
           <th>CA</th>
-          <th>CA</th>
         </tr>
       </thead>
       <tbody>
@@ -33,27 +32,14 @@
             if ($row['id'] >= 10 && $row['id'] <= 12 ){
               $trim4 = $total + $trim4;
             }
-            echo '<td>' . $total . '</td>';
+            echo '<td>' . $total . '&nbsp;€</td>';
 
           echo '<tr>';
         }
-        echo "trim 1 :";
-        echo $trim1;
-        echo "</br>";
-
-        echo "trim 2 :";
-
-        echo $trim2;
-        echo "</br>";
-
-        echo "trim 3 :";
-
-        echo $trim3;
-        echo "</br>";
-
-        echo "trim 4 :";
-
-        echo $trim4;
+        echo 'Trimestre 1 :&nbsp;'.$trim1.'&nbsp;€</br>';
+        echo 'Trimestre 2 :&nbsp;'.$trim2.'&nbsp;€</br>';
+        echo 'Trimestre 3 :&nbsp;'.$trim3.'&nbsp;€</br>';
+        echo 'Trimestre 4 :&nbsp;'.$trim4.'&nbsp;€</br>';
 
 
         ?>
