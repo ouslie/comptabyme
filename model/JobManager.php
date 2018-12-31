@@ -333,6 +333,7 @@ class JobManager extends Manager
         if (!isset($data['amount'])) {
             $data['amount'] = 0;
         }
+        print_r($data);
         return $data;
     }
 
