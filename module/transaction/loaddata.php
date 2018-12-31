@@ -88,7 +88,7 @@ if ( isset($_GET['page']) && is_numeric($_GET['page'])  )
   $page =  (int) $_GET['page'];
 
 
-$rowByPage=5;
+$rowByPage=20;
 
 $from= ($page-1) * $rowByPage;
 
