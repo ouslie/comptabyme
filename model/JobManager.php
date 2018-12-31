@@ -22,6 +22,29 @@ class JobManager extends Manager
         }
         return $data;
     }
+    public function GetRecetteAVenir($base_active)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM demo WHERE id_type = 1 AND id_base = :active_base AND tally = 0');
+        $req->execute(array('active_base' => $base_active));
+        $data = $req->fetch();
+        if (!isset($data['amount'])) {
+            $data['amount'] = 0;
+        }
+        return $data;
+    }
+
+    public function GetDepenseAVenir($base_active)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM demo WHERE id_type = 2 AND id_base = :active_base AND tally = 0');
+        $req->execute(array('active_base' => $base_active));
+        $data = $req->fetch();
+        if (!isset($data['amount'])) {
+            $data['amount'] = 0;
+        }
+        return $data;
+    }
 
     public function GetDepenseMonth($date, $base_active)
     {

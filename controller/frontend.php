@@ -63,6 +63,8 @@ function GetDashboard()
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
     $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
 
+    $RecetteAVenir = $jobManager ->GetRecetteAVenir($_SESSION['activebase']);
+    $DepenseAVenir = $jobManager ->GetDepenseAVenir($_SESSION['activebase']);
 
     require 'view/frontend/dashboard.php';
 }
