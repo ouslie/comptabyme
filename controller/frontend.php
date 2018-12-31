@@ -161,7 +161,7 @@ function Cron()
             }
         }
     }
-    //echo $idTotalBank['id'];
+    header('Location: index.php');
 
 }
 function AddAccount()

@@ -102,10 +102,7 @@ if (ctype_digit($id_utilisateur)) {
 
 	} else {
 
-		// On affiche à nouveau le formulaire d'inscription
-echo "errer";	}
+			}
 
 } else {
-
-	// On affiche à nouveau le formulaire d'inscription
-echo "errerr";}
+}

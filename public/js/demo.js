@@ -124,7 +124,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
 		success: function (response) 
 		{ 		
           if (response == "ok" ) {
-              message("success","Row deleted");
+              message("success","Transaction supprimé");
               self.fetchGrid();
 		  }
 		},
@@ -174,7 +174,7 @@ DatabaseGrid.prototype.addRow = function(id)
 				$("#amount").val('');
 				$("#date").val('');
 
-                message("success","Row added : reload model");
+                message("success","Transaction ajouté");
                 self.fetchGrid();
            	}
             else 

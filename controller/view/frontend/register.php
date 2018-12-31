@@ -1,53 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-  <head>
-
+ 
+<head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="public/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="public/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/assets/libs/css/style.css">
+    <link rel="stylesheet" href="public/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
 
-    <title>SB Admin - Register</title>
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    </style>
+</head>
+<!-- ============================================================== -->
+<!-- signup form  -->
+<!-- ============================================================== -->
 
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
-  </head>
-
-  <body class="bg-dark">
-
-    <div class="container">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Creer un compte
-        </div>
-        <div class="card-body">
-<?php
+<body>
+    <!-- ============================================================== -->
+    <!-- signup form  -->
+    <!-- ============================================================== -->
+    <form class="splash-container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-1">S'incrire</h3>
+            </div>
+            <div class="card-body">
+            <?php
 echo $form_inscription;
 ?>
             </div>
-          <div class="text-center">
-            <a class="d-block small mt-3" href="index.php">Connection</a>
-          </div>
+            <div class="card-footer bg-white">
+                <p>Déjà membre ?<a href="index.php" class="text-secondary">Se connecter.</a></p>
+            </div>
         </div>
-      </div>
-    </div>
+    </form>
+</body>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  </body>
-
+ 
 </html>
-
