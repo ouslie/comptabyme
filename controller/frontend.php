@@ -206,13 +206,14 @@ function AddBase()
 }
 function SetBase()
 {
-    if (!empty($_POST)) {
+    if (!empty($_POST)) {        
+        $activepage = $_POST['activepage'];
         $jobManager = new JobManager();
         $namebase = $jobManager->GetBaseName($_POST['id_base']);
         $_SESSION['activebase'] = $_POST['id_base'];
         $_SESSION['activebasename'] = $namebase['name'];
 
-        header('Location: index.php');
+        header('Location: index.php?action='.$activepage.'');
 
     }
 

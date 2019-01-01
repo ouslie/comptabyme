@@ -42,6 +42,7 @@
                             <div id="custom-search" class="top-search-bar">
 
                                 <form action="index.php?action=setbase" method="POST">
+                                <input type="hidden"id="activepage" name="activepage" value="<?=$_GET['action']?>">
                                     <select class="form-control" id="id_base" name="id_base" onchange="this.form.submit()">
                                         <option value="<?= $_SESSION['activebase']?>">
                                             <?=$_SESSION['activebasename']?>
