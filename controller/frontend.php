@@ -149,19 +149,34 @@ function Cron()
         $idTotalBank = $jobManager->GetTotalAccount($_SESSION['activebase']);
         foreach ($date as $tdate) {
             if ($tbank['id'] != $idTotalBank['id']) {
-
                 $recette = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '1', $tbank['id']);
                 $depense = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '2', $tbank['id']);
                 $total = $recette['amount'] - $depense['amount'];
                 $ttotal = $ttotal + $total;
                 $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $ttotal, $tbank['id']);
             } else {
+
                 $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $ttotal, $idTotalBank['id']);
             }
         }
+        
     }
-    header('Location: index.php');
+    //header('Location: index.php');
+    foreach ($date as $tdate) {
+        $totalmois = 0;
 
+        echo "date : ";
+        echo $tdate['id'];
+        echo "</br>";
+        foreach ($bank as $tbank) {
+            $totaltreso = $jobManager-> HotAccountCronSelect2($_SESSION['activebase'], $tdate['id'], $tbank['id']);
+            $totalmois = $totalmois +  $totaltreso['total'];
+            $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $totalmois, $idTotalBank['id']);
+
+    
+        }
+
+    }
 }
 function AddAccount()
 {

@@ -339,6 +339,23 @@ class JobManager extends Manager
         return $data;
     }
 
+    public function HotAccountCronSelect2($id_base, $month, $id_bank)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT total
+                  FROM hot_treso
+                  WHERE id_base = :id_base
+                  AND month = :month
+                  AND id_bank = :id_bank
+                  ');
+        $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_bank' => $id_bank));
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        if (!isset($data['total'])) {
+            $data['total'] = 0;
+        }
+        return $data;
+    }
+
     public function HotTresoCronSelect($id_base, $month, $id_type, $id_bank)
     {
         $db = $this->dbConnect();
