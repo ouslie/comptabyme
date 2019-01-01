@@ -218,6 +218,17 @@ class JobManager extends Manager
         return $data;
     }
 
+    public function GetAccountWitoutTotal($id_base)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, name FROM bank WHERE id_base = :id_base AND system = 0 ORDER BY system');
+        $req->execute(array('id_base' => $id_base));
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+
     public function CountAccount($id_base)
     {
         $db = $this->dbConnect();
