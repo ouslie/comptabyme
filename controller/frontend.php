@@ -168,7 +168,7 @@ function AddAccount()
     if (!empty($_POST)) {
         echo $_POST["name"];
         $jobManager = new JobManager();
-        $id_bank = $jobManager->AddAccount($_POST["name"], $_SESSION["activebase"]);
+        $id_bank = $jobManager->AddAccount($_POST["name"],$_POST["solde"], $_SESSION["activebase"]);
         for ($i = 1; $i < 13; $i++) {
             $jobManager->CreateHotTreso($id_bank, $i, $_SESSION["activebase"]);
             $jobManager->CreateHotAccount($id_bank, $i, $_SESSION["activebase"]);

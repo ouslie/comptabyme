@@ -23,7 +23,7 @@
               <input type="text" name="name" id="name" class="form-control" />
               <br />
               <label>Solde du compte</label>
-              <input type="text" name="name" id="name" class="form-control" />
+              <input type="text" name="solde" id="solde" class="form-control" />
               <br />
               <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
             </form>

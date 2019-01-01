@@ -185,11 +185,11 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function AddAccount($name, $id_base)
+    public function AddAccount($name,$solde, $id_base)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO bank SET name = :name, id_base = :id_base');
-        $req->execute(array('name' => $name, 'id_base' => $id_base));
+        $req = $db->prepare('INSERT INTO bank SET name = :name,solde = :solde, id_base = :id_base');
+        $req->execute(array('name' => $name, 'solde' => $solde, 'id_base' => $id_base));
         $data = $db->lastInsertId();
         return $data;
     }
