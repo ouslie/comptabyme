@@ -19,7 +19,7 @@ $id_type = $_POST['id_type'];
 $amount = $_POST['amount'];
 $date = $_POST['date'];
 
-$return=false;
+$return = false;
 
 $requete = $pdo->prepare("INSERT INTO demo SET
 		third = :third,
@@ -32,18 +32,16 @@ $requete = $pdo->prepare("INSERT INTO demo SET
 		id_base= :id_base
 		");
 
-	$requete->bindValue(':third', $third);
-	$requete->bindValue(':comment', $comment);
-    $requete->bindValue(':id_category', $id_category);
-    $requete->bindValue(':id_bank', $id_bank);
-	$requete->bindValue(':id_type', $id_type);
-	$requete->bindValue(':amount', $amount);
-	$requete->bindValue(':date', $date);
-	$requete->bindValue(':id_base', $_SESSION['activebase']);
+$requete->bindValue(':third', $third);
+$requete->bindValue(':comment', $comment);
+$requete->bindValue(':id_category', $id_category);
+$requete->bindValue(':id_bank', $id_bank);
+$requete->bindValue(':id_type', $id_type);
+$requete->bindValue(':amount', $amount);
+$requete->bindValue(':date', $date);
+$requete->bindValue(':id_base', $_SESSION['activebase']);
 
+$return = $requete->execute();
+$requete = null;
 
-	$return = $requete->execute();
-	$requete = null;
-
-
-	echo $return ? "ok" : "error";
+echo $return ? "ok" : "error";

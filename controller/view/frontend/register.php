@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="fr">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="public/assets/libs/css/style.css">
     <link rel="stylesheet" href="public/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <style>
-    html,
-    body {
-        height: 100%;
-    }
+        html,
+        body {
+            height: 100%;
+        }
 
-    body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
     </style>
 </head>
 <!-- ============================================================== -->
@@ -41,7 +41,7 @@
                 <h3 class="mb-1">S'incrire</h3>
             </div>
             <div class="card-body">
-            <?php
+                <?php
 echo $form_inscription;
 ?>
             </div>
@@ -52,5 +52,5 @@ echo $form_inscription;
     </form>
 </body>
 
- 
+
 </html>

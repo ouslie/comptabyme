@@ -1,26 +1,26 @@
 <?php ob_start();?>
 <div class="row">
-                    <!-- ============================================================== -->
-                    <!-- basic table  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                    <th> Mois </th>
+  <!-- ============================================================== -->
+  <!-- basic table  -->
+  <!-- ============================================================== -->
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <th> Mois </th>
 
-                                                <?php
+            <?php
           foreach ($account as $taccount)
           {
             $tblaccount[$taccount['id']] = $taccount['name'];
             echo '<th>' . $taccount['name'] .  '</th>';
           }
           ?>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
+            </tr>
+            </thead>
+            <tbody>
+              <?php
         foreach ($date as $row)
         {
           echo '<tr><td>' . $row['name'] . '</td>';
@@ -32,15 +32,15 @@
           echo '<tr>';
         }
         ?>
-                                        </tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
-<?php
+  <?php
 $content = ob_get_clean();
 require 'template.php';?>

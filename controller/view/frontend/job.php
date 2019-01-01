@@ -1,20 +1,20 @@
 <?php ob_start();?>
 <!-- ============================================================== -->
-                    <!-- basic table  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                    <th> Catégories </th>
-              <?php
+<!-- basic table  -->
+<!-- ============================================================== -->
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <th> Catégories </th>
+          <?php
               foreach ($date as $row) {
                 $tblDate[$row['id']] = $row['name'];
                 echo '<th>' . $row['name'] . '</th>';
               }
               ?>
-            </tr>
+          </tr>
           </thead>
           <tbody>
             <?php
@@ -29,8 +29,8 @@
               echo '<tr>';
             }
             ?>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

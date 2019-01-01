@@ -1,14 +1,14 @@
 <?php ob_start();?>
 
 <!-- ============================================================== -->
-                    <!-- basic table  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                    <th> Mois </th>
+<!-- basic table  -->
+<!-- ============================================================== -->
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <th> Mois </th>
           <?php
           foreach ($account as $toto)
           {
@@ -16,10 +16,10 @@
             echo '<th colspan="3" style="text-align:center">' . $toto['name'] . '</th>';
           }
           ?>
-        </tr>
-        <tr>
-          <th></th>
-          <?php
+          </tr>
+          <tr>
+            <th></th>
+            <?php
           foreach ($account as $toto)
           {
             echo '<th>Recettes </th>';
@@ -27,10 +27,10 @@
             echo '<th>Total </th>';
           }
           ?>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
+          </tr>
+          </thead>
+          <tbody>
+            <?php
         foreach ($date as $row) {
           echo '<tr><td>' . $row['name'] . '</td>';
           foreach ($tblaccount as $bank => $bank)
@@ -45,11 +45,12 @@
           echo '<tr>';
         }
         ?>
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
-</div></div>
 
 <?php
 

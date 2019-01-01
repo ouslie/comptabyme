@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="fr">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="public/assets/libs/css/style.css">
     <link rel="stylesheet" href="public/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <style>
-    html,
-    body {
-        height: 100%;
-    }
+        html,
+        body {
+            height: 100%;
+        }
 
-    body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
     </style>
 </head>
 
@@ -35,7 +35,7 @@
     <div class="splash-container">
         <div class="card ">
             <div class="card-body">
-       <?php     echo $form_connexion;
+                <?php     echo $form_connexion;
 if (!empty($erreurs_connexion)) {
 
     echo '<ul>' . "\n";
@@ -58,7 +58,7 @@ if (!empty($erreurs_connexion)) {
             </div>
         </div>
     </div>
-  
+
     <!-- ============================================================== -->
     <!-- end login page  -->
     <!-- ============================================================== -->
@@ -66,6 +66,5 @@ if (!empty($erreurs_connexion)) {
     <script src="public/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
- 
-</html>
 
+</html>

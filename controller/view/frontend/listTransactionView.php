@@ -13,37 +13,38 @@
 */
 -->
 <link rel="stylesheet" href="public/css/style.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="public/css/responsive.css" type="text/css" media="screen">
+<link rel="stylesheet" href="public/css/responsive.css" type="text/css" media="screen">
 
-        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-		<link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
 <script src="public/js/editablegrid-2.1.0-49.js"></script>
-    <script src="public/js/demo.js"></script>
-    <script src="public/js/jquery-1.11.1.min.js" ></script>
+<script src="public/js/demo.js"></script>
+<script src="public/js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                        <div id="toolbar" class="card-header">
+  <div class="card">
+    <div id="toolbar" class="card-header">
       <input type="text" id="filter" name="filter" placeholder="Filter par tiers" />
       <a id="showaddformbutton" class="btn btn-outline-primary">Ajouter une transaction</a>
-    </div>                            
-                            <div class="card-body">
+    </div>
+    <div class="card-body">
 
 
-    <!-- Grid contents -->
-    <div id="tablecontent"></div>
+      <!-- Grid contents -->
+      <div id="tablecontent"></div>
 
-    <!-- Paginator control -->
-    <div id="paginator"></div>
+      <!-- Paginator control -->
+      <div id="paginator"></div>
 
+    </div>
   </div>
-  </div></div>
+</div>
 
 
 
-  <script type="text/javascript">
+<script type="text/javascript">
   var datagrid;
 
   window.onload = function () {
@@ -66,27 +67,26 @@
     });
 
   }
+</script>
 
-  </script>
+<?php $jobManager = new JobManager();?>
 
-  <?php $jobManager = new JobManager();?>
+<div id="addform">
 
-  <div id="addform">
-  
-    <div class="row">
-      <input type="date" id="date" name="date" />
-    </div>
+  <div class="row">
+    <input type="date" id="date" name="date" />
+  </div>
 
-    <div class="row">
-      <select id="id_type" name="id_type">
-        <option value="">--Type--</option>
-        <?php
+  <div class="row">
+    <select id="id_type" name="id_type">
+      <option value="">--Type--</option>
+      <?php
         $type = $jobManager->GetType();
         $type = $type->fetchAll(PDO::FETCH_ASSOC);
         foreach ($type as $row): ?>
-        <option value="<?=$row['id'];?>">
-          <?=$row['name'];?>
-        </option>
+      <option value="<?=$row['id'];?>">
+        <?=$row['name'];?>
+      </option>
       <?php endforeach;?>
     </select>
   </div>
@@ -102,40 +102,40 @@
       <option value="<?=$row['id'];?>">
         <?=$row['name'];?>
       </option>
-    <?php endforeach;?>
+      <?php endforeach;?>
 
-  </select>
-</div>
-<div class="row">
-  <input type="text" id="third" name="third" placeholder="Tiers" required/>
-</div>
-<div class="row">
-  <input type="text" id="comment" name="comment" placeholder="Commentaire" />
-</div>
-<div class="row">
-  <input type="text" id="amount" name="amount" placeholder="Montant" />
-</div>
+    </select>
+  </div>
+  <div class="row">
+    <input type="text" id="third" name="third" placeholder="Tiers" required />
+  </div>
+  <div class="row">
+    <input type="text" id="comment" name="comment" placeholder="Commentaire" />
+  </div>
+  <div class="row">
+    <input type="text" id="amount" name="amount" placeholder="Montant" />
+  </div>
 
-<div class="row">
-  <select id="id_bank" name="id_bank">
-    <option value="">--Banque--</option>
-    <?php
+  <div class="row">
+    <select id="id_bank" name="id_bank">
+      <option value="">--Banque--</option>
+      <?php
     $bank = $jobManager->GetBankSys($_SESSION['activebase']);
     $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($bank as $row): ?>
-    <option value="<?=$row['id'];?>">
-      <?=$row['name'];?>
-    </option>
-  <?php endforeach;?>
+      <option value="<?=$row['id'];?>">
+        <?=$row['name'];?>
+      </option>
+      <?php endforeach;?>
 
-</select>
-</div>
+    </select>
+  </div>
 
-<div class="row tright">
-  <a id="addbutton" class="btn btn-rounded btn-success"><i class="fa fa-save"></i> Apply</a>
-  <a id="cancelbutton" class="btn btn-rounded btn-danger">Annuler</a>
-</div>
+  <div class="row tright">
+    <a id="addbutton" class="btn btn-rounded btn-success"><i class="fa fa-save"></i> Apply</a>
+    <a id="cancelbutton" class="btn btn-rounded btn-danger">Annuler</a>
+  </div>
 </div>
 
 

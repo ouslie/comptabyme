@@ -51,10 +51,9 @@ function ListTransaction()
 function GetDashboard()
 {
     $jobManager = new JobManager();
-    //base par défaut 
+    //base par défaut
     $defaultbase = $jobManager->GetBaseDefault($_SESSION['id']);
-    if (!isset($_SESSION['activebase']))
-    {
+    if (!isset($_SESSION['activebase'])) {
         $_SESSION['activebase'] = $defaultbase['id'];
         $_SESSION['activebasename'] = $defaultbase['name'];
 
@@ -63,8 +62,8 @@ function GetDashboard()
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
     $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
 
-    $RecetteAVenir = $jobManager ->GetRecetteAVenir($_SESSION['activebase']);
-    $DepenseAVenir = $jobManager ->GetDepenseAVenir($_SESSION['activebase']);
+    $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
+    $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
 
     require 'view/frontend/dashboard.php';
 }
@@ -209,7 +208,7 @@ function SetBase()
 {
     if (!empty($_POST)) {
         $jobManager = new JobManager();
-        $namebase = $jobManager ->GetBaseName($_POST['id_base']);
+        $namebase = $jobManager->GetBaseName($_POST['id_base']);
         $_SESSION['activebase'] = $_POST['id_base'];
         $_SESSION['activebasename'] = $namebase['name'];
 
@@ -227,12 +226,12 @@ function Disconnect()
 }
 function ByCa()
 {
-    
-        $jobManager = new JobManager(); // Création d'un objet
-        $date = $jobManager->GetDate();
-        $ca = $jobManager->GetCa($_SESSION['activebase']);
-        foreach ($ca as $row) {
-            $tblTotal[$row['month']] = $row['amount'];
-        }
-        require 'view/frontend/byca.php';
+
+    $jobManager = new JobManager(); // Création d'un objet
+    $date = $jobManager->GetDate();
+    $ca = $jobManager->GetCa($_SESSION['activebase']);
+    foreach ($ca as $row) {
+        $tblTotal[$row['month']] = $row['amount'];
+    }
+    require 'view/frontend/byca.php';
 }

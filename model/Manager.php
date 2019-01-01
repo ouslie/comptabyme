@@ -16,5 +16,3 @@ class Manager
         return $dbh;
     }
 }
-
-
