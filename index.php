@@ -67,7 +67,7 @@ try {
                 case 'disconnect':
                     Disconnect();
                     break;
-
+                    
                 default;
                     header('Location: index.php');
                     break;
