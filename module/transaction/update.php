@@ -20,13 +20,17 @@ $coltype = $_POST['coltype'];
 $value = $_POST['newvalue'];
 $tablename = $_POST['tablename'];
 
+if($colname == "date2") {$colname = "date";}
+
 // Here, this is a little tips to manage date format before update the table
 if ($coltype == 'date') {
+    //echo $value;
     if ($value === "") {
         $value = null;
     } else {
         $date_info = date_parse_from_format('d/m/Y', $value);
         $value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+        echo $value;
     }
 }
 
