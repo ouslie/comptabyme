@@ -157,7 +157,6 @@ function Cron()
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $totalmois, $idTotalBank['id']);
         }
     }
-    header('Location: index.php');
 }
 function AddAccount()
 {
