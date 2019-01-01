@@ -181,14 +181,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6"
-                                    aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Pages </a>
+                                    aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Configuration </a>
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page.html">Blank Page</a>
+                                            <a class="nav-link" href="index.php?action=addaccount">Ajouter un compte</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/blank-page-header.html">Blank Page Header</a>
+                                            <a class="nav-link" href="index.php?action=categories">Catégories</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/login.html">Login</a>

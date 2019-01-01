@@ -177,7 +177,6 @@ function AddAccount()
 
         $jobManager->CreateHotTreso($idTotalBank['id'], $i, $_SESSION["activebase"]);
         $jobManager->CreateHotAccount($idTotalBank['id'], $i, $_SESSION["activebase"]);
-        echo '<label class="text-success">Data Inserted</label>';
 
     }
 

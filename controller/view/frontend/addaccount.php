@@ -8,7 +8,7 @@
 <div class="card mb-3">
   <div class="card-header">
 
-    <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning">Add</button>
+    <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning">Ajouter un compte</button>
 
     <div id="add_data_Modal" class="modal fade">
       <div class="modal-dialog">
