@@ -168,7 +168,9 @@ function AddAccount()
     if (!empty($_POST)) {
         echo $_POST["name"];
         $jobManager = new JobManager();
-        $id_bank = $jobManager->AddAccount($_POST["name"],$_POST["solde"], $_SESSION["activebase"]);
+        $solde= floatval(str_replace(',', '.', str_replace('.', '', $_POST["solde"])));
+
+        $id_bank = $jobManager->AddAccount($_POST["name"],$solde, $_SESSION["activebase"]);
         for ($i = 1; $i < 13; $i++) {
             $jobManager->CreateHotTreso($id_bank, $i, $_SESSION["activebase"]);
             $jobManager->CreateHotAccount($id_bank, $i, $_SESSION["activebase"]);
@@ -179,7 +181,6 @@ function AddAccount()
         $jobManager->CreateHotAccount($idTotalBank['id'], $i, $_SESSION["activebase"]);
 
     }
-
     require CHEMIN_VUE . 'addaccount.php';
 }
 
