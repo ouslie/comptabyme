@@ -19,6 +19,8 @@ $id_type = $_POST['id_type'];
 $amount = $_POST['amount'];
 $date = $_POST['date'];
 
+$amount = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
+
 $return = false;
 
 $requete = $pdo->prepare("INSERT INTO demo SET

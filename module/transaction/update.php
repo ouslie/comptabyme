@@ -19,6 +19,8 @@ $id = $_POST['id'];
 $coltype = $_POST['coltype'];
 $value = $_POST['newvalue'];
 $tablename = $_POST['tablename'];
+if ($colname == "amount") { $value = floatval(str_replace(',', '.', str_replace('.', '',$value)));
+}
 
 if($colname == "date2") {$colname = "date";}
 

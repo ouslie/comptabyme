@@ -64,9 +64,6 @@ function GetDashboard()
 
     $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
     $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
-
-    print_r($RecetteAVenir);
-    print_r($DepenseAVenir);
     require 'view/frontend/dashboard.php';
 }
 
