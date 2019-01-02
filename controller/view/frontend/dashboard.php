@@ -39,9 +39,9 @@
             <div class="card-body">
                 <div class="metric-value d-inline-block">
                     <h1 class="mb-1">
-                        <?= $RecetteAVenir['amount']?>€</h1>
+                       Recette :  <?= $RecetteAVenir['amount']?>€</h1>
                     <h1 class="mb-1">
-                        <?= $DepenseAVenir['amount']?>€</h1>
+                       Dépense :  <?= $DepenseAVenir['amount']?>€</h1>
                 </div>
             </div>
         </div>
