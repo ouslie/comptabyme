@@ -11,6 +11,7 @@
  */
 
 $pdo = PDO2::getInstance();
+$pdo->exec("set names utf8");
 
 // Get all parameters provided by the javascript
 

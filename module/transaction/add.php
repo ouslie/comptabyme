@@ -10,6 +10,8 @@
 
 $pdo = PDO2::getInstance();
 
+$pdo->exec("set names utf8");
+
 // Get all parameter provided by the javascript
 $third = $_POST['third'];
 $comment = $_POST['comment'];
