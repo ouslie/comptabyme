@@ -143,7 +143,7 @@ class JobManager extends Manager
         FROM demo
         INNER JOIN category ON demo.id_category = category.id
         WHERE demo.id_base = :id_base
-        GROUP BY date, category.name,id_type');
+        GROUP BY month, category.name,id_type');
         $req->execute(array('id_base' => $id_base));
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         return $data;
