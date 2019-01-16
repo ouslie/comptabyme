@@ -341,8 +341,10 @@ class JobManager extends Manager
                   AND MONTH(date) = :month
                   AND id_type = :id_type
                   AND id_bank = :id_bank
+                  AND tally = :tally
+
                   ');
-        $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_type' => $id_type, 'id_bank' => $id_bank));
+        $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_type' => $id_type, 'id_bank' => $id_bank,'tally' => 1));
         $data = $req->fetch(PDO::FETCH_ASSOC);
         if (!isset($data['amount'])) {
             $data['amount'] = 0;
