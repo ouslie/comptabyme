@@ -14,27 +14,43 @@ function AddTransaction()
     require 'module/transaction/add.php';
 }
 
-function AddContrat()
-{
-    require 'module/contrats/add.php';
-}
-
 function DeleteTransaction()
 {
     require 'module/transaction/delete.php';
+}
+
+function UpdateTransaction()
+{
+    require 'module/transaction/update.php';
+}
+
+function AddContrat()
+{
+    require 'module/contrats/add.php';
 }
 function DeleteContrat()
 {
     require 'module/contrats/delete.php';
 }
-function UpdateTransaction()
-{
-    require 'module/transaction/update.php';
-}
 function UpdateContrat()
 {
     require 'module/contrats/update.php';
 }
+
+function AddCategory()
+{
+    require 'module/category/add.php';
+}
+function DeleteCategory()
+{
+    require 'module/category/delete.php';
+}
+function UpdateCategory()
+{
+    require 'module/category/update.php';
+}
+
+
 function Login()
 {
     require 'module/users/login.php';
@@ -173,13 +189,13 @@ function Cron()
     //Cron contrats
     $contrats = $jobManager->GetContrats($_SESSION['activebase']);
     $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($contrats as $tcontrats){
-        $recettecontrats = $jobManager-> HotContratsCronSelect($_SESSION['activebase'], '1', $tcontrats['id'],$tcontrats['id_cat']);
-    
-        $depensecontrats = $jobManager-> HotContratsCronSelect($_SESSION['activebase'], '2', $tcontrats['id'],$tcontrats['id_cat']);
-       
+    foreach ($contrats as $tcontrats) {
+        $recettecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '1', $tcontrats['id'], $tcontrats['id_cat']);
+
+        $depensecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '2', $tcontrats['id'], $tcontrats['id_cat']);
+
         $total = $recettecontrats['amount'] - $depensecontrats['amount'];
-       
+
         $jobManager->HotContratsCron($_SESSION['activebase'], $total, $tcontrats['id']);
 
     }
@@ -263,4 +279,9 @@ function ByCa()
 function ByContrats()
 {
     require 'view/frontend/bycontrats.php';
+}
+
+function ListCategories()
+{
+    require 'view/frontend/listcategories.php';
 }

@@ -176,11 +176,7 @@
                                     aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>CA</a>
 
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='bycontrats'){echo 'active';}?>" href="index.php?action=bycontrats"
-                                    aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Contrats</a>
-
-                            </li>
+                    
                             <li class="nav-divider">
                                 Parametre 
                             </li>
@@ -193,8 +189,13 @@
                                             <a class="nav-link" href="index.php?action=addaccount">Ajouter un compte</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="index.php?action=categories">Catégories</a>
-                                        </li>
+                                <a class="nav-link <?php if($_GET['action']=='bycontrats'){echo 'active';}?>" href="index.php?action=bycontrats">Contrats</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link <?php if($_GET['action']=='listcategories'){echo 'active';}?>" href="index.php?action=listcategories">Catégories</a>
+                            </li>
+
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/login.html">Login</a>
                                         </li>

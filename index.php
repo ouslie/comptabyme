@@ -37,24 +37,48 @@ try {
                 case 'byjob':
                     ByJob();
                     break;
+
                 case 'addtransaction':
                     AddTransaction();
                     break;
-                    case 'addcontrat':
-                    AddContrat();
-                    break;
-                case 'deletetransaction':
-                    DeleteTransaction();
-                    break;
-                    case 'deletecontrat':
-                    DeleteContrat();
-                    break;
+
                 case 'updatetransaction':
                     UpdateTransaction();
                     break;
-                    case 'updatecontrat':
+
+                case 'deletetransaction':
+                    DeleteTransaction();
+                    break;
+
+                case 'addcontrat':
+                    AddContrat();
+                    break;
+
+                case 'deletecontrat':
+                    DeleteContrat();
+                    break;
+
+                case 'updatecontrat':
                     UpdateContrat();
                     break;
+
+                    case 'listcategories':
+                    ListCategories();
+                    break;
+
+                    case 'addcategory':
+                    AddCategory();
+                    break;
+
+                case 'deletecategory':
+                    DeleteCategory();
+                    break;
+
+                case 'updatecategory':
+                    UpdateCategory();
+                    break;
+
+
                 case 'addaccount':
                     AddAccount();
                     break;
@@ -73,13 +97,13 @@ try {
                 case 'byca':
                     ByCa();
                     break;
-                    case 'bycontrats':
+                case 'bycontrats':
                     ByContrats();
                     break;
                 case 'disconnect':
                     Disconnect();
                     break;
-                    
+
                 default;
                     header('Location: index.php');
                     break;
