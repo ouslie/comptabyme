@@ -40,11 +40,20 @@ try {
                 case 'addtransaction':
                     AddTransaction();
                     break;
+                    case 'addcontrat':
+                    AddContrat();
+                    break;
                 case 'deletetransaction':
                     DeleteTransaction();
                     break;
+                    case 'deletecontrat':
+                    DeleteContrat();
+                    break;
                 case 'updatetransaction':
                     UpdateTransaction();
+                    break;
+                    case 'updatecontrat':
+                    UpdateContrat();
                     break;
                 case 'addaccount':
                     AddAccount();

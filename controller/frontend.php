@@ -13,13 +13,27 @@ function AddTransaction()
 {
     require 'module/transaction/add.php';
 }
+
+function AddContrat()
+{
+    require 'module/contrats/add.php';
+}
+
 function DeleteTransaction()
 {
     require 'module/transaction/delete.php';
 }
+function DeleteContrat()
+{
+    require 'module/contrats/delete.php';
+}
 function UpdateTransaction()
 {
     require 'module/transaction/update.php';
+}
+function UpdateContrat()
+{
+    require 'module/contrats/update.php';
 }
 function Login()
 {
@@ -248,13 +262,5 @@ function ByCa()
 
 function ByContrats()
 {
-
-    $jobManager = new JobManager(); // Création d'un objet
-    $contrats = $jobManager->GetContrats($_SESSION['activebase']);
-    $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
-
-
-   require 'view/frontend/bycontrats.php';
-    print_r($contrats);
-
+    require 'view/frontend/bycontrats.php';
 }
