@@ -131,6 +131,21 @@
 
     </select>
   </div>
+  <div class="row">
+    <select id="id_contrat" name="id_contrat">
+      <option value="">--Contrats--</option>
+      <?php
+    $contrats = $jobManager->GetContrats($_SESSION['activebase']);
+    $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($contrats as $row): ?>
+      <option value="<?=$row['id'];?>">
+        <?=$row['name'];?>
+      </option>
+      <?php endforeach;?>
+
+    </select>
+  </div>
 
   <div class="row tright">
     <a id="addbutton" class="btn btn-rounded btn-success"><i class="fa fa-save"></i> Apply</a>

@@ -156,6 +156,20 @@ function Cron()
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $totalmois, $idTotalBank['id']);
         }
     }
+    //Cron contrats
+    $contrats = $jobManager->GetContrats($_SESSION['activebase']);
+    $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($contrats as $tcontrats){
+        $recettecontrats = $jobManager-> HotContratsCronSelect($_SESSION['activebase'], '1', $tcontrats['id'],$tcontrats['id_cat']);
+    
+        $depensecontrats = $jobManager-> HotContratsCronSelect($_SESSION['activebase'], '2', $tcontrats['id'],$tcontrats['id_cat']);
+       
+        $total = $recettecontrats['amount'] - $depensecontrats['amount'];
+       
+        $jobManager->HotContratsCron($_SESSION['activebase'], $total, $tcontrats['id']);
+
+    }
+
     header('Location: index.php');
 }
 function AddAccount()
@@ -230,4 +244,17 @@ function ByCa()
         $tblTotal[$row['month']] = $row['amount'];
     }
     require 'view/frontend/byca.php';
+}
+
+function ByContrats()
+{
+
+    $jobManager = new JobManager(); // Création d'un objet
+    $contrats = $jobManager->GetContrats($_SESSION['activebase']);
+    $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
+
+
+   require 'view/frontend/bycontrats.php';
+    print_r($contrats);
+
 }

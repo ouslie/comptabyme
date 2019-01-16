@@ -155,7 +155,8 @@ DatabaseGrid.prototype.addRow = function(id)
 			id_bank:  $("#id_bank").val(),
 			id_type:  $("#id_type").val(),
 			amount:  $("#amount").val(),
-			date:  $("#date").val()
+			date:  $("#date").val(),
+			id_contrat:  $("#id_contrat").val()
 
 
 
@@ -173,6 +174,8 @@ DatabaseGrid.prototype.addRow = function(id)
 				$("#id_type").val('');
 				$("#amount").val('');
 				$("#date").val('');
+				$("#id_contrat").val('');
+
 
                 message("success","Transaction ajouté");
                 self.fetchGrid();

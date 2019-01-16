@@ -65,6 +65,16 @@ class JobManager extends Manager
         $req->execute(array('id_base' => $id_base));
         return $req;
     }
+    public function GetSsCategory($id_base,$cat_id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, name FROM sscategory WHERE cat_id = :cat_id AND id_base = :id_base ORDER BY name');
+        $req->execute(array('cat_id' => $cat_id,'id_base' => $id_base));
+        return $req;
+    }
+
+
+
     public function GetType()
     {
         $db = $this->dbConnect();
@@ -87,6 +97,14 @@ class JobManager extends Manager
         $req = $db->prepare('SELECT id, name FROM bank WHERE id_base = :id_base AND system = 0');
         $req->execute(array('id_base' => $id_base));
 
+        return $req;
+    }
+
+    public function GetContrats($id_base)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM contrats WHERE id_base = :id_base');
+        $req->execute(array('id_base' => $id_base));
         return $req;
     }
 
@@ -332,6 +350,19 @@ class JobManager extends Manager
         return $req;
     }
 
+    public function HotContratsCron($id_base, $amount, $id_contrat)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE contrats
+                  SET amount = :amount
+                  WHERE id_base = :id_base 
+                  AND id = :id_contrat
+                  ');
+        $req->execute(array('amount' => $amount, 'id_base' => $id_base, 'id_contrat' => $id_contrat));
+
+        return $req;
+    }
+
     public function HotAccountCronSelect($id_base, $month, $id_type, $id_bank)
     {
         $db = $this->dbConnect();
@@ -341,10 +372,26 @@ class JobManager extends Manager
                   AND MONTH(date) = :month
                   AND id_type = :id_type
                   AND id_bank = :id_bank
-                  AND tally = :tally
+                  ');
+        $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_type' => $id_type, 'id_bank' => $id_bank));
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        if (!isset($data['amount'])) {
+            $data['amount'] = 0;
+        }
+        return $data;
+    }
+    public function HotContratsCronSelect($id_base, $id_type, $id_contrat,$id_catcontrats)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT SUM(amount) AS amount
+                  FROM demo
+                  WHERE id_base = :id_base
+                  AND id_type = :id_type
+                  AND id_contrat = :id_contrat
+                  AND id_category = :id_catcontrats
 
                   ');
-        $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_type' => $id_type, 'id_bank' => $id_bank,'tally' => 1));
+        $req->execute(array('id_base' => $id_base, 'id_type' => $id_type, 'id_contrat' => $id_contrat,'id_catcontrats' => $id_catcontrats));
         $data = $req->fetch(PDO::FETCH_ASSOC);
         if (!isset($data['amount'])) {
             $data['amount'] = 0;

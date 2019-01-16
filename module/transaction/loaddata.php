@@ -64,13 +64,14 @@ $grid->addColumn('tally', 'Pointage', 'boolean');
 $base = $_SESSION['activebase'];
 $sql = "SELECT id, name FROM bank WHERE id_base = $base AND system = 0";
 $grid->addColumn('id_bank', 'Banque', 'string', fetch_pairs($pdo, $sql), true);
+$grid->addColumn('id_contrat', 'Contrats', 'string',fetch_pairs($pdo, 'SELECT id, name FROM contrats WHERE id_base = '.$_SESSION['activebase'].''), true);
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
 
 $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'demo';
 
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT id, third, comment, id_type, amount, tally, id_bank, id_category, id_base, date_format(date, '%d/%m/%Y') as date2, date FROM $mydb_tablename WHERE id_base = $base";
+$query = "SELECT id, third, comment, id_type, amount, tally, id_bank, id_category, id_base, date_format(date, '%d/%m/%Y') as date2, date, id_contrat FROM $mydb_tablename WHERE id_base = $base";
 $queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
 
 $totalUnfiltered = $pdo->query($queryCount)->fetch()[0];

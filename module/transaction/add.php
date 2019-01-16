@@ -20,6 +20,7 @@ $id_bank = $_POST['id_bank'];
 $id_type = $_POST['id_type'];
 $amount = $_POST['amount'];
 $date = $_POST['date'];
+$id_contrat = $_POST['id_contrat'];
 
 $amount = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
 
@@ -31,6 +32,7 @@ $requete = $pdo->prepare("INSERT INTO demo SET
 		id_category = :id_category,
 		id_bank = :id_bank,
 		id_type = :id_type,
+		id_contrat = :id_contrat,
 		amount = :amount,
 		date = :date,
 		id_base= :id_base
@@ -41,6 +43,7 @@ $requete->bindValue(':comment', $comment);
 $requete->bindValue(':id_category', $id_category);
 $requete->bindValue(':id_bank', $id_bank);
 $requete->bindValue(':id_type', $id_type);
+$requete->bindValue(':id_contrat', $id_contrat);
 $requete->bindValue(':amount', $amount);
 $requete->bindValue(':date', $date);
 $requete->bindValue(':id_base', $_SESSION['activebase']);

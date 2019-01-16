@@ -176,6 +176,11 @@
                                     aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>CA</a>
 
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php if($_GET['action']=='bycontrats'){echo 'active';}?>" href="index.php?action=bycontrats"
+                                    aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Contrats</a>
+
+                            </li>
                             <li class="nav-divider">
                                 Parametre 
                             </li>

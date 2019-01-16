@@ -64,6 +64,9 @@ try {
                 case 'byca':
                     ByCa();
                     break;
+                    case 'bycontrats':
+                    ByContrats();
+                    break;
                 case 'disconnect':
                     Disconnect();
                     break;
