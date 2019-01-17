@@ -22,96 +22,65 @@ try {
 
     } else {
 
-        if (isset($_GET['action'])) {
-
+        if (isset($_GET['module'])) {
             switch ($_GET['action']) {
-                case 'listtransaction':
-                    ListTransaction();
+                case 'add':
+                    ModuleAdd($_GET['module']);
                     break;
-                case 'dashboard':
-                    GetDashboard();
+                case 'update':
+                    ModuleUpdate($_GET['module']);
                     break;
-                case 'setbase':
-                    SetBase();
+                case 'delete':
+                    ModuleDelete($_GET['module']);
                     break;
-                case 'byjob':
-                    ByJob();
-                    break;
-
-                case 'addtransaction':
-                    AddTransaction();
-                    break;
-
-                case 'updatetransaction':
-                    UpdateTransaction();
-                    break;
-
-                case 'deletetransaction':
-                    DeleteTransaction();
-                    break;
-
-                case 'addcontrat':
-                    AddContrat();
-                    break;
-
-                case 'deletecontrat':
-                    DeleteContrat();
-                    break;
-
-                case 'updatecontrat':
-                    UpdateContrat();
-                    break;
-
-                    case 'listcategories':
-                    ListCategories();
-                    break;
-
-                    case 'addcategory':
-                    AddCategory();
-                    break;
-
-                case 'deletecategory':
-                    DeleteCategory();
-                    break;
-
-                case 'updatecategory':
-                    UpdateCategory();
-                    break;
-
-
-                case 'addaccount':
-                    AddAccount();
-                    break;
-                case 'addbase':
-                    AddBase();
-                    break;
-                case 'byaccount':
-                    ByAccount();
-                    break;
-                case 'treso':
-                    Treso();
-                    break;
-                case 'cron':
-                    Cron();
-                    break;
-                case 'byca':
-                    ByCa();
-                    break;
-                case 'bycontrats':
-                    ByContrats();
-                    break;
-                case 'disconnect':
-                    Disconnect();
-                    break;
-
-                default;
-                    header('Location: index.php');
+                case 'list':
+                    ModuleList($_GET['module']);
                     break;
             }
-
         } else {
-            GetDashboard();
+            if (isset($_GET['action'])) {
+
+                switch ($_GET['action']) {
+
+                    case 'dashboard':
+                        GetDashboard();
+                        break;
+                    case 'setbase':
+                        SetBase();
+                        break;
+                    case 'byjob':
+                        ByJob();
+                        break;
+                    case 'addbase':
+                        AddBase();
+                        break;
+                    case 'byaccount':
+                        ByAccount();
+                        break;
+                    case 'treso':
+                        Treso();
+                        break;
+                    case 'cron':
+                        Cron();
+                        break;
+                    case 'byca':
+                        ByCa();
+                        break;
+
+                    case 'disconnect':
+                        Disconnect();
+                        break;
+
+                    default;
+                        header('Location: index.php');
+                        break;
+                }
+
+            } else {
+                GetDashboard();
+            }
         }
+
     }
 
 } catch (Exception $e) {

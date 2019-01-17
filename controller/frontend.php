@@ -9,46 +9,27 @@ function utilisateur_est_connecte()
     return !empty($_SESSION['id']);
 }
 
-function AddTransaction()
+
+function ModuleList($module)
 {
-    require 'module/transaction/add.php';
+require 'module/'.$module.'/list.php';
 }
 
-function DeleteTransaction()
+function ModuleAdd($module)
 {
-    require 'module/transaction/delete.php';
+require 'module/'.$module.'/add.php';
 }
 
-function UpdateTransaction()
+function ModuleUpdate($module)
 {
-    require 'module/transaction/update.php';
+require 'module/'.$module.'/update.php';
 }
 
-function AddContrat()
+function ModuleDelete($module)
 {
-    require 'module/contrats/add.php';
-}
-function DeleteContrat()
-{
-    require 'module/contrats/delete.php';
-}
-function UpdateContrat()
-{
-    require 'module/contrats/update.php';
+require 'module/'.$module.'/delete.php';
 }
 
-function AddCategory()
-{
-    require 'module/category/add.php';
-}
-function DeleteCategory()
-{
-    require 'module/category/delete.php';
-}
-function UpdateCategory()
-{
-    require 'module/category/update.php';
-}
 
 
 function Login()
@@ -202,14 +183,9 @@ function Cron()
 
     header('Location: index.php');
 }
-function AddAccount()
+function AddAccount($id_bank)
 {
-    if (!empty($_POST)) {
-        echo $_POST["name"];
         $jobManager = new JobManager();
-        $solde = floatval(str_replace(',', '.', str_replace('.', '', $_POST["solde"])));
-
-        $id_bank = $jobManager->AddAccount($_POST["name"], $solde, $_SESSION["activebase"]);
         for ($i = 1; $i < 13; $i++) {
             $jobManager->CreateHotTreso($id_bank, $i, $_SESSION["activebase"]);
             $jobManager->CreateHotAccount($id_bank, $i, $_SESSION["activebase"]);
@@ -218,9 +194,7 @@ function AddAccount()
 
         $jobManager->CreateHotTreso($idTotalBank['id'], $i, $_SESSION["activebase"]);
         $jobManager->CreateHotAccount($idTotalBank['id'], $i, $_SESSION["activebase"]);
-
-    }
-    require CHEMIN_VUE . 'addaccount.php';
+    
 }
 
 function AddBase()
@@ -274,14 +248,4 @@ function ByCa()
         $tblTotal[$row['month']] = $row['amount'];
     }
     require 'view/frontend/byca.php';
-}
-
-function ByContrats()
-{
-    require 'view/frontend/bycontrats.php';
-}
-
-function ListCategories()
-{
-    require 'view/frontend/listcategories.php';
 }

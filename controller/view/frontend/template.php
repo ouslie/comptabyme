@@ -148,7 +148,7 @@
                                     <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='listtransaction'){echo 'active';}?>" href="index.php?action=listtransaction"
+                                <a class="nav-link <?php if($_GET['action']=='listtransaction'){echo 'active';}?>" href="index.php?module=transaction&action=list"
                                     aria-expanded="false" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Transaction</a>
 
                             </li>
@@ -189,11 +189,14 @@
                                             <a class="nav-link" href="index.php?action=addaccount">Ajouter un compte</a>
                                         </li>
                                         <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='bycontrats'){echo 'active';}?>" href="index.php?action=bycontrats">Contrats</a>
+                                <a class="nav-link <?php if($_GET['action']=='bycontrats'){echo 'active';}?>" href="index.php?module=contrats&action=list">Contrats</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='listcategories'){echo 'active';}?>" href="index.php?action=listcategories">Catégories</a>
+                                <a class="nav-link <?php if($_GET['action']=='listcategories'){echo 'active';}?>" href="index.php?module=category&action=list">Catégories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php if($_GET['action']=='listcategories'){echo 'active';}?>" href="index.php?module=bank&action=list">Compte</a>
                             </li>
 
                                         <li class="nav-item">

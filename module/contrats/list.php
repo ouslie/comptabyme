@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
 <script src="public/js/editablegrid-2.1.0-49.js"></script>
-<script src="public/js/demo.js"></script>
+<script src="public/js/contrats.js"></script>
 <script src="public/js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
@@ -27,7 +27,7 @@
   <div class="card">
     <div id="toolbar" class="card-header">
       <input type="text" id="filter" name="filter" placeholder="Filter par tiers" />
-      <a id="showaddformbutton" class="btn btn-outline-primary">Ajouter une transaction</a>
+      <a id="showaddformbutton" class="btn btn-outline-primary">Ajouter un contrat</a>
     </div>
     <div class="card-body">
 
@@ -73,26 +73,30 @@
 
 <div id="addform">
 
+<div class="row">
+    <input type="text" id="name" name="name" placeholder="Nom" required />
+  </div>
+  DEB
   <div class="row">
-    <input type="date" id="date" name="date" />
+    <input type="date" id="debcontrat" name="debcontrat" />
+  </div>
+  END
+  <div class="row">
+    <input type="date" id="endcontrat" name="endcontrat" />
+  </div>
+ 
+  <div class="row">
+    <input type="text" id="salaire" name="amount" placeholder="Salaire" />
+  </div>
+ Paiement Date
+  <div class="row">
+    <input type="date" id="paymentdate" name="paymentdate" />
   </div>
 
-  <div class="row">
-    <select id="id_type" name="id_type">
-      <option value="">--Type--</option>
-      <?php
-        $type = $jobManager->GetType();
-        $type = $type->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($type as $row): ?>
-      <option value="<?=$row['id'];?>">
-        <?=$row['name'];?>
-      </option>
-      <?php endforeach;?>
-    </select>
-  </div>
+ 
 
   <div class="row">
-    <select id="id_category" name="id_category">
+    <select id="id_cat" name="id_cat">
       <option value="">--Catégorie--</option>
       <?php
       $categories = $jobManager->GetCategory($_SESSION['activebase']);
@@ -105,48 +109,8 @@
       <?php endforeach;?>
 
     </select>
-  </div>
-  <div class="row">
-    <input type="text" id="third" name="third" placeholder="Tiers" required />
-  </div>
-  <div class="row">
-    <input type="text" id="comment" name="comment" placeholder="Commentaire" />
-  </div>
-  <div class="row">
-    <input type="text" id="amount" name="amount" placeholder="Montant" />
-  </div>
-
-  <div class="row">
-    <select id="id_bank" name="id_bank">
-      <option value="">--Banque--</option>
-      <?php
-    $bank = $jobManager->GetBankSys($_SESSION['activebase']);
-    $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($bank as $row): ?>
-      <option value="<?=$row['id'];?>">
-        <?=$row['name'];?>
-      </option>
-      <?php endforeach;?>
-
-    </select>
-  </div>
-  <div class="row">
-    <select id="id_contrat" name="id_contrat">
-      <option value="">--Contrats--</option>
-      <?php
-    $contrats = $jobManager->GetContrats($_SESSION['activebase']);
-    $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($contrats as $row): ?>
-      <option value="<?=$row['id'];?>">
-        <?=$row['name'];?>
-      </option>
-      <?php endforeach;?>
-
-    </select>
-  </div>
-
+  
+</div>
   <div class="row tright">
     <a id="addbutton" class="btn btn-rounded btn-success"><i class="fa fa-save"></i> Apply</a>
     <a id="cancelbutton" class="btn btn-rounded btn-danger">Annuler</a>
@@ -157,4 +121,4 @@
 
 <?php
 $content = ob_get_clean();
-require 'template.php';?>
+require 'controller/view/frontend/template.php';?>

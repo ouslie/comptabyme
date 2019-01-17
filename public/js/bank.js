@@ -28,7 +28,7 @@ function message ( type, message) {
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {      
 	$.ajax({
-		url: 'index.php?module=contrats&action=update',
+		url: 'index.php?module=bank&action=update',
 		type: 'POST',
 		dataType: "html",
 	   		data: {
@@ -55,7 +55,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 
 function DatabaseGrid() 
 { 
-	this.editableGrid = new EditableGrid("contrats", {
+	this.editableGrid = new EditableGrid("bank", {
       enableSort: true,
 
 
@@ -87,7 +87,7 @@ function DatabaseGrid()
 
 DatabaseGrid.prototype.fetchGrid = function()  {
 	// call a PHP script to get the data
-	this.editableGrid.loadJSON("module/contrats/loaddata.php?db_tablename=contrats");
+	this.editableGrid.loadJSON("module/bank/loaddata.php?db_tablename=bank");
 };
 
 DatabaseGrid.prototype.initializeGrid = function(grid) {
@@ -114,7 +114,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   if ( confirm('Voulez vous bien suprimer la transaction ' + id )  ) {
 
         $.ajax({
-		url: 'index.php?module=contrats&action=delete',
+		url: 'index.php?module=bank&action=delete',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -144,19 +144,13 @@ DatabaseGrid.prototype.addRow = function(id)
   var self = this;
 
         $.ajax({
-		url: 'index.php?module=contrats&action=add',
+		url: 'index.php?module=bank&action=add',
 		type: 'POST',
 		dataType: "html",
 		data: {
 			tablename : self.editableGrid.name,
 			name:  $("#name").val(),
-			debcontrat:  $("#debcontrat").val(),
-			endcontrat:  $("#endcontrat").val(),
-			salaire:  $("#salaire").val(),
-			paymentdate:  $("#paymentdate").val(),
-			id_cat:  $("#id_cat").val()
-	
-
+			solde:  $("#solde").val()
 
 		},
 		success: function (response) 
@@ -165,15 +159,10 @@ DatabaseGrid.prototype.addRow = function(id)
    
                 // hide form
                 showAddForm();   
-        		$("#name").val('');
-				$("#debcontrat").val('');
-				$("#endcontrat").val('');
-				$("#salaire").val('');
-				$("#paymentdate").val('');
-				$("#id_cat").val('');
+				$("#name").val('');
+				$("#solde").val('');
 
-
-
+	
                 message("success","Transaction ajouté");
                 self.fetchGrid();
            	}

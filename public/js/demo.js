@@ -28,7 +28,7 @@ function message ( type, message) {
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {      
 	$.ajax({
-		url: 'index.php?action=updatetransaction',
+		url: 'index.php?module=transaction&action=update',
 		type: 'POST',
 		dataType: "html",
 	   		data: {
@@ -114,7 +114,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   if ( confirm('Voulez vous bien suprimer la transaction ' + id )  ) {
 
         $.ajax({
-		url: 'index.php?action=deletetransaction',
+		url: 'index.php?module=transaction&action=delete',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -144,7 +144,7 @@ DatabaseGrid.prototype.addRow = function(id)
   var self = this;
 
         $.ajax({
-		url: 'index.php?action=addtransaction',
+		url: 'index.php?module=transaction&action=add',
 		type: 'POST',
 		dataType: "html",
 		data: {
