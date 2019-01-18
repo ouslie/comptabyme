@@ -58,13 +58,13 @@ function GetDashboard()
     $jobManager = new JobManager();
     //base par défaut
     $defaultbase = $jobManager->GetBaseDefault($_SESSION['id']);
+    $base = $jobManager->GetBaseName($defaultbase['id']);
+
     if (!isset($_SESSION['activebase'])) {
         $_SESSION['activebase'] = $defaultbase['id'];
-        $_SESSION['activebasename'] = $defaultbase['name'];
-        $namebase = $jobManager->GetBaseName($defaultbase['id']);
-
-        $_SESSION['activecontrats'] = $namebase['activecontrats'];
-        $_SESSION['activeca'] = $namebase['activeca'];
+        $_SESSION['activebasename'] = $name['name'];
+        $_SESSION['activecontrats'] = $name['activecontrats'];
+        $_SESSION['activeca'] = $name['activeca'];
     }
     $month = date('m');
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet

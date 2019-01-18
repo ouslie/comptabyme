@@ -129,7 +129,7 @@ class JobManager extends Manager
     public function GetBaseDefault($user_id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM base WHERE id_user = :id_user AND defaultbase = 1');
+        $req = $db->prepare('SELECT id FROM base WHERE id_user = :id_user AND defaultbase = 1');
         $req->execute(array('id_user' => $user_id));
         $data = $req->fetch(PDO::FETCH_ASSOC);
 
