@@ -61,6 +61,8 @@ function GetDashboard()
     if (!isset($_SESSION['activebase'])) {
         $_SESSION['activebase'] = $defaultbase['id'];
         $_SESSION['activebasename'] = $defaultbase['name'];
+        $namebase = $jobManager->GetBaseName($defaultbase['id']);
+
         $_SESSION['activecontrats'] = $namebase['activecontrats'];
         $_SESSION['activeca'] = $namebase['activeca'];
     }
@@ -212,9 +214,6 @@ function SetBase()
         $_SESSION['activebasename'] = $namebase['name'];
         $_SESSION['activecontrats'] = $namebase['activecontrats'];
         $_SESSION['activeca'] = $namebase['activeca'];
-
-
-       
         header('Location: index.php?action=' . $activepage . '');
 
     }
