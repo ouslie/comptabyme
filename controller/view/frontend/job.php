@@ -24,7 +24,12 @@
                 $achat = isset($tblAchat[$row['name']][$month][1]) ? $tblAchat[$row['name']][$month][1] : 0;
                 $depense = isset($tblAchat[$row['name']][$month][2]) ? $tblAchat[$row['name']][$month][2] : 0;
                 $total = $achat - $depense;
-                echo '<td>' . $total . '&nbsp;€</td>';
+                if ($total < 0){
+                  echo '<td><p class="text-danger">' . $total . '&nbsp;€</p></td>';
+                } else {
+                  echo '<td><p class="text-success">' . $total . '&nbsp;€</p></td>';
+    
+                }
               }
               echo '<tr>';
             }
