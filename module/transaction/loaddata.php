@@ -93,8 +93,8 @@ $from = ($page - 1) * $rowByPage;
 
 if (isset($_GET['filter']) && $_GET['filter'] != "") {
     $filter = $_GET['filter'];
-    $query .= '  WHERE third like "%' . $filter . '%"';
-    $queryCount .= '  WHERE third like "%' . $filter . '%"';
+    $query .= '  AND third like "%' . $filter . '%"';
+    $queryCount .= '  AND third like "%' . $filter . '%"';
     $total = $pdo->query($queryCount)->fetch()[0];
 }
 if ($_GET['sort'] == "date2") {$_GET['sort'] = "date";}

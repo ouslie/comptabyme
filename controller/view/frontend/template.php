@@ -42,7 +42,7 @@
                             <div id="custom-search" class="top-search-bar">
 
                                 <form action="index.php?action=setbase" method="POST">
-                                <input type="hidden"id="activepage" name="activepage" value="<?= $_GET['action'] ?>">
+                                    <input type="hidden" id="activepage" name="activepage" value="<?= $_GET['action'] ?>">
                                     <select class="form-control" id="id_base" name="id_base" onchange="this.form.submit()">
                                         <option value="<?= $_SESSION['activebase'] ?>">
                                             <?= $_SESSION['activebasename'] ?>
@@ -145,125 +145,106 @@
                             <li class="nav-item ">
                                 <a class="nav-link <?php if ($_GET['action'] == 'dashboard') {
                                                         echo 'active';
-                                                    } ?>" href="index.php?action=dashboard"
-                                    aria-expanded="false" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard
+                                                    } ?>"
+                                    href="index.php?action=dashboard" aria-expanded="false" aria-controls="submenu-1"><i
+                                        class="fa fa-fw fa-user-circle"></i>Dashboard
                                     <span class="badge badge-success">6</span></a>
                             </li>
+                            
                             <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['action'] == 'listtransaction') {
+                                <a class="nav-link <?php if ($_GET['module'] == 'transaction' && $_GET['action'] == 'list' ) {
                                                         echo 'active';
-                                                    } ?>" href="index.php?module=transaction&action=list"
-                                    aria-expanded="false" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Transaction</a>
+                                                    } ?>"
+                                    href="index.php?module=transaction&action=list"><i
+                                        class="fa fa-fw fa-rocket"></i>Transaction</a>
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'byjob') {
                                                         echo 'active';
-                                                    } ?>" href="index.php?action=byjob"
-                                    aria-expanded="false" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Par
-                                    catégories</a>
+                                                    } ?>"
+                                    href="index.php?action=byjob" ><i
+                                        class="fas fa-fw fa-chart-pie"></i>Par catégories</a>
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'byaccount') {
                                                         echo 'active';
-                                                    } ?>" href="index.php?action=byaccount"
-                                    aria-expanded="false" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Par
-                                    comptes</a>
+                                                    } ?>"
+                                    href="index.php?action=byaccount"><i
+                                        class="fas fa-fw fa-chart-pie"></i>Par comptes</a>
 
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'treso') {
                                                         echo 'active';
-                                                    } ?>" href="index.php?action=treso"
-                                    aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Trésorerie</a>
+                                                    } ?>"
+                                    href="index.php?action=treso" aria-expanded="false" aria-controls="submenu-5"><i
+                                        class="fas fa-fw fa-chart-pie"></i>Trésorerie</a>
 
                             </li>
                             <?php if($_SESSION['activeca'] == 1) {?>
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'byca') {
                                                         echo 'active';
-                                                    } ?>" href="index.php?action=byca"
-                                    aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>CA</a>
+                                                    } ?>"
+                                    href="index.php?action=byca" aria-expanded="false" aria-controls="submenu-5"><i
+                                        class="fas fa-fw fa-chart-pie"></i>CA</a>
 
                             </li>
                             <?php } ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php if ($_GET['module'] == 'contrats' && $_GET['action'] == 'list' ) {
+                                                        echo 'active';
+                                                    } ?>"
+                                    href="index.php?module=contrats&action=list"><i class="fas fa-fw fa-table"></i>Contrats</a>
+
+                                                </li>
 
                             <li class="nav-divider">
-                                Parametre 
-                            </li>   
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6"
-                                    aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Configuration </a>
-                                <div id="submenu-6" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="index.php?module=base&action=list">Base</a>
-                                        </li>
-                                        <li class="nav-item">
-                                        <?php if($_SESSION['activecontrats'] == 1) {?>
-
-                                <a class="nav-link <?php if ($_GET['action'] == 'bycontrats') {
-                                                        echo 'active';
-                                                    } ?>" href="index.php?module=contrats&action=list">Contrats</a>
+                            Configuration
                             </li>
-                            <?php } ?>
 
                             <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['action'] == 'listcategories') {
+                                <a class="nav-link <?php if ($_GET['module'] == 'base' && $_GET['action'] == 'list' ) {
                                                         echo 'active';
-                                                    } ?>" href="index.php?module=category&action=list">Catégories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['action'] == 'listcategories') {
+                                                    } ?>"
+                                    href="index.php?module=base&action=list"><i class="fas fa-cog"></i>Base</a>
+
+                                                </li>
+
+
+                                        <li class="nav-item">
+                                <a class="nav-link <?php if ($_GET['module'] == 'category' && $_GET['action'] == 'list' ) {
                                                         echo 'active';
-                                                    } ?>" href="index.php?module=bank&action=list">Compte</a>
-                            </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/login.html">Login</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/404-page.html">404 page</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/sign-up.html">Sign up Page</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/forgot-password.html">Forgot Password</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/pricing.html">Pricing Tables</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/timeline.html">Timeline</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/calendar.html">Calendar</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/sortable-nestable-lists.html">Sortable/Nestable
-                                                List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/widgets.html">Widgets</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/media-object.html">Media Objects</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/cropper-image.html">Cropper</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/color-picker.html">Color Picker</a>
-                                        </li>
+                                                    } ?>"
+                                    href="index.php?module=category&action=list"><i class="fas fa-cog"></i>Catégories</a>
+
+                                                </li>
+
+
+
+                                                <li class="nav-item">
+                                <a class="nav-link <?php if ($_GET['module'] == 'bank' && $_GET['action'] == 'list' ) {
+                                                        echo 'active';
+                                                    } ?>"
+                                    href="index.php?module=bank&action=list"><i class="fas fa-cog"></i>Compte</a>
+
+                                                </li>
+
+
+
+
+                        
+
                                     </ul>
                                 </div>
                             </li>
-                 
-                        
-                
-                            
+
+
+
+
                         </ul>
                     </div>
                 </nav>

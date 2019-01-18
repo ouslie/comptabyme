@@ -26,7 +26,7 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
     <div id="toolbar" class="card-header">
-      <input type="text" id="filter" name="filter" placeholder="Filter par tiers" />
+      <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <a id="showaddformbutton" class="btn btn-outline-primary">Ajouter un contrat</a>
     </div>
     <div class="card-body">

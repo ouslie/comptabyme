@@ -58,7 +58,7 @@ $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('name', 'Nom', 'string', null, true);
 $grid->addColumn('is_recette', 'Est une recette ?', 'boolean');
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
-$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'contrats';
+$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'category';
 
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
@@ -84,15 +84,10 @@ $from = ($page - 1) * $rowByPage;
 
 if (isset($_GET['filter']) && $_GET['filter'] != "") {
     $filter = $_GET['filter'];
-    $query .= '  WHERE third like "%' . $filter . '%"';
-    $queryCount .= '  WHERE third like "%' . $filter . '%"';
+    $query .= '  AND name like "%' . $filter . '%"';
+    $queryCount .= '  AND name like "%' . $filter . '%"';
     $total = $pdo->query($queryCount)->fetch()[0];
 }
-if ($_GET['sort'] == "date2") {$_GET['sort'] = "date";}
-if (isset($_GET['sort']) && $_GET['sort'] != "") {
-    $query .= " ORDER BY " . $_GET['sort'] . ($_GET['asc'] == "0" ? " DESC " : "");
-}
-
 $query .= " LIMIT " . $from . ", " . $rowByPage;
 
 error_log("pageCount = " . ceil($total / $rowByPage));
