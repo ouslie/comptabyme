@@ -61,6 +61,8 @@ function GetDashboard()
     if (!isset($_SESSION['activebase'])) {
         $_SESSION['activebase'] = $defaultbase['id'];
         $_SESSION['activebasename'] = $defaultbase['name'];
+        $_SESSION['activecontrats'] = $namebase['activecontrats'];
+        $_SESSION['activeca'] = $namebase['activeca'];
     }
     $month = date('m');
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
