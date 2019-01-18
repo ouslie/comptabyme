@@ -10,12 +10,6 @@
     <link href="public/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="public/assets/libs/css/style.css">
     <link rel="stylesheet" href="public/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="stylesheet" href="public/assets/vendor/vector-map/jqvmap.css">
-    <link href="public/assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/assets/vendor/charts/chartist-bundle/chartist.css">
-    <link rel="stylesheet" href="public/assets/vendor/charts/c3charts/c3.css">
-    <link rel="stylesheet" href="public/assets/vendor/charts/morris-bundle/morris.css">
-    <link rel="stylesheet" type="text/css" href="public/assets/vendor/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="public/css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="public/css/responsive.css" type="text/css" media="screen">
     <title>ComptaByMe - Arnaud GUY</title>
@@ -266,20 +260,13 @@
         </div>
 
 
-        <!-- jquery 3.3.1  -->
-        <script src="public/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-        <!-- bootstap bundle js -->
-        <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-        <!-- slimscroll js -->
-        <script src="public/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+       <!-- jquery 3.3.1  -->
+    <script src="public/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="public/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
 
-        
-
-        <!-- main js -->
-        <script src="public/assets/libs/js/main-js.js"></script>
-        <!-- daterangepicker js -->
-        <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <script src="public/js/commun.js"></script>
         <script src="public/js/editablegrid-2.1.0-49.js"></script>
 

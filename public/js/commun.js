@@ -38,7 +38,7 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
     }));
 
 
-    grid.renderGrid("tablecontent", "testgrid");
+    grid.renderGrid("tablecontent", "table table-hover table-striped table-bordered first");
 
 };
 
