@@ -119,7 +119,6 @@
                                 <a class="dropdown-item" href="index.php?action=disconnect"><i class="fas fa-power-off mr-2"></i>Deconnection</a>
                             </div>
                         </li>
-                    </ul>
                 </div>
             </nav>
         </div>
@@ -150,29 +149,26 @@
                                         class="fa fa-fw fa-user-circle"></i>Dashboard
                                     <span class="badge badge-success">6</span></a>
                             </li>
-                            
+
                             <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['module'] == 'transaction' && $_GET['action'] == 'list' ) {
+                                <a class="nav-link <?php if ($_GET['module'] == 'transaction' && $_GET['action'] == 'list') {
                                                         echo 'active';
                                                     } ?>"
-                                    href="index.php?module=transaction&action=list"><i
-                                        class="fa fa-fw fa-rocket"></i>Transaction</a>
+                                    href="index.php?module=transaction&action=list"><i class="fa fa-fw fa-rocket"></i>Transaction</a>
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'byjob') {
                                                         echo 'active';
                                                     } ?>"
-                                    href="index.php?action=byjob" ><i
-                                        class="fas fa-fw fa-chart-pie"></i>Par catégories</a>
+                                    href="index.php?action=byjob"><i class="fas fa-fw fa-chart-pie"></i>Par catégories</a>
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'byaccount') {
                                                         echo 'active';
                                                     } ?>"
-                                    href="index.php?action=byaccount"><i
-                                        class="fas fa-fw fa-chart-pie"></i>Par comptes</a>
+                                    href="index.php?action=byaccount"><i class="fas fa-fw fa-chart-pie"></i>Par comptes</a>
 
                             </li>
 
@@ -184,7 +180,6 @@
                                         class="fas fa-fw fa-chart-pie"></i>Trésorerie</a>
 
                             </li>
-                            <?php if($_SESSION['activeca'] == 1) {?>
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'byca') {
                                                         echo 'active';
@@ -193,62 +188,46 @@
                                         class="fas fa-fw fa-chart-pie"></i>CA</a>
 
                             </li>
-                            <?php } ?>
+                           
                             <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['module'] == 'contrats' && $_GET['action'] == 'list' ) {
+                                <a class="nav-link <?php if ($_GET['module'] == 'contrats' && $_GET['action'] == 'list') {
                                                         echo 'active';
                                                     } ?>"
                                     href="index.php?module=contrats&action=list"><i class="fas fa-fw fa-table"></i>Contrats</a>
 
-                                                </li>
-
-                            <li class="nav-divider">
-                            Configuration
                             </li>
-
+                            <li class="nav-divider">
+                                Configuration
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['module'] == 'base' && $_GET['action'] == 'list' ) {
+                                <a class="nav-link <?php if ($_GET['module'] == 'base' && $_GET['action'] == 'list') {
                                                         echo 'active';
                                                     } ?>"
                                     href="index.php?module=base&action=list"><i class="fas fa-cog"></i>Base</a>
 
-                                                </li>
-
-
-                                        <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['module'] == 'category' && $_GET['action'] == 'list' ) {
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php if ($_GET['module'] == 'category' && $_GET['action'] == 'list') {
                                                         echo 'active';
                                                     } ?>"
                                     href="index.php?module=category&action=list"><i class="fas fa-cog"></i>Catégories</a>
 
-                                                </li>
-
-
-
-                                                <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['module'] == 'bank' && $_GET['action'] == 'list' ) {
-                                                        echo 'active';
-                                                    } ?>"
-                                    href="index.php?module=bank&action=list"><i class="fas fa-cog"></i>Compte</a>
-
-                                                </li>
-
-
-
-
-                        
-
-                                    </ul>
-                                </div>
                             </li>
 
 
 
-
+                            <li class="nav-item">
+                                <a class="nav-link <?php if ($_GET['module'] == 'bank' && $_GET['action'] == 'list') {
+                                                        echo 'active';
+                                                    } ?>"
+                                    href="index.php?module=bank&action=list"><i class="fas fa-cog"></i>Compte</a>
+                            </li>
                         </ul>
                     </div>
-                </nav>
+                    </li>
+                    </ul>
             </div>
+            </nav>
         </div>
         <!-- ============================================================== -->
         <!-- end left sidebar -->
@@ -267,62 +246,57 @@
                 </div>
             </div>
             <div id="message"></div>
-
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            Copyright © 2018 Arnaud GUY. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
-                        </div>
+                    <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Copyright © 2018 Arnaud GUY. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- end wrapper  -->
+        <!-- end footer -->
         <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper  -->
-    <!-- ============================================================== -->
-
-    <script>
-        $('[name="id_base"]').change(function () {
-            $(this).closest('form').submit();
-        });
-    </script>
 
 
-    <!-- jquery 3.3.1  -->
-    <script src="public/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <!-- bootstap bundle js -->
-    <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <!-- slimscroll js -->
-    <script src="public/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+        </div>
 
-    <!-- dashboard finance js -->
-    <script src="public/assets/libs/js/dashboard-finance.js"></script>
-    <!-- main js -->
-    <script src="public/assets/libs/js/main-js.js"></script>
-    <!-- daterangepicker js -->
-    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script>
-        $(function () {
-            $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
-            }, function (start, end, label) {
-                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' +
-                    end.format('YYYY-MM-DD'));
+
+        <!-- jquery 3.3.1  -->
+        <script src="public/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <!-- bootstap bundle js -->
+        <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <!-- slimscroll js -->
+        <script src="public/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+
+        
+
+        <!-- main js -->
+        <script src="public/assets/libs/js/main-js.js"></script>
+        <!-- daterangepicker js -->
+        <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script src="public/js/commun.js"></script>
+        <script src="public/js/editablegrid-2.1.0-49.js"></script>
+
+
+        <script>
+            $(function () {
+                $('input[name="daterange"]').daterangepicker({
+                    opens: 'left'
+                }, function (start, end, label) {
+                    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' +
+                        end.format('YYYY-MM-DD'));
+                });
             });
-        });
-    </script>
+            $('[name="id_base"]').change(function () {
+                $(this).closest('form').submit();
+            });
+        </script>
 </body>
 
 </html>

@@ -1,33 +1,15 @@
 <?php ob_start();?>
 
-<!--
-/*
-* examples/mysql/index.html
-*
-* This file is part of EditableGrid.
-* http://editablegrid.net
-*
-* Copyright (c) 2011 Webismymind SPRL
-* Dual licensed under the MIT or GPL Version 2 licenses.
-* http://editablegrid.net/license
-*/
--->
-<link rel="stylesheet" href="public/css/style.css" type="text/css" media="screen">
-<link rel="stylesheet" href="public/css/responsive.css" type="text/css" media="screen">
-
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
-<script src="public/js/editablegrid-2.1.0-49.js"></script>
 <script src="public/js/bank.js"></script>
-<script src="public/js/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
     <div id="toolbar" class="card-header">
-      <input type="text" id="filter" name="filter" placeholder="Filter par tiers" />
-      <a id="showaddformbutton" class="btn btn-outline-primary">Ajouter un compte</a>
+      <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
+      <!-- Button trigger modal -->
+      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Ajouter un compte
+      </a>
     </div>
     <div class="card-body">
 
@@ -41,8 +23,44 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <!-- ============================================================== -->
+  <!-- modal  -->
+  <!-- ============================================================== -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajout d'un compte</h5>
+          <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </a>
+        </div>
+        <div id="addform">
+          <div class="modal-body">
+        
+            <div class="input-group input-group-lg mb-3">
+              <div class="input-group-prepend"><span class="input-group-text">@</span></div>
+              <input type="text" placeholder="Nom du compte" class="form-control" id="name" name="name">
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <div class="input-group-prepend"><span class="input-group-text">€</span></div>
+              <input type="text" placeholder="Solde" class="form-control" id="solde" name="solde">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+            <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
+          </div>
 
-
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- modal  -->
+  <!-- ============================================================== -->
+</div>
 
 <script type="text/javascript">
   var datagrid;
@@ -55,39 +73,12 @@
       // To filter on some columns, you can set an array of column index
       //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
     });
-    $("#showaddformbutton").click(function () {
-      showAddForm();
-    });
-    $("#cancelbutton").click(function () {
-      showAddForm();
-    });
-
     $("#addbutton").click(function () {
       datagrid.addRow();
     });
 
   }
 </script>
-
-<?php $jobManager = new JobManager();?>
-
-<div id="addform">
-
-<div class="row">
-    <input type="text" id="name" name="name" placeholder="Nom" required />
-  </div>
-  <div class="row">
-    <input type="text" id="solde" name="solde" placeholder="Solde" />
-  </div>
-
-
-  <div class="row tright">
-    <a id="addbutton" class="btn btn-rounded btn-success"><i class="fa fa-save"></i> Apply</a>
-    <a id="cancelbutton" class="btn btn-rounded btn-danger">Annuler</a>
-  </div>
-</div>
-
-
 
 <?php
 $content = ob_get_clean();

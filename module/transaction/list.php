@@ -1,33 +1,17 @@
-<?php ob_start();?>
+<?php ob_start();
+      $jobManager = new JobManager();
+      ?>
 
-<!--
-/*
-* examples/mysql/index.html
-*
-* This file is part of EditableGrid.
-* http://editablegrid.net
-*
-* Copyright (c) 2011 Webismymind SPRL
-* Dual licensed under the MIT or GPL Version 2 licenses.
-* http://editablegrid.net/license
-*/
--->
-<link rel="stylesheet" href="public/css/style.css" type="text/css" media="screen">
-<link rel="stylesheet" href="public/css/responsive.css" type="text/css" media="screen">
-
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
-<script src="public/js/editablegrid-2.1.0-49.js"></script>
 <script src="public/js/demo.js"></script>
-<script src="public/js/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="public/css/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="screen">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
     <div id="toolbar" class="card-header">
-      <input type="text" id="filter" name="filter" placeholder="Filter par tiers" />
-      <a id="showaddformbutton" class="btn btn-outline-primary">Ajouter une transaction</a>
+      <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
+      <!-- Button trigger modal -->
+      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Ajouter une transaction
+      </a>
     </div>
     <div class="card-body">
 
@@ -41,120 +25,176 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <!-- ============================================================== -->
+  <!-- modal  -->
+  <!-- ============================================================== -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajout d'une transaction</h5>
+          <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </a>
+        </div>
 
-
-
-<script type="text/javascript">
-  var datagrid;
-
-  window.onload = function () {
-    datagrid = new DatabaseGrid();
-    // key typed in the filter field
-    $("#filter").keyup(function () {
-      datagrid.editableGrid.filter($(this).val());
-      // To filter on some columns, you can set an array of column index
-      //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-    });
-    $("#showaddformbutton").click(function () {
-      showAddForm();
-    });
-    $("#cancelbutton").click(function () {
-      showAddForm();
-    });
-
-    $("#addbutton").click(function () {
-      datagrid.addRow();
-    });
-
-  }
-</script>
-
-<?php $jobManager = new JobManager();?>
-
-<div id="addform">
-
-  <div class="row">
-    <input type="date" id="date" name="date" />
-  </div>
-
-  <div class="row">
-    <select id="id_type" name="id_type">
-      <option value="">--Type--</option>
-      <?php
+        <div id="addform">
+          <div class="modal-body">
+          <div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Date</label>
+<div class="col-9 col-lg-10">
+<input type="date" class="form-control" id="date" name="date">
+</div>
+</div>
+<div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Type</label>
+<div class="col-9 col-lg-10">
+  
+<select id="id_type" name="id_type" class="form-control">
+              <option value="">--Type--</option>
+              <?php
         $type = $jobManager->GetType();
         $type = $type->fetchAll(PDO::FETCH_ASSOC);
         foreach ($type as $row): ?>
-      <option value="<?=$row['id'];?>">
-        <?=$row['name'];?>
-      </option>
-      <?php endforeach;?>
-    </select>
-  </div>
+              <option value="<?=$row['id'];?>">
+                <?=$row['name'];?>
+              </option>
+              <?php endforeach;?>
 
-  <div class="row">
-    <select id="id_category" name="id_category">
-      <option value="">--Catégorie--</option>
-      <?php
+            </select>
+</div>
+</div>
+          
+<div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Catégorie</label>
+<div class="col-9 col-lg-10">
+
+
+<select id="id_category" name="id_category" class="form-control">
+              <option value="">--Catégorie--</option>
+              <?php
       $categories = $jobManager->GetCategory($_SESSION['activebase']);
       $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($categories as $row): ?>
-      <option value="<?=$row['id'];?>">
-        <?=$row['name'];?>
-      </option>
-      <?php endforeach;?>
+              <option value="<?=$row['id'];?>">
+                <?=$row['name'];?>
+              </option>
+              <?php endforeach;?>
 
-    </select>
-  </div>
-  <div class="row">
-    <input type="text" id="third" name="third" placeholder="Tiers" required />
-  </div>
-  <div class="row">
-    <input type="text" id="comment" name="comment" placeholder="Commentaire" />
-  </div>
-  <div class="row">
-    <input type="text" id="amount" name="amount" placeholder="Montant" />
-  </div>
-
-  <div class="row">
-    <select id="id_bank" name="id_bank">
-      <option value="">--Banque--</option>
-      <?php
-    $bank = $jobManager->GetBankSys($_SESSION['activebase']);
-    $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($bank as $row): ?>
-      <option value="<?=$row['id'];?>">
-        <?=$row['name'];?>
-      </option>
-      <?php endforeach;?>
-
-    </select>
-  </div>
-  <div class="row">
-    <select id="id_contrat" name="id_contrat">
-      <option value="">--Contrats--</option>
-      <?php
-    $contrats = $jobManager->GetContrats($_SESSION['activebase']);
-    $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($contrats as $row): ?>
-      <option value="<?=$row['id'];?>">
-        <?=$row['name'];?>
-      </option>
-      <?php endforeach;?>
-
-    </select>
-  </div>
-
-  <div class="row tright">
-    <a id="addbutton" class="btn btn-rounded btn-success"><i class="fa fa-save"></i> Apply</a>
-    <a id="cancelbutton" class="btn btn-rounded btn-danger">Annuler</a>
-  </div>
+            </select>
+</div>
+</div>
+            <div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Tiers</label>
+<div class="col-9 col-lg-10">
+<input placeholder="Tiers" class="form-control"id="third" name="third">
+</div>
+</div>
+<div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Com'</label>
+<div class="col-9 col-lg-10">
+<input placeholder="Commentaire" class="form-control"id="comment" name="comment">
+</div>
+</div>
+<div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Montant</label>
+<div class="col-9 col-lg-10">
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text" id="inputGroupPrepend">€</span>
+</div>
+<input type="text" id="amount" name="amount" class="form-control" placeholder="Montant" aria-describedby="inputGroupPrepend">
+</div></div>
 </div>
 
 
 
+
+
+
+<div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Banque</label>
+<div class="col-9 col-lg-10">
+<select id="id_bank" name="id_bank" class="form-control">
+              <option value="">--Banque--</option>
+              <?php
+    $bank = $jobManager->GetBankSys($_SESSION['activebase']);
+    $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($bank as $row): ?>
+              <option value="<?=$row['id'];?>">
+                <?=$row['name'];?>
+              </option>
+              <?php endforeach;?>
+
+            </select>
+</div>
+</div>
+
+
+<div class="form-group row">
+<label  class="col-3 col-lg-2 col-form-label text-right">Contrat</label>
+<div class="col-9 col-lg-10">
+<select id="id_contrat" name="id_contrat" class="form-control">
+
+
+<option value="">--Contrats--</option>
 <?php
+$contrats = $jobManager->GetContrats($_SESSION['activebase']);
+$contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($contrats as $row): ?>
+<option value="<?=$row['id'];?>">
+  <?=$row['name'];?>
+</option>
+<?php endforeach;?>
+
+</select>
+
+
+</div>
+</div>
+
+            
+
+ 
+
+
+
+            <div class="modal-footer">
+              <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+              <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- modal  -->
+    <!-- ============================================================== -->
+  </div>
+
+  <script type="text/javascript">
+    var datagrid;
+
+    window.onload = function () {
+      datagrid = new DatabaseGrid();
+      // key typed in the filter field
+      $("#filter").keyup(function () {
+        datagrid.editableGrid.filter($(this).val());
+        // To filter on some columns, you can set an array of column index
+        //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+      });
+      $("#addbutton").click(function () {
+        datagrid.addRow();
+      });
+
+    }
+  </script>
+
+  <?php
 $content = ob_get_clean();
 require 'controller/view/frontend/template.php';?>

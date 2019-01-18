@@ -16,7 +16,6 @@ $pdo->exec("set names utf8");
 $name = $_POST['name'];
 $debcontrat = $_POST['debcontrat'];
 $endcontrat = $_POST['endcontrat'];
-$paymentdate = $_POST['paymentdate'];
 $id_cat = $_POST['id_cat'];
 $salaire = $_POST['salaire'];
 
@@ -28,7 +27,6 @@ $requete = $pdo->prepare("INSERT INTO contrats SET
 		name = :name,
 		debcontrat = :debcontrat,
 		endcontrat= :endcontrat,
-		paymentdate = :paymentdate,
 		id_cat = :id_cat,
 		salaire = :salaire,
 		id_base= :id_base
@@ -37,7 +35,6 @@ $requete = $pdo->prepare("INSERT INTO contrats SET
 $requete->bindValue(':name', $name);
 $requete->bindValue(':debcontrat', $debcontrat);
 $requete->bindValue(':endcontrat', $endcontrat);
-$requete->bindValue(':paymentdate', $paymentdate);
 $requete->bindValue(':id_cat', $id_cat);
 $requete->bindValue(':salaire', $salaire);
 $requete->bindValue(':id_base', $_SESSION['activebase']);
