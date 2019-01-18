@@ -30,8 +30,6 @@ function ModuleDelete($module)
 require 'module/'.$module.'/delete.php';
 }
 
-
-
 function Login()
 {
     require 'module/users/login.php';
@@ -54,10 +52,6 @@ function ValidRegister()
     require 'module/users/valid_register.php';
 }
 
-function ListTransaction()
-{
-    require 'view/frontend/listTransactionView.php';
-}
 
 function GetDashboard()
 {
@@ -67,7 +61,6 @@ function GetDashboard()
     if (!isset($_SESSION['activebase'])) {
         $_SESSION['activebase'] = $defaultbase['id'];
         $_SESSION['activebasename'] = $defaultbase['name'];
-
     }
     $month = date('m');
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
@@ -197,25 +190,15 @@ function AddAccount($id_bank)
     
 }
 
-function AddBase()
+function AddBase($id_newbase)
 {
-    if (!empty($_POST)) {
         $jobManager = new JobManager();
-        $id_newbase = $jobManager->AddBase($_POST["name"], $_SESSION['id']);
         $id_TotalBank = $jobManager->AddBaseAccountTotal($id_newbase);
-
-        echo $id_TotalBank;
-        echo $id_newbase;
+    
         for ($i = 1; $i < 13; $i++) {
             $jobManager->CreateHotTreso($id_TotalBank, $i, $id_newbase);
             $jobManager->CreateHotAccount($id_TotalBank, $i, $id_newbase);
         }
-
-        echo '<label class="text-success">Data Inserted</label>';
-
-    }
-
-    require CHEMIN_VUE . 'addbase.php';
 }
 function SetBase()
 {
@@ -225,7 +208,11 @@ function SetBase()
         $namebase = $jobManager->GetBaseName($_POST['id_base']);
         $_SESSION['activebase'] = $_POST['id_base'];
         $_SESSION['activebasename'] = $namebase['name'];
+        $_SESSION['activecontrats'] = $namebase['activecontrats'];
+        $_SESSION['activeca'] = $namebase['activeca'];
 
+
+       
         header('Location: index.php?action=' . $activepage . '');
 
     }
@@ -240,7 +227,6 @@ function Disconnect()
 }
 function ByCa()
 {
-
     $jobManager = new JobManager(); // Création d'un objet
     $date = $jobManager->GetDate();
     $ca = $jobManager->GetCa($_SESSION['activebase']);

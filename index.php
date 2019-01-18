@@ -50,10 +50,7 @@ try {
                         break;
                     case 'byjob':
                         ByJob();
-                        break;
-                    case 'addbase':
-                        AddBase();
-                        break;
+                        break;                
                     case 'byaccount':
                         ByAccount();
                         break;

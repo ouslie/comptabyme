@@ -42,22 +42,22 @@
                             <div id="custom-search" class="top-search-bar">
 
                                 <form action="index.php?action=setbase" method="POST">
-                                <input type="hidden"id="activepage" name="activepage" value="<?=$_GET['action']?>">
+                                <input type="hidden"id="activepage" name="activepage" value="<?= $_GET['action'] ?>">
                                     <select class="form-control" id="id_base" name="id_base" onchange="this.form.submit()">
-                                        <option value="<?= $_SESSION['activebase']?>">
-                                            <?=$_SESSION['activebasename']?>
+                                        <option value="<?= $_SESSION['activebase'] ?>">
+                                            <?= $_SESSION['activebasename'] ?>
                                         </option>
                                         <option> </option>
                                         <?php
-          $jobManager = new JobManager();
-          $base = $jobManager->GetBase($_SESSION['id']);
-          $base = $base->fetchAll(PDO::FETCH_ASSOC);
-          print_r($base);
-          foreach ($base as $row): ?>
-                                        <option value="<?=$row['id'];?>">
-                                            <?=$row['name'];?>
+                                        $jobManager = new JobManager();
+                                        $base = $jobManager->GetBase($_SESSION['id']);
+                                        $base = $base->fetchAll(PDO::FETCH_ASSOC);
+                                        print_r($base);
+                                        foreach ($base as $row) : ?>
+                                        <option value="<?= $row['id']; ?>">
+                                            <?= $row['name']; ?>
                                         </option>
-                                        <?php endforeach;?>
+                                        <?php endforeach; ?>
                                     </select>
                                 </form>
                             </div>
@@ -143,62 +143,83 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link <?php if($_GET['action']=='dashboard'){echo 'active';}?>" href="index.php?action=dashboard"
+                                <a class="nav-link <?php if ($_GET['action'] == 'dashboard') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?action=dashboard"
                                     aria-expanded="false" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard
                                     <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='listtransaction'){echo 'active';}?>" href="index.php?module=transaction&action=list"
+                                <a class="nav-link <?php if ($_GET['action'] == 'listtransaction') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?module=transaction&action=list"
                                     aria-expanded="false" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Transaction</a>
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='byjob'){echo 'active';}?>" href="index.php?action=byjob"
+                                <a class="nav-link <?php if ($_GET['action'] == 'byjob') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?action=byjob"
                                     aria-expanded="false" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Par
                                     catégories</a>
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='byaccount'){echo 'active';}?>" href="index.php?action=byaccount"
+                                <a class="nav-link <?php if ($_GET['action'] == 'byaccount') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?action=byaccount"
                                     aria-expanded="false" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Par
                                     comptes</a>
 
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='treso'){echo 'active';}?>" href="index.php?action=treso"
+                                <a class="nav-link <?php if ($_GET['action'] == 'treso') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?action=treso"
                                     aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Trésorerie</a>
 
                             </li>
-
+                            <?php if($_SESSION['activeca'] == 1) {?>
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='byca'){echo 'active';}?>" href="index.php?action=byca"
+                                <a class="nav-link <?php if ($_GET['action'] == 'byca') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?action=byca"
                                     aria-expanded="false" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>CA</a>
 
                             </li>
-                    
+                            <?php } ?>
+
                             <li class="nav-divider">
                                 Parametre 
-                            </li>
+                            </li>   
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6"
                                     aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i> Configuration </a>
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="index.php?action=addaccount">Ajouter un compte</a>
+                                            <a class="nav-link" href="index.php?module=base&action=list">Base</a>
                                         </li>
                                         <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='bycontrats'){echo 'active';}?>" href="index.php?module=contrats&action=list">Contrats</a>
+                                        <?php if($_SESSION['activecontrats'] == 1) {?>
+
+                                <a class="nav-link <?php if ($_GET['action'] == 'bycontrats') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?module=contrats&action=list">Contrats</a>
                             </li>
+                            <?php } ?>
 
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='listcategories'){echo 'active';}?>" href="index.php?module=category&action=list">Catégories</a>
+                                <a class="nav-link <?php if ($_GET['action'] == 'listcategories') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?module=category&action=list">Catégories</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php if($_GET['action']=='listcategories'){echo 'active';}?>" href="index.php?module=bank&action=list">Compte</a>
+                                <a class="nav-link <?php if ($_GET['action'] == 'listcategories') {
+                                                        echo 'active';
+                                                    } ?>" href="index.php?module=bank&action=list">Compte</a>
                             </li>
-
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/login.html">Login</a>
                                         </li>
@@ -259,7 +280,7 @@
                 <div class="container-fluid dashboard-content">
 
 
-                    <?=$content?>
+                    <?= $content ?>
 
 
                 </div>
