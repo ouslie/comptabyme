@@ -56,7 +56,7 @@ $grid = new EditableGrid();
 $grid->addColumn('date2', 'Date', 'date');
 $grid->addColumn('id_type', 'Type', 'string', fetch_pairs($pdo, 'SELECT id, name FROM type'), true);
 $grid->addColumn('id_category', 'Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM category WHERE id_base = '.$_SESSION['activebase'].''), true);
-$grid->addColumn('id_sscategory', 'Sous Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM sscategory'), true);
+//$grid->addColumn('id_sscategory', 'Sous Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM sscategory'), true);
 $grid->addColumn('third', 'Tiers', 'string');
 $grid->addColumn('comment', 'Commentaire', 'string');
 $grid->addColumn('amount', 'Montant', 'float');
