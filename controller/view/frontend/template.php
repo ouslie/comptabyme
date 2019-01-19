@@ -174,6 +174,8 @@
                                         class="fas fa-fw fa-chart-pie"></i>Trésorerie</a>
 
                             </li>
+
+                            <?php if($_SESSION['activeca'] ==1) {?>
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['action'] == 'byca') {
                                                         echo 'active';
@@ -182,7 +184,9 @@
                                         class="fas fa-fw fa-chart-pie"></i>CA</a>
 
                             </li>
-                           
+                                                <?php }?>
+                                                <?php if($_SESSION['activecontrats'] ==1) {?>
+
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['module'] == 'contrats' && $_GET['action'] == 'list') {
                                                         echo 'active';
@@ -190,6 +194,8 @@
                                     href="index.php?module=contrats&action=list"><i class="fas fa-fw fa-table"></i>Contrats</a>
 
                             </li>
+                            <?php }?>
+
                             <li class="nav-divider">
                                 Configuration
                             </li>

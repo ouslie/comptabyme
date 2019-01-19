@@ -179,7 +179,7 @@ function Cron()
 
     }
 
-   // header('Location: index.php');
+   header('Location: index.php');
 }
 function AddAccount($id_bank)
 {
