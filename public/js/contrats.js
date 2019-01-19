@@ -28,7 +28,6 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 }
 
 
-
 function DatabaseGrid() {
 	this.editableGrid = new EditableGrid("contrats", {
 		enableSort: true,

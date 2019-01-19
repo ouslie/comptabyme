@@ -23,11 +23,14 @@
               foreach ($tblDate as $month => $month) {
                 $achat = isset($tblAchat[$row['name']][$month][1]) ? $tblAchat[$row['name']][$month][1] : 0;
                 $depense = isset($tblAchat[$row['name']][$month][2]) ? $tblAchat[$row['name']][$month][2] : 0;
-                $total = $achat - $depense;
-                if ($total < 0){
-                  echo '<td><p class="text-danger">' . $total . '&nbsp;€</p></td>';
-                } else {
+                $total = $achat + $depense;
+                if ($total > 0){
                   echo '<td><p class="text-success">' . $total . '&nbsp;€</p></td>';
+                } elseif ($total == 0) {echo '<td>' . $total . '&nbsp;€</td>';
+                }
+              
+                else {
+                  echo '<td><p class="text-danger">' . $total . '&nbsp;€</p></td>';
     
                 }
               }

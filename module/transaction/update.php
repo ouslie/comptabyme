@@ -20,7 +20,23 @@ $id = $_POST['id'];
 $coltype = $_POST['coltype'];
 $value = $_POST['newvalue'];
 $tablename = $_POST['tablename'];
-if ($colname == "amount") { $value = floatval(str_replace(',', '.', str_replace('.', '',$value)));
+
+if ($colname == "amount") { 
+    $value = floatval(str_replace(',', '.', str_replace('.', '',$value)));
+
+$requete = $pdo->prepare("SELECT id_type FROM demo
+WHERE id = :id
+");
+
+$requete->bindValue(':id', $id);
+
+
+$requete->execute();
+$result = $requete->fetch(PDO::FETCH_ASSOC);
+if ($result['id_type']==2){ $value = -$value;}
+
+
+$requete = null;
 }
 
 if($colname == "date2") {$colname = "date";}

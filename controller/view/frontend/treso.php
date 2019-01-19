@@ -27,10 +27,13 @@
           foreach ($tblaccount as $bank => $bank)
           {
             $total = isset($tblTotal[$row['id']][$bank]) ? $tblTotal[$row['id']][$bank] : 0;
-            if ($total < 0){
-              echo '<td><p class="text-danger">' . $total . '&nbsp;€</p></td>';
-            } else {
+            if ($total > 0){
               echo '<td><p class="text-success">' . $total . '&nbsp;€</p></td>';
+            } elseif ($total == 0) {echo '<td>' . $total . '&nbsp;€</td>';
+            }
+          
+            else {
+              echo '<td><p class="text-danger">' . $total . '&nbsp;€</p></td>';
 
             }
 

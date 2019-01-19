@@ -37,6 +37,17 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
         }
     }));
 
+    grid.setCellRenderer("amount", new CellRenderer({
+        render: function (cell, id) {
+            if (id >= 0) {
+                cell.innerHTML += "<p class='text-success'> " + id + "  </p>";
+            } else {
+                cell.innerHTML += "<p class='text-danger'> " + id + "  </p>";
+
+            }
+
+        }
+    }));
 
     grid.renderGrid("tablecontent", "table table-hover table-striped table-bordered first");
 

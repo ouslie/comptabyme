@@ -22,7 +22,10 @@ $amount = $_POST['amount'];
 $date = $_POST['date'];
 $id_contrat = $_POST['id_contrat'];
 
+
 $amount = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
+
+if ($id_type ==2){$amount = -$amount;}
 
 $return = false;
 
