@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="metric-value d-inline-block">
                     <h1 class="mb-1">
-                        <?= -$DepenseMonth['amount'] ?>€</h1>
+                        <?= $DepenseMonth['amount'] ?>€</h1>
                 </div>
             </div>
         </div>
