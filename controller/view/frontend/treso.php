@@ -23,9 +23,15 @@
               </thead>
               <tbody>
                 <?php
-        foreach ($date as $row)
-        {
-          echo '<tr><td>' . $row['name'] . '</td>';
+        $currentmonth = date('m', time());
+        foreach ($date as $row) {
+          if ($row['id'] == $currentmonth) 
+          {
+            echo '<tr style="background-color:#fff3cd"><td>' . $row['name'] . '</td>';
+          } else 
+          {
+            echo '<tr><td>' . $row['name'] . '</td>';
+          }
           foreach ($tblaccount as $bank => $bank)
           {
             $total = isset($tblTotal[$row['id']][$bank]) ? $tblTotal[$row['id']][$bank] : 0;
