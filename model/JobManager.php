@@ -458,7 +458,7 @@ class JobManager extends Manager
     public function GraphTypeMonth($id_base, $currentmonth)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT type.name as label,sum(ABS(amount) as value from demo INNER JOIN type ON demo.id_type = type.id WHERE demo.id_base = :id_base AND MONTH(date) = :currentmonth GROUP by label ORDER BY value DESC LIMIT 5 ');
+        $req = $db->prepare('SELECT type.name as label,ABS(sum(amount)) as value from demo INNER JOIN type ON demo.id_type = type.id WHERE demo.id_base = :id_base AND MONTH(date) = :currentmonth GROUP by label ORDER BY value DESC LIMIT 5 ');
 
         $req->execute(array('id_base' => $id_base, 'currentmonth' => $currentmonth));
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
