@@ -73,6 +73,13 @@ function GetDashboard()
 
     $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
     $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
+
+
+    $currentmonth = date('m', time());
+
+    $GraphTypeMonth = $jobManager->GraphTypeMonth($_SESSION['activebase'],$currentmonth);
+    $phpobj =json_encode($GraphTypeMonth);
+
     require 'view/frontend/dashboard.php';
 }
 

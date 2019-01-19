@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="public/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css" media="screen">
     <link rel="stylesheet" href="public/css/responsive.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="public/assets/vendor/charts/morris-bundle/morris.css">
     <title>ComptaByMe - Arnaud GUY</title>
 </head>
 
@@ -184,8 +185,8 @@
                                         class="fas fa-fw fa-chart-pie"></i>CA</a>
 
                             </li>
-                                                <?php }?>
-                                                <?php if($_SESSION['activecontrats'] ==1) {?>
+                            <?php }?>
+                            <?php if($_SESSION['activecontrats'] ==1) {?>
 
                             <li class="nav-item">
                                 <a class="nav-link <?php if ($_GET['module'] == 'contrats' && $_GET['action'] == 'list') {
@@ -246,36 +247,38 @@
                 </div>
             </div>
             <div id="message"></div>
-                    <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        Copyright © 2018 Arnaud GUY. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            Copyright © 2018 Arnaud GUY. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
 
 
         </div>
 
 
-       <!-- jquery 3.3.1  -->
-    <script src="public/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <!-- bootstap bundle js -->
-    <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <!-- slimscroll js -->
-    <script src="public/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+        <!-- jquery 3.3.1  -->
+        <script src="public/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <!-- bootstap bundle js -->
+        <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <!-- slimscroll js -->
+        <script src="public/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
 
         <script src="public/js/commun.js"></script>
         <script src="public/js/editablegrid-2.1.0-49.js"></script>
-
+        <script src="public/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+        <script src="public/assets/vendor/charts/morris-bundle/morris.js"></script>
+        <script src="public/assets/vendor/charts/morris-bundle/Morrisjs.js"></script>
 
 </body>
 

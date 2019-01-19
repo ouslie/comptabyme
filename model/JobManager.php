@@ -65,11 +65,11 @@ class JobManager extends Manager
         $req->execute(array('id_base' => $id_base));
         return $req;
     }
-    public function GetSsCategory($id_base,$cat_id)
+    public function GetSsCategory($id_base, $cat_id)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, name FROM sscategory WHERE cat_id = :cat_id AND id_base = :id_base ORDER BY name');
-        $req->execute(array('cat_id' => $cat_id,'id_base' => $id_base));
+        $req->execute(array('cat_id' => $cat_id, 'id_base' => $id_base));
         return $req;
     }
 
@@ -203,7 +203,7 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function AddAccount($name,$solde, $id_base)
+    public function AddAccount($name, $solde, $id_base)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO bank SET name = :name,solde = :solde, id_base = :id_base');
@@ -380,7 +380,7 @@ class JobManager extends Manager
         }
         return $data;
     }
-    public function HotContratsCronSelect($id_base, $id_type, $id_contrat,$id_catcontrats)
+    public function HotContratsCronSelect($id_base, $id_type, $id_contrat, $id_catcontrats)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT SUM(amount) AS amount
@@ -391,7 +391,7 @@ class JobManager extends Manager
                   AND id_category = :id_catcontrats
 
                   ');
-        $req->execute(array('id_base' => $id_base, 'id_type' => $id_type, 'id_contrat' => $id_contrat,'id_catcontrats' => $id_catcontrats));
+        $req->execute(array('id_base' => $id_base, 'id_type' => $id_type, 'id_contrat' => $id_contrat, 'id_catcontrats' => $id_catcontrats));
         $data = $req->fetch(PDO::FETCH_ASSOC);
         if (!isset($data['amount'])) {
             $data['amount'] = 0;
@@ -454,4 +454,17 @@ class JobManager extends Manager
         }
         return $data;
     }
+
+    public function GraphTypeMonth($id_base, $currentmonth)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT type.name as label,sum(amount) as value from demo INNER JOIN type ON demo.id_type = type.id WHERE demo.id_base = :id_base AND MONTH(date) = :currentmonth GROUP by label ORDER BY value DESC LIMIT 5 ');
+
+        $req->execute(array('id_base' => $id_base, 'currentmonth' => $currentmonth));
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+
+
 }
