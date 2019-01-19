@@ -133,7 +133,7 @@
 </div>
 </div>
 
-
+<?php if ($_SESSION['activecontrats']== 1) {?>
 <div class="form-group row">
 <label  class="col-3 col-lg-2 col-form-label text-right">Contrat</label>
 <div class="col-9 col-lg-10">
@@ -156,7 +156,7 @@ foreach ($contrats as $row): ?>
 
 </div>
 </div>
-
+<?php }?>
             
 
  

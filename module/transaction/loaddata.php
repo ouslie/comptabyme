@@ -64,7 +64,10 @@ $grid->addColumn('tally', 'Pointage', 'boolean');
 $base = $_SESSION['activebase'];
 $sql = "SELECT id, name FROM bank WHERE id_base = $base AND system = 0";
 $grid->addColumn('id_bank', 'Banque', 'string', fetch_pairs($pdo, $sql), true);
-$grid->addColumn('id_contrat', 'Contrats', 'string',fetch_pairs($pdo, 'SELECT id, name FROM contrats WHERE id_base = '.$_SESSION['activebase'].''), true);
+if ($_SESSION['activecontrats']== 1) {
+    $grid->addColumn('id_contrat', 'Contrats', 'string',fetch_pairs($pdo, 'SELECT id, name FROM contrats WHERE id_base = '.$_SESSION['activebase'].''), true);
+
+}
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
 
 $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'demo';

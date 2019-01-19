@@ -20,8 +20,9 @@ $id_bank = $_POST['id_bank'];
 $id_type = $_POST['id_type'];
 $amount = $_POST['amount'];
 $date = $_POST['date'];
+if (!isset($_POST['id_contrat'])) {$id_contrat = null;} else {
 $id_contrat = $_POST['id_contrat'];
-
+}
 
 $amount = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
 
