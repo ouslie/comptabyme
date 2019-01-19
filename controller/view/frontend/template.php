@@ -277,19 +277,6 @@
         <script src="public/js/editablegrid-2.1.0-49.js"></script>
 
 
-        <script>
-            $(function () {
-                $('input[name="daterange"]').daterangepicker({
-                    opens: 'left'
-                }, function (start, end, label) {
-                    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' +
-                        end.format('YYYY-MM-DD'));
-                });
-            });
-            $('[name="id_base"]').change(function () {
-                $(this).closest('form').submit();
-            });
-        </script>
 </body>
 
 </html>

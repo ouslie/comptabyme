@@ -14,13 +14,15 @@
       </a>
     </div>
     <div class="card-body">
+      <div class="table-responsive">
 
 
-      <!-- Grid contents -->
-      <div id="tablecontent"></div>
+        <!-- Grid contents -->
+        <div id="tablecontent"></div>
 
-      <!-- Paginator control -->
-      <div id="paginator"></div>
+        <!-- Paginator control -->
+        <div id="paginator"></div>
+      </div>
 
     </div>
   </div>
@@ -41,125 +43,127 @@
 
         <div id="addform">
           <div class="modal-body">
-          <div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Date</label>
-<div class="col-9 col-lg-10">
-<input type="date" class="form-control" id="date" name="date">
-</div>
-</div>
-<div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Type</label>
-<div class="col-9 col-lg-10">
-  
-<select id="id_type" name="id_type" class="form-control">
-              <option value="">--Type--</option>
-              <?php
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Date</label>
+              <div class="col-9 col-lg-10">
+                <input type="date" class="form-control" id="date" name="date">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Type</label>
+              <div class="col-9 col-lg-10">
+
+                <select id="id_type" name="id_type" class="form-control">
+                  <option value="">--Type--</option>
+                  <?php
         $type = $jobManager->GetType();
         $type = $type->fetchAll(PDO::FETCH_ASSOC);
         foreach ($type as $row): ?>
-              <option value="<?=$row['id'];?>">
-                <?=$row['name'];?>
-              </option>
-              <?php endforeach;?>
+                  <option value="<?=$row['id'];?>">
+                    <?=$row['name'];?>
+                  </option>
+                  <?php endforeach;?>
 
-            </select>
-</div>
-</div>
-          
-<div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Catégorie</label>
-<div class="col-9 col-lg-10">
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Catégorie</label>
+              <div class="col-9 col-lg-10">
 
 
-<select id="id_category" name="id_category" class="form-control">
-              <option value="">--Catégorie--</option>
-              <?php
+                <select id="id_category" name="id_category" class="form-control">
+                  <option value="">--Catégorie--</option>
+                  <?php
       $categories = $jobManager->GetCategory($_SESSION['activebase']);
       $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($categories as $row): ?>
-              <option value="<?=$row['id'];?>">
-                <?=$row['name'];?>
-              </option>
-              <?php endforeach;?>
+                  <option value="<?=$row['id'];?>">
+                    <?=$row['name'];?>
+                  </option>
+                  <?php endforeach;?>
 
-            </select>
-</div>
-</div>
+                </select>
+              </div>
+            </div>
             <div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Tiers</label>
-<div class="col-9 col-lg-10">
-<input placeholder="Tiers" class="form-control"id="third" name="third">
-</div>
-</div>
-<div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Com'</label>
-<div class="col-9 col-lg-10">
-<input placeholder="Commentaire" class="form-control"id="comment" name="comment">
-</div>
-</div>
-<div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Montant</label>
-<div class="col-9 col-lg-10">
-<div class="input-group">
-<div class="input-group-prepend">
-<span class="input-group-text" id="inputGroupPrepend">€</span>
-</div>
-<input type="text" id="amount" name="amount" class="form-control" placeholder="Montant" aria-describedby="inputGroupPrepend">
-</div></div>
-</div>
+              <label class="col-3 col-lg-2 col-form-label text-right">Tiers</label>
+              <div class="col-9 col-lg-10">
+                <input placeholder="Tiers" class="form-control" id="third" name="third">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Com'</label>
+              <div class="col-9 col-lg-10">
+                <input placeholder="Commentaire" class="form-control" id="comment" name="comment">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Montant</label>
+              <div class="col-9 col-lg-10">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend">€</span>
+                  </div>
+                  <input type="text" id="amount" name="amount" class="form-control" placeholder="Montant"
+                    aria-describedby="inputGroupPrepend">
+                </div>
+              </div>
+            </div>
 
 
 
 
 
 
-<div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Banque</label>
-<div class="col-9 col-lg-10">
-<select id="id_bank" name="id_bank" class="form-control">
-              <option value="">--Banque--</option>
-              <?php
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Banque</label>
+              <div class="col-9 col-lg-10">
+                <select id="id_bank" name="id_bank" class="form-control">
+                  <option value="">--Banque--</option>
+                  <?php
     $bank = $jobManager->GetBankSys($_SESSION['activebase']);
     $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($bank as $row): ?>
-              <option value="<?=$row['id'];?>">
-                <?=$row['name'];?>
-              </option>
-              <?php endforeach;?>
+                  <option value="<?=$row['id'];?>">
+                    <?=$row['name'];?>
+                  </option>
+                  <?php endforeach;?>
 
-            </select>
-</div>
-</div>
+                </select>
+              </div>
+            </div>
 
-<?php if ($_SESSION['activecontrats']== 1) {?>
-<div class="form-group row">
-<label  class="col-3 col-lg-2 col-form-label text-right">Contrat</label>
-<div class="col-9 col-lg-10">
-<select id="id_contrat" name="id_contrat" class="form-control">
+            <?php if ($_SESSION['activecontrats']== 1) {?>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Contrat</label>
+              <div class="col-9 col-lg-10">
+                <select id="id_contrat" name="id_contrat" class="form-control">
 
 
-<option value="">--Contrats--</option>
-<?php
+                  <option value="">--Contrats--</option>
+                  <?php
 $contrats = $jobManager->GetContrats($_SESSION['activebase']);
 $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($contrats as $row): ?>
-<option value="<?=$row['id'];?>">
-  <?=$row['name'];?>
-</option>
-<?php endforeach;?>
+                  <option value="<?=$row['id'];?>">
+                    <?=$row['name'];?>
+                  </option>
+                  <?php endforeach;?>
 
-</select>
+                </select>
 
 
-</div>
-</div>
-<?php }?>
-            
+              </div>
+            </div>
+            <?php }?>
 
- 
+
+
 
 
 

@@ -13,12 +13,14 @@
     </div>
     <div class="card-body">
 
+      <div class="table-responsive">
 
-      <!-- Grid contents -->
-      <div id="tablecontent"></div>
+        <!-- Grid contents -->
+        <div id="tablecontent"></div>
 
-      <!-- Paginator control -->
-      <div id="paginator"></div>
+        <!-- Paginator control -->
+        <div id="paginator"></div>
+      </div>
 
     </div>
   </div>
