@@ -137,7 +137,7 @@ function Cron()
         foreach ($bank as $tbank) {
             $recette = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '1', $tbank['id']);
             $depense = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '2', $tbank['id']);
-            $total = $recette['amount'] - $depense['amount'];
+            $total = $recette['amount'] + $depense['amount'];
             $tdepense = $tdepense + $depense['amount'];
             $trecette = $trecette + $recette['amount'];
             $ttotal = $ttotal + $total;
@@ -152,7 +152,7 @@ function Cron()
         foreach ($date as $tdate) {
             $recette = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '1', $tbank['id']);
             $depense = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '2', $tbank['id']);
-            $total = $recette['amount'] - $depense['amount'];
+            $total = $recette['amount'] + $depense['amount'];
             $ttotal = $ttotal + $total;
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $ttotal, $tbank['id']);
         }
@@ -173,13 +173,13 @@ function Cron()
 
         $depensecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '2', $tcontrats['id'], $tcontrats['id_cat']);
 
-        $total = $recettecontrats['amount'] - $depensecontrats['amount'];
+        $total = $recettecontrats['amount'] + $depensecontrats['amount'];
 
         $jobManager->HotContratsCron($_SESSION['activebase'], $total, $tcontrats['id']);
 
     }
 
-    header('Location: index.php');
+   // header('Location: index.php');
 }
 function AddAccount($id_bank)
 {
