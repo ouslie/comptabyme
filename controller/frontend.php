@@ -77,9 +77,7 @@ function GetDashboard()
     //$currentmonth = date('m', time());
     ///Line chart Depense/Recette
     $totalbank = $jobManager->GetTotalAccount($_SESSION['activebase']);
-    //echo $totalbank['id'];
     $GraphTypeMonth = $jobManager->GraphTypeMonth($totalbank['id']);
-    $phpobj =json_encode($GraphTypeMonth);
     require 'view/frontend/dashboard.php';
     echo $phpobj;
 
