@@ -49,29 +49,40 @@
             </div>
         </div>
     </div>
-
+  
 
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="card">
             <h5 class="card-header">Donut Chart </h5>
             <div class="card-body">
-                <div id="morris_donutts"></div>
+            <div id="morris_line">
             </div>
         </div>
-    </div>
+        </div>
+
+
+
     <script src="public/js/jquery.js"></script>
     <script language="JavaScript" type="text/javascript">
-        $(function () {
-            var jsobj = <?php echo $phpobj; ?>;
-            // Donut Char
-            Morris.Donut({
-                element: 'morris_donutts',
+        $(function() {
+        var jsobj = <?php echo $phpobj; ?>;
+            Morris.Line({
+                element: 'morris_line',
+                behaveLikeLine: true,
                 data: jsobj,
-                resize: true
+                xkey: 'month',
+                ykeys: ['depense', 'recette'],
+                labels: ['Dépense', 'Recette'],
+                   lineColors: ['#5969ff', '#ff407b'],
+                     resize: true,
+                        gridTextSize: '14px'
             });
-        });
-    </script>
 
+        
+
+
+        });
+        </script>
 
 
     </body>

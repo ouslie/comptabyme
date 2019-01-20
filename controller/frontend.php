@@ -74,13 +74,15 @@ function GetDashboard()
     $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
     $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
 
-
-    $currentmonth = date('m', time());
-
-    $GraphTypeMonth = $jobManager->GraphTypeMonth($_SESSION['activebase'],$currentmonth);
+    //$currentmonth = date('m', time());
+    ///Line chart Depense/Recette
+    $totalbank = $jobManager->GetTotalAccount($_SESSION['activebase']);
+    //echo $totalbank['id'];
+    $GraphTypeMonth = $jobManager->GraphTypeMonth($totalbank['id']);
     $phpobj =json_encode($GraphTypeMonth);
-
     require 'view/frontend/dashboard.php';
+    echo $phpobj;
+
 }
 
 function ByJob()
