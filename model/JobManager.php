@@ -372,6 +372,7 @@ class JobManager extends Manager
                   AND MONTH(date) = :month
                   AND id_type = :id_type
                   AND id_bank = :id_bank
+                  AND tally = 1
                   ');
         $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_type' => $id_type, 'id_bank' => $id_bank));
         $data = $req->fetch(PDO::FETCH_ASSOC);
@@ -407,7 +408,6 @@ class JobManager extends Manager
                   WHERE id_base = :id_base
                   AND month = :month
                   AND id_bank = :id_bank
-                  AND tally = 1
                   ');
         $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_bank' => $id_bank));
         $data = $req->fetch(PDO::FETCH_ASSOC);

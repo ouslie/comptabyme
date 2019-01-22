@@ -78,9 +78,8 @@ function GetDashboard()
     ///Line chart Depense/Recette
     $totalbank = $jobManager->GetTotalAccount($_SESSION['activebase']);
     $GraphTypeMonth = $jobManager->GraphTypeMonth($totalbank['id']);
+    $phpobj = json_encode($GraphTypeMonth);
     require 'view/frontend/dashboard.php';
-    echo $phpobj;
-
 }
 
 function ByJob()
@@ -157,9 +156,13 @@ function Cron()
         $init = $jobManager->GetSoldeAccount($tbank['id']);
         $ttotal = $init['solde'];
         foreach ($date as $tdate) {
+
             $recette = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '1', $tbank['id']);
             $depense = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '2', $tbank['id']);
             $total = $recette['amount'] + $depense['amount'];
+
+            echo $total;
+            echo '<br/>';
             $ttotal = $ttotal + $total;
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $ttotal, $tbank['id']);
         }
@@ -186,7 +189,7 @@ function Cron()
 
     }
 
-   header('Location: index.php');
+  // header('Location: index.php');
 }
 function AddAccount($id_bank)
 {
