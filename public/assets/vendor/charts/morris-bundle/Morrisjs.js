@@ -26,33 +26,6 @@
         }
 
 
-
-
-        if ($('#morris_line').length) {
-            // Use Morris.Area instead of Morris.Line
-            Morris.Line({
-                element: 'morris_line',
-                behaveLikeLine: true,
-                data: [
-                    { y: '2006', a: 10, b: 20 },
-                    { y: '2007', a: 65, b: 45 },
-                    { y: '2008', a: 50, b: 40 },
-                    { y: '2009', a: 75, b: 65 },
-                    { y: '2010', a: 50, b: 40 },
-                    { y: '2011', a: 75, b: 65 },
-                    { y: '2012', a: 100, b: 90 }
-                ],
-
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
-                   lineColors: ['#5969ff', '#ff407b'],
-                     resize: true,
-                        gridTextSize: '14px'
-            });
-
-        }
-
         if ($('#morris_bar').length) {
             Morris.Bar({
                 element: 'morris_bar',
