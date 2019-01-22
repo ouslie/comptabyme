@@ -160,9 +160,6 @@ function Cron()
             $recette = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '1', $tbank['id']);
             $depense = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '2', $tbank['id']);
             $total = $recette['amount'] + $depense['amount'];
-
-            echo $total;
-            echo '<br/>';
             $ttotal = $ttotal + $total;
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $ttotal, $tbank['id']);
         }
