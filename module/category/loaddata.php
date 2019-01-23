@@ -68,14 +68,14 @@ $queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base
 $totalUnfiltered = $pdo->query($queryCount)->fetch()[0];
 $total = $totalUnfiltered;
 
-/* SERVER SIDE */
-/* If you have set serverSide : true in your Javascript code, $_GET contains 3 additionnal parameters : page, filter, sort
- * this parameters allow you to adapt your query
- *
- */
 $page = 0;
 if (isset($_GET['page']) && is_numeric($_GET['page'])) {
     $page = (int) $_GET['page'];
+}
+
+if (isset($_GET['sort']) && $_GET['sort'] != "") 
+{
+    $query .= " ORDER BY " . $_GET['sort'] . ($_GET['asc'] == "0" ? " DESC " : "");
 }
 
 $rowByPage = 50;
