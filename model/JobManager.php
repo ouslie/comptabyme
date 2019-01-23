@@ -459,7 +459,7 @@ class JobManager extends Manager
     public function GraphTypeMonth($id_banktotal)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT month, date.name AS namedate, recette , ABS(depense) as depense FROM hot_account  INNER JOIN date ON hot_account.month  = date.id  WHERE id_bank  = :id_bank ORDER BY month ASC');
+        $req = $db->prepare('SELECT month, date.name AS namedate, recette , depense, recette + depense AS total FROM hot_account  INNER JOIN date ON hot_account.month  = date.id  WHERE id_bank  = :id_bank ORDER BY month ASC');
         $req->execute(array('id_bank' => $id_banktotal));
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         return $data;

@@ -27,7 +27,9 @@
         <div class="card">
             <h5 class="card-header">Balance du mois</h5>
             <div class="card-body">
-                <div class="metric-value d-inline-block">
+                <div class="metric-value d-inline-block">- espace des widget en bas et sidebar : vous les avez modifié via le CSS additionnel ; on est d'accord qu'en cas de mise à jour ça ne bouge pas ?
+
+
                     <h1 class="mb-1">
                         <?=$RecetteMonth['amount'] - $DepenseMonth['amount']?>€</h1>
                 </div>
@@ -71,23 +73,19 @@
                 element: 'morris_line',
                 behaveLikeLine: true,
                 data: jsobj,
-                xkey: 'month',
-                ykeys: ['depense', 'recette'],
-                labels: ['Dépense', 'Recette'],
-                lineColors: ['#5969ff', '#ff407b'],
+                xkey: 'namedate',
+                parseTime:false,
+                ykeys: ['depense', 'recette', 'total'],
+                labels: ['Dépense', 'Recette', 'Balance'],
+                lineColors: ['#5969ff', '#ff407b', '#64b764'],
                 resize: true,
-                gridTextSize: '14px'
+                gridTextSize: '14px',
+                xLabelAngle: 90,
             });
-
-
-
-
         });
+
     </script>
-
-
     </body>
-
     <?php
 $content = ob_get_clean();
 require 'template.php';?>

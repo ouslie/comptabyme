@@ -74,7 +74,6 @@ function GetDashboard()
     $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
     $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
 
-    //$currentmonth = date('m', time());
     ///Line chart Depense/Recette
     $totalbank = $jobManager->GetTotalAccount($_SESSION['activebase']);
     $GraphTypeMonth = $jobManager->GraphTypeMonth($totalbank['id']);
