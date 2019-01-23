@@ -124,19 +124,6 @@ DatabaseGrid.prototype.addRow = function(id)
 		success: function (response) 
 		{ 
 			if (response == "ok" ) {
-   
-                // hide form
-                showAddForm();   
-        		$("#third").val('');
-				$("#comment").val('');
-				$("#id_category").val('');
-				$("#id_bank").val('');
-				$("#id_type").val('');
-				$("#amount").val('');
-				$("#date").val('');
-				$("#id_contrat").val('');
-
-
                 message("success","Transaction ajouté");
                 self.fetchGrid();
            	}
