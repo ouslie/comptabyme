@@ -31,7 +31,7 @@
 
 
                     <h1 class="mb-1">
-                        <?=$RecetteMonth['amount'] - $DepenseMonth['amount']?>€</h1>
+                        <?=$RecetteMonth['amount'] + $DepenseMonth['amount']?>€</h1>
                 </div>
             </div>
         </div>
