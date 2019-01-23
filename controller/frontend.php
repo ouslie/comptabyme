@@ -9,25 +9,24 @@ function utilisateur_est_connecte()
     return !empty($_SESSION['id']);
 }
 
-
 function ModuleList($module)
 {
-require 'module/'.$module.'/list.php';
+    require 'module/' . $module . '/list.php';
 }
 
 function ModuleAdd($module)
 {
-require 'module/'.$module.'/add.php';
+    require 'module/' . $module . '/add.php';
 }
 
 function ModuleUpdate($module)
 {
-require 'module/'.$module.'/update.php';
+    require 'module/' . $module . '/update.php';
 }
 
 function ModuleDelete($module)
 {
-require 'module/'.$module.'/delete.php';
+    require 'module/' . $module . '/delete.php';
 }
 
 function Login()
@@ -51,7 +50,6 @@ function ValidRegister()
 {
     require 'module/users/valid_register.php';
 }
-
 
 function GetDashboard()
 {
@@ -150,7 +148,7 @@ function Cron()
         }
         $jobManager->Hotaccountcron($_SESSION['activebase'], $tdate['id'], $tdepense, $trecette, $ttotal, $idTotalBank['id']);
     }
-    //Cron treso
+//Cron treso
     foreach ($bank as $tbank) {
         $init = $jobManager->GetSoldeAccount($tbank['id']);
         $ttotal = $init['solde'];
@@ -176,40 +174,35 @@ function Cron()
     $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
     foreach ($contrats as $tcontrats) {
         $recettecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '1', $tcontrats['id'], $tcontrats['id_cat']);
-
         $depensecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '2', $tcontrats['id'], $tcontrats['id_cat']);
-
         $total = $recettecontrats['amount'] + $depensecontrats['amount'];
-
         $jobManager->HotContratsCron($_SESSION['activebase'], $total, $tcontrats['id']);
-
     }
-
-  // header('Location: index.php');
+    header('Location: index.php');
 }
 function AddAccount($id_bank)
 {
-        $jobManager = new JobManager();
-        for ($i = 1; $i < 13; $i++) {
-            $jobManager->CreateHotTreso($id_bank, $i, $_SESSION["activebase"]);
-            $jobManager->CreateHotAccount($id_bank, $i, $_SESSION["activebase"]);
-        }
-        $idTotalBank = $jobManager->GetTotalAccount($_SESSION['activebase']);
+    $jobManager = new JobManager();
+    for ($i = 1; $i < 13; $i++) {
+        $jobManager->CreateHotTreso($id_bank, $i, $_SESSION["activebase"]);
+        $jobManager->CreateHotAccount($id_bank, $i, $_SESSION["activebase"]);
+    }
+    $idTotalBank = $jobManager->GetTotalAccount($_SESSION['activebase']);
 
-        $jobManager->CreateHotTreso($idTotalBank['id'], $i, $_SESSION["activebase"]);
-        $jobManager->CreateHotAccount($idTotalBank['id'], $i, $_SESSION["activebase"]);
-    
+    $jobManager->CreateHotTreso($idTotalBank['id'], $i, $_SESSION["activebase"]);
+    $jobManager->CreateHotAccount($idTotalBank['id'], $i, $_SESSION["activebase"]);
+
 }
 
 function AddBase($id_newbase)
 {
-        $jobManager = new JobManager();
-        $id_TotalBank = $jobManager->AddBaseAccountTotal($id_newbase);
-    
-        for ($i = 1; $i < 13; $i++) {
-            $jobManager->CreateHotTreso($id_TotalBank, $i, $id_newbase);
-            $jobManager->CreateHotAccount($id_TotalBank, $i, $id_newbase);
-        }
+    $jobManager = new JobManager();
+    $id_TotalBank = $jobManager->AddBaseAccountTotal($id_newbase);
+
+    for ($i = 1; $i < 13; $i++) {
+        $jobManager->CreateHotTreso($id_TotalBank, $i, $id_newbase);
+        $jobManager->CreateHotAccount($id_TotalBank, $i, $id_newbase);
+    }
 }
 function SetBase()
 {
