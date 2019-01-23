@@ -68,7 +68,7 @@
     <script src="public/js/jquery.js"></script>
     <script language="JavaScript" type="text/javascript">
         $(function () {
-            var jsobj = <?php echo $phpobj; ?>;
+            var jsobj = <?php echo $phpobj;?>;
             Morris.Line({
                 element: 'morris_line',
                 behaveLikeLine: true,
