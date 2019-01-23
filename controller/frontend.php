@@ -54,6 +54,7 @@ function ValidRegister()
 function GetDashboard()
 {
     $jobManager = new JobManager();
+
     //base par défaut
     $defaultbase = $jobManager->GetBaseDefault($_SESSION['id']);
     $base = $jobManager->GetBaseName($defaultbase['id']);
@@ -64,11 +65,11 @@ function GetDashboard()
         $_SESSION['activecontrats'] = $base['activecontrats'];
         $_SESSION['activeca'] = $base['activeca'];
     }
-
+    
+    //Widget init 
     $month = date('m');
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
     $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
-
     $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
     $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
 
@@ -83,13 +84,12 @@ function ByJob()
 {
 
     $jobManager = new JobManager();
-
     $categories = $jobManager->GetCategory($_SESSION['activebase']);
     $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
     $recettes = $jobManager->SumTransactionByCategories($_SESSION['activebase']);
     $date = $jobManager->GetDate();
-
-    foreach ($recettes as $row) {
+    foreach ($recettes as $row) 
+    {
         $tblAchat[$row['name']][$row['month']][$row['id_type']] = $row['amountbycategory'];
     }
 
@@ -103,8 +103,8 @@ function ByAccount()
     $date = $jobManager->GetDate();
     $account = $jobManager->GetAccount($_SESSION['activebase']);
     $sql = $jobManager->Gethotaccount($_SESSION['activebase']);
-
-    foreach ($sql as $row) {
+    foreach ($sql as $row) 
+    {
         $tblAchat[$row['month']][$row['id_bank']] = $row['total'];
         $tblRecette[$row['month']][$row['id_bank']] = $row['recette'];
         $tblDepense[$row['month']][$row['id_bank']] = $row['depense'];
@@ -118,7 +118,8 @@ function Treso()
     $date = $jobManager->GetDate();
     $account = $jobManager->GetAccount($_SESSION['activebase']);
     $sql = $jobManager->Gethottreso($_SESSION['activebase']);
-    foreach ($sql as $row) {
+    foreach ($sql as $row) 
+    {
         $tblTotal[$row['month']][$row['id_bank']] = $row['total'];
     }
 
@@ -133,11 +134,13 @@ function Cron()
     $bank = $jobManager->GetAccountWitoutTotal($_SESSION['activebase']);
     $idTotalBank = $jobManager->GetTotalAccount($_SESSION['activebase']);
 //Cron account
-    foreach ($date as $tdate) {
+    foreach ($date as $tdate) 
+    {
         $tdepense = 0;
         $trecette = 0;
         $ttotal = 0;
-        foreach ($bank as $tbank) {
+        foreach ($bank as $tbank) 
+        {
             $recette = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '1', $tbank['id']);
             $depense = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '2', $tbank['id']);
             $total = $recette['amount'] + $depense['amount'];
@@ -149,10 +152,12 @@ function Cron()
         $jobManager->Hotaccountcron($_SESSION['activebase'], $tdate['id'], $tdepense, $trecette, $ttotal, $idTotalBank['id']);
     }
 //Cron treso
-    foreach ($bank as $tbank) {
+    foreach ($bank as $tbank) 
+    {
         $init = $jobManager->GetSoldeAccount($tbank['id']);
         $ttotal = $init['solde'];
-        foreach ($date as $tdate) {
+        foreach ($date as $tdate) 
+        {
 
             $recette = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '1', $tbank['id']);
             $depense = $jobManager->HotAccountCronSelect($_SESSION['activebase'], $tdate['id'], '2', $tbank['id']);
@@ -161,9 +166,11 @@ function Cron()
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $ttotal, $tbank['id']);
         }
     }
-    foreach ($date as $tdate) {
+    foreach ($date as $tdate) 
+    {
         $totalmois = 0;
-        foreach ($bank as $tbank) {
+        foreach ($bank as $tbank) 
+        {
             $totaltreso = $jobManager->HotAccountCronSelect2($_SESSION['activebase'], $tdate['id'], $tbank['id'], $idTotalBank['id']);
             $totalmois = $totalmois + $totaltreso['total'];
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $totalmois, $idTotalBank['id']);
@@ -172,7 +179,8 @@ function Cron()
     //Cron contrats
     $contrats = $jobManager->GetContrats($_SESSION['activebase']);
     $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($contrats as $tcontrats) {
+    foreach ($contrats as $tcontrats) 
+    {
         $recettecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '1', $tcontrats['id'], $tcontrats['id_cat']);
         $depensecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '2', $tcontrats['id'], $tcontrats['id_cat']);
         $total = $recettecontrats['amount'] + $depensecontrats['amount'];
@@ -183,12 +191,12 @@ function Cron()
 function AddAccount($id_bank)
 {
     $jobManager = new JobManager();
-    for ($i = 1; $i < 13; $i++) {
+    for ($i = 1; $i < 13; $i++) 
+    {
         $jobManager->CreateHotTreso($id_bank, $i, $_SESSION["activebase"]);
         $jobManager->CreateHotAccount($id_bank, $i, $_SESSION["activebase"]);
     }
     $idTotalBank = $jobManager->GetTotalAccount($_SESSION['activebase']);
-
     $jobManager->CreateHotTreso($idTotalBank['id'], $i, $_SESSION["activebase"]);
     $jobManager->CreateHotAccount($idTotalBank['id'], $i, $_SESSION["activebase"]);
 
@@ -198,15 +206,16 @@ function AddBase($id_newbase)
 {
     $jobManager = new JobManager();
     $id_TotalBank = $jobManager->AddBaseAccountTotal($id_newbase);
-
-    for ($i = 1; $i < 13; $i++) {
+    for ($i = 1; $i < 13; $i++)
+    {
         $jobManager->CreateHotTreso($id_TotalBank, $i, $id_newbase);
         $jobManager->CreateHotAccount($id_TotalBank, $i, $id_newbase);
     }
 }
 function SetBase()
 {
-    if (!empty($_POST)) {
+    if (!empty($_POST)) 
+    {
         $activepage = $_POST['activepage'];
         $jobManager = new JobManager();
         $namebase = $jobManager->GetBaseName($_POST['id_base']);
@@ -215,9 +224,7 @@ function SetBase()
         $_SESSION['activecontrats'] = $namebase['activecontrats'];
         $_SESSION['activeca'] = $namebase['activeca'];
         header('Location: index.php?action=' . $activepage . '');
-
     }
-
     require CHEMIN_VUE . 'dashboard.php';
 }
 
@@ -226,12 +233,14 @@ function Disconnect()
     session_destroy();
     header('Location: index.php');
 }
+
 function ByCa()
 {
     $jobManager = new JobManager(); // Création d'un objet
     $date = $jobManager->GetDate();
     $ca = $jobManager->GetCa($_SESSION['activebase']);
-    foreach ($ca as $row) {
+    foreach ($ca as $row) 
+    {
         $tblTotal[$row['month']] = $row['amount'];
     }
     require 'view/frontend/byca.php';
