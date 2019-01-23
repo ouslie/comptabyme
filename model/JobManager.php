@@ -25,14 +25,6 @@ class JobManager extends Manager
         }
         return $data;
     }
-    public function GetTransactionByCategory($category, $type, $date)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM demo WHERE  MONTH(date) = $date AND id_category = :id_category AND id_type = :id_type');
-        $req->execute(array('id_category' => $category, 'id_type' => $type));
-        $data = $req->fetch();
-        return $data;
-    }
 
     public function GetRecetteMonth($date, $base_active)
     {
@@ -65,15 +57,6 @@ class JobManager extends Manager
         $req->execute(array('id_base' => $id_base));
         return $req;
     }
-    public function GetSsCategory($id_base, $cat_id)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, name FROM sscategory WHERE cat_id = :cat_id AND id_base = :id_base ORDER BY name');
-        $req->execute(array('cat_id' => $cat_id, 'id_base' => $id_base));
-        return $req;
-    }
-
-
 
     public function GetType()
     {
@@ -136,15 +119,6 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function GetTransaction($id_base)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM demo WHERE id_base = :id_base');
-        $req->execute(array('id_base' => $id_base));
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-        return $data;
-    }
-
     public function GetDate()
     {
         $db = $this->dbConnect();
@@ -168,23 +142,6 @@ class JobManager extends Manager
 
     }
 
-    public function CountTransaction($id_base)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM demo WHERE id_base = :id_base');
-        $req->execute(array('id_base' => $id_base));
-        $data = $req->rowCount();
-
-        return $data;
-    }
-
-    public function AddCategory($name, $id_base)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO category SET name = :name, id_base = :id_base');
-        $req->execute(array('name' => $name, 'id_base' => $id_base));
-        return $data;
-    }
     public function AddBase($name, $id_user)
     {
         $db = $this->dbConnect();
@@ -240,31 +197,6 @@ class JobManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, name FROM bank WHERE id_base = :id_base AND system = 0 ORDER BY system');
-        $req->execute(array('id_base' => $id_base));
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-
-        return $data;
-    }
-
-
-    public function CountAccount($id_base)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, name FROM bank WHERE id_base = :id_base ORDER BY id');
-        $req->execute(array('id_base' => $id_base));
-        $data = $req->rowCount();
-
-        return $data;
-    }
-
-    public function GetTransactionByAccount($id_base)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT MONTH(date) AS month, bank.id AS namebank ,id_type,SUM(amount) AS amountbyaccount
-        FROM demo
-        INNER JOIN bank ON demo.id_bank = bank.id
-        WHERE demo.id_base = :id_base
-        GROUP BY date, name ,id_type');
         $req->execute(array('id_base' => $id_base));
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -355,7 +287,7 @@ class JobManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE contrats
                   SET amount = :amount
-                  WHERE id_base = :id_base 
+                  WHERE id_base = :id_base
                   AND id = :id_contrat
                   ');
         $req->execute(array('amount' => $amount, 'id_base' => $id_base, 'id_contrat' => $id_contrat));
@@ -413,25 +345,6 @@ class JobManager extends Manager
         $data = $req->fetch(PDO::FETCH_ASSOC);
         if (!isset($data['total'])) {
             $data['total'] = 0;
-        }
-        return $data;
-    }
-
-    public function HotTresoCronSelect($id_base, $month, $id_type, $id_bank)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT SUM(amount) AS amount
-                  FROM demo
-                  WHERE id_base = :id_base
-                  AND MONTH(date) = :month
-                  AND id_type = :id_type
-                  AND id_bank = :id_bank
-                  AND tally = 1
-                  ');
-        $req->execute(array('id_base' => $id_base, 'month' => $month, 'id_type' => $id_type, 'id_bank' => $id_bank));
-        $data = $req->fetch(PDO::FETCH_ASSOC);
-        if (!isset($data['amount'])) {
-            $data['amount'] = 0;
         }
         return $data;
     }
