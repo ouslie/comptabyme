@@ -58,12 +58,13 @@ function GetDashboard()
     //base par défaut
     $defaultbase = $jobManager->GetBaseDefault($_SESSION['id']);
     $base = $jobManager->GetBaseName($defaultbase['id']);
-
     if (!isset($_SESSION['activebase'])) {
         $_SESSION['activebase'] = $defaultbase['id'];
         $_SESSION['activebasename'] = $base['name'];
         $_SESSION['activecontrats'] = $base['activecontrats'];
         $_SESSION['activeca'] = $base['activeca'];
+        $_SESSION['activefact'] = $base['activefact'];
+
     }
     
     //Widget init 
@@ -223,6 +224,7 @@ function SetBase()
         $_SESSION['activebasename'] = $namebase['name'];
         $_SESSION['activecontrats'] = $namebase['activecontrats'];
         $_SESSION['activeca'] = $namebase['activeca'];
+        $_SESSION['activefact'] = $namebase['activefact'];
         header('Location: index.php?action=' . $activepage . '');
     }
     require CHEMIN_VUE . 'dashboard.php';
