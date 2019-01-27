@@ -9,6 +9,12 @@ function utilisateur_est_connecte()
     return !empty($_SESSION['id']);
 }
 
+function Disconnect()
+{
+    session_destroy();
+    header('Location: index.php');
+}
+
 function ModuleList($module)
 {
     require 'module/' . $module . '/list.php';
@@ -112,6 +118,18 @@ function ByAccount()
     require 'view/frontend/account.php';
 }
 
+function ByCa()
+{
+    $jobManager = new JobManager(); // Création d'un objet
+    $date = $jobManager->GetDate();
+    $ca = $jobManager->GetCa($_SESSION['activebase']);
+    foreach ($ca as $row) 
+    {
+        $tblTotal[$row['month']] = $row['amount'];
+    }
+    require 'view/frontend/byca.php';
+}
+
 function Treso()
 {
     $jobManager = new JobManager(); // Création d'un objet
@@ -188,6 +206,7 @@ function Cron()
     }
     header('Location: index.php');
 }
+
 function AddAccount($id_bank)
 {
     $jobManager = new JobManager();
@@ -228,20 +247,6 @@ function SetBase()
     require CHEMIN_VUE . 'dashboard.php';
 }
 
-function Disconnect()
-{
-    session_destroy();
-    header('Location: index.php');
-}
 
-function ByCa()
-{
-    $jobManager = new JobManager(); // Création d'un objet
-    $date = $jobManager->GetDate();
-    $ca = $jobManager->GetCa($_SESSION['activebase']);
-    foreach ($ca as $row) 
-    {
-        $tblTotal[$row['month']] = $row['amount'];
-    }
-    require 'view/frontend/byca.php';
-}
+
+
