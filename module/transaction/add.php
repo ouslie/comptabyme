@@ -9,6 +9,7 @@
  */
 
 $pdo = PDO2::getInstance();
+$pdo->exec("SET GLOBAL sql_mode = NO_ENGINE_SUBSTITUTION");
 
 $pdo->exec("set names utf8");
 
@@ -51,8 +52,6 @@ $requete->bindValue(':id_contrat', $id_contrat);
 $requete->bindValue(':amount', $amount);
 $requete->bindValue(':date', $date);
 $requete->bindValue(':id_base', $_SESSION['activebase']);
-
 $return = $requete->execute();
 $requete = null;
-
 echo $return ? "ok" : "error";

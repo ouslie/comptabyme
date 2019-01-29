@@ -35,21 +35,14 @@ if ($form_connexion->is_valid($_POST)) {
     $id_utilisateur = combinaison_connexion_valide($nom_utilisateur, sha1($mot_de_passe));
     // Si les identifiants sont valides
     if (false !== $id_utilisateur) {
-
         $infos_utilisateur = lire_infos_utilisateur($id_utilisateur);
-
         $_SESSION['id'] = $id_utilisateur;
         $_SESSION['pseudo'] = $nom_utilisateur;
         $_SESSION['email'] = $infos_utilisateur['adresse_email'];
-
         header('Location: index.php?action=dashboard');
-
     } else {
-
         $erreurs_connexion[] = "Couple nom d'utilisateur / mot de passe inexistant.";
-
-        // On réaffiche le formulaire de connexion
-        //include CHEMIN_VUE.'login.php';
+        include CHEMIN_VUE . 'login.php';
     }
 
 } else {
