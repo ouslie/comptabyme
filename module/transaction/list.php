@@ -112,12 +112,6 @@
                 </div>
               </div>
             </div>
-
-
-
-
-
-
             <div class="form-group row">
               <label class="col-3 col-lg-2 col-form-label text-right">Banque</label>
               <div class="col-9 col-lg-10">
@@ -190,7 +184,7 @@ foreach ($contrats as $row): ?>
       $("#filter").keyup(function () {
         datagrid.editableGrid.filter($(this).val());
         // To filter on some columns, you can set an array of column index
-        //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+        datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
       });
       $("#addbutton").click(function () {
         datagrid.addRow();
