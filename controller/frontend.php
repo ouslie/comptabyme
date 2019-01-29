@@ -69,8 +69,6 @@ function GetDashboard()
         $_SESSION['activebasename'] = $base['name'];
         $_SESSION['activecontrats'] = $base['activecontrats'];
         $_SESSION['activeca'] = $base['activeca'];
-        $_SESSION['activefact'] = $base['activefact'];
-
     }
     
     //Widget init 
@@ -243,7 +241,6 @@ function SetBase()
         $_SESSION['activebasename'] = $namebase['name'];
         $_SESSION['activecontrats'] = $namebase['activecontrats'];
         $_SESSION['activeca'] = $namebase['activeca'];
-        $_SESSION['activefact'] = $namebase['activefact'];
         header('Location: index.php?action=' . $activepage . '');
     }
     require CHEMIN_VUE . 'dashboard.php';

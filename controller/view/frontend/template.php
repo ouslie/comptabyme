@@ -160,19 +160,6 @@
                             <?php 
                         } ?>
 
-                            <?php if ($_SESSION['activefact'] == 1) { ?>
-
-                            <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['module'] == 'facture' && $_GET['action'] == 'list') {
-                            echo 'active';
-                        } ?>"
-                                    href="index.php?module=facture&action=list"><i class="fas fa-fw fa-table"></i>Facture</a>
-
-                            </li>
-                            <?php 
-                            } ?>
-
-
                             <li class="nav-divider">
                                 Configuration
                             </li>
