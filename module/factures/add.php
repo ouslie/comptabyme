@@ -26,16 +26,12 @@ $return = false;
 $requete = $pdo->prepare("INSERT INTO factures SET
 		id_category = :id_category,
 		id_client = :id_client,
-		id_bank = :id_bank,
-		solde = :solde,
 		date = :date,
 		id_base= :id_base
 		");
 
 $requete->bindValue(':id_category', $id_category);
 $requete->bindValue(':id_client', $id_client);
-$requete->bindValue(':id_bank', $id_bank);
-$requete->bindValue(':solde', $solde);
 $requete->bindValue(':date', $date);
 $requete->bindValue(':id_base', $_SESSION['activebase']);
 $return = $requete->execute();
