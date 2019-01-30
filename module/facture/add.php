@@ -18,7 +18,7 @@ $solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
 
 $return = false;
 
-$requete = $pdo->prepare("INSERT INTO bank SET
+$requete = $pdo->prepare("INSERT INTO facture SET
 		solde = :solde,
 		id_base= :id_base,
 		system = 0
