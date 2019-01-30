@@ -40,7 +40,7 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
         render: function (cell, id) {
             cell.innerHTML += "<i onclick=\"datagrid.deleteRow(" + id + ");\" class='fa fa-trash red' ></i>";
             cell.innerHTML += "<a href=index.php?module=items&action=list&id="+id+ " <i class='fa fa-trash red' ></i>";
-            cell.innerHTML += "<a href=index.php?module=factures&action=pdf&fact_id="+id+ " <i class='fa fa-trash red' ></i>";
+            cell.innerHTML += "<a href=index.php?module=factures&action=pdf&id_fact="+id+ " <i class='fa fa-trash red' ></i>";
 
         }
     }));
