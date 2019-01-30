@@ -18,17 +18,10 @@ echo "poj";
     $pdf->SetMargins(0,0,0);
 
     $FactureManager = new FactureManager();
-    $count = $FactureManager->CountItems($var_id_facture);
-    echo $count;
-    print_r($count);
-
-    // nb de page pour le multi-page : 18 lignes
-    $sql = 'select count(*) FROM items where id_facture=' .$var_id_facture;
-
-    $result = mysqli_query($mysqli, $sql)  or die ('Erreur SQL : ' .$sql .mysqli_connect_error() );
-    $row_client = mysqli_fetch_row($result);
-    mysqli_free_result($result);
+    $row_client = $FactureManager->CountItems($var_id_facture);
     $nb_page = $row_client[0];
+    echo $nb_page;
+
     $sql = 'select abs(FLOOR(-' . $nb_page . '/18))';
     $result = mysqli_query($mysqli, $sql)  or die ('Erreur SQL : ' .$sql .mysqli_connect_error() );
     $row_client = mysqli_fetch_row($result);
