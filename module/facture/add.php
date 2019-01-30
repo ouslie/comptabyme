@@ -12,7 +12,6 @@ $pdo = PDO2::getInstance();
 $pdo->exec("set names utf8");
 
 // Get all parameter provided by the javascript
-$name = $_POST['name'];
 $solde = $_POST['solde'];
 
 $solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
@@ -20,7 +19,6 @@ $solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
 $return = false;
 
 $requete = $pdo->prepare("INSERT INTO bank SET
-		name = :name,
 		solde = :solde,
 		id_base= :id_base,
 		system = 0
