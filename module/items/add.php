@@ -31,9 +31,9 @@ $requete = $pdo->prepare("INSERT INTO items SET
 		id_facture = :id_fact
 		");
 $requete->bindValue(':designation', $designation);
-$requete->bindValue(':amount', $amout);
+$requete->bindValue(':amount', $amount);
 $requete->bindValue(':quantity', $quantity);
-$requete->bindValue(':id_fact', $quantity);
+$requete->bindValue(':id_fact', $id_fact);
 $return = $requete->execute();
 $requete = null;
 echo $return ? "ok" : "error";
