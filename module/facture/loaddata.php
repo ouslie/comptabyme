@@ -61,7 +61,7 @@ $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablen
 
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT * FROM $mydb_tablename WHERE id_base = $base AND system = 0";
+$query = "SELECT * FROM $mydb_tablename WHERE id_base = $base";
 $queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
 
 $totalUnfiltered = $pdo->query($queryCount)->fetch()[0];
