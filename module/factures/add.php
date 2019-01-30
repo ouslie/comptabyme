@@ -41,5 +41,9 @@ $requete->bindValue(':solde', $solde);
 $requete->bindValue(':date', $date);
 $requete->bindValue(':id_base', $_SESSION['activebase']);
 $return = $requete->execute();
+$data = $pdo->lastInsertId();
+
 $requete = null;
-echo $return ? "ok" : "error";
+//echo $return ? "ok" : "error";
+
+echo $data;

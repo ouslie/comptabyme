@@ -87,26 +87,7 @@
 
                 </select>
               </div>
-            </div>
-            <table>
-            <tr> Designation </tr>
-            <tr> Quantité </tr>
-            <tr> Montant </tr>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            <td> 1 </td>
-            </table>
+           
             <div class="form-group row">
               <label class="col-3 col-lg-2 col-form-label text-right">Montant</label>
               <div class="col-9 col-lg-10">
