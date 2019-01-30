@@ -45,6 +45,7 @@
         	// adr fact du client
     
         $row_client = $FactureManager->GetClient($var_id_facture);  
+        print_r($row_client);
 		$pdf->SetFont('Arial','B',11); $x = 110 ; $y = 50;
 		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["name"], 0, 0, ''); $y += 4;
 		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["address"], 0, 0, ''); $y += 4;
