@@ -25,7 +25,7 @@
         $pdf->Image('logo.png', 10, 10, 50, 30);
         
         // n° facture, date echeance et reglement et obs
-        row_client$row = $FactureManager->GetFacture($var_id_facture);
+        $row_client = $FactureManager->GetFacture($var_id_facture);
         
         $champ_date = date_create($row[0]); $annee = date_format($champ_date, 'Y');
         $num_fact = utf8_decode("FACTURE N° "). $annee .'-' . str_pad($row["id"], 4, '0', STR_PAD_LEFT);
