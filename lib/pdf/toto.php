@@ -8,6 +8,7 @@
 
 
     require('fpdf.php');
+    require('../../model/Manager.php');
     require('../../model/FactureManager.php');
     // le mettre au debut car plante si on declare $mysqli avant !
     $pdf = new FPDF( 'P', 'mm', 'A4' );
