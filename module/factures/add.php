@@ -1,37 +1,22 @@
+<?php ob_start();?>
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+  <div class="card">
+<select id="id_client" name="id_client">
+          <option value="">--Clients--</option>
+          <?php
+        $clients = $jobManager->GetClients($_SESSION['activebase']);
+        $clients = $type->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($clients as $row): ?>
+          <option value="<?=$row['id'];?>">
+            <?=$row['name'];?>
+          </option>
+          <?php endforeach;?>
+
+        </select>
+    </div>
+
+  </div>
 <?php
-/*
- *
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
-$pdo = PDO2::getInstance();
-
-$pdo->exec("set names utf8");
-
-// Get all parameter provided by the javascript
-$solde = $_POST['solde'];
-
-$solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
-
-$return = false;
-
-$requete = $pdo->prepare("INSERT INTO facture SET
-		solde = :solde,
-		id_base= :id_base
-		");
-
-$requete->bindValue(':solde', $solde);
-
-$requete->bindValue(':id_base', $_SESSION['activebase']);
-
-$return = $requete->execute();
-
-$requete = null;
-
-
-
-
-echo $return ? "ok" : "error";
+$content = ob_get_clean();
+require_once('controller/view/frontend/template.php');?>
