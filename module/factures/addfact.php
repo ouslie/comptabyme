@@ -1,6 +1,6 @@
 <?php ob_start();?>
 
-<select id="id_client" name="id_client" class="form-control">
+<select id="id_client" name="id_client">
           <option value="">--Clients--</option>
           <?php
         $clients = $jobManager->GetClients($_SESSION['activebase']);
