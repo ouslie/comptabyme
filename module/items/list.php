@@ -10,7 +10,7 @@
       <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <!-- Button trigger modal -->
       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Ajouter une facture
+        Ajouter un item
       </a>
     </div>
     <div class="card-body">
@@ -42,83 +42,35 @@
         </div>
 
         <div id="addform">
-          <div class="modal-body">
+          <div class="modal-body">   
             <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Date</label>
+              <label class="col-3 col-lg-2 col-form-label text-right">Désignation</label>
               <div class="col-9 col-lg-10">
-                <input type="date" class="form-control" id="date" name="date">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Clients</label>
-              <div class="col-9 col-lg-10">
-
-                <select id="id_client" name="id_client" class="form-control">
-                  <option value="">--Clients--</option>
-                  <?php
-        $type = $jobManager->GetClients($_SESSION['activebase']);
-        $type = $type->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($type as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
-                  </option>
-                  <?php endforeach;?>
-
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Catégorie</label>
-              <div class="col-9 col-lg-10">
-
-
-                <select id="id_category" name="id_category" class="form-control">
-                  <option value="">--Catégorie--</option>
-                  <?php
-      $categories = $jobManager->GetCategoryIsRecette($_SESSION['activebase']);
-      $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
-
-      foreach ($categories as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
-                  </option>
-                  <?php endforeach;?>
-
-                </select>
-              </div>
-           
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Montant</label>
-              <div class="col-9 col-lg-10">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend">€</span>
-                  </div>
-                  <input type="text" id="solde" name="solde" class="form-control" placeholder="Montant"
+                <div class="input-group">           
+                  <input type="text" id="designation" name="designation" class="form-control" placeholder="Désignation"
                     aria-describedby="inputGroupPrepend">
                 </div>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Moyen de paiement</label>
+              <label class="col-3 col-lg-2 col-form-label text-right">Quantité</label>
               <div class="col-9 col-lg-10">
-                <select id="id_bank" name="id_bank" class="form-control">
-                  <option value="">--Banque--</option>
-                  <?php
-    $bank = $jobManager->GetBankSys($_SESSION['activebase']);
-    $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($bank as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
-                  </option>
-                  <?php endforeach;?>
-
-                </select>
+                <div class="input-group">           
+                  <input type="text" id="quantity" name="quantity" class="form-control" placeholder="Quantité"
+                    aria-describedby="inputGroupPrepend">
+                </div>
               </div>
             </div>
-
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Montant</label>
+              <div class="col-9 col-lg-10">
+                <div class="input-group">           
+                  <input type="text" id="amount" name="amount" class="form-control" placeholder="Montant"
+                    aria-describedby="inputGroupPrepend">
+                </div>
+              </div>
+            </div>
+           
          
                      <div class="modal-footer">
               <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>

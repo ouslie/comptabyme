@@ -54,8 +54,7 @@ $grid = new EditableGrid();
  */
 $id_facture = $_GET['id_fact'];
 $grid->addColumn('id', 'ID', 'integer', null, false);
-$grid->addColumn('id_facture', 'ID Facture', 'integer', null, false);
-$grid->addColumn('designation', 'Designation', 'string', null, true);
+$grid->addColumn('designation', 'Désignation', 'integer', null, false);
 $grid->addColumn('quantity', 'Quantité', 'string', null, true);
 $grid->addColumn('amount', 'Montant', 'string', null, true);
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
