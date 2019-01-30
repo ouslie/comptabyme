@@ -10,22 +10,20 @@
     // le mettre au debut car plante si on declare $mysqli avant !
     $pdf = new FPDF( 'P', 'mm', 'A4' );
 
-    // on declare $mysqli apres !
-    $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
-    // cnx a la base
-    mysqli_select_db($mysqli, DATABASE) or die('Erreur de connection à la BDD : ' .mysqli_connect_error());
-    // FORCE UTF-8
-//    mysqli_query($mysqli, "SET NAMES UTF8");
-    
-
     $var_id_facture = $_GET['id_fact'];
 
     // on sup les 2 cm en bas
     $pdf->SetAutoPagebreak(False);
     $pdf->SetMargins(0,0,0);
 
+    $FactureManager = new FactureManager();
+    $count = $FactureManager->CountItems($id_facture);
+    echo $count;
+    print_r($count);
+    
     // nb de page pour le multi-page : 18 lignes
     $sql = 'select count(*) FROM items where id_facture=' .$var_id_facture;
+
     $result = mysqli_query($mysqli, $sql)  or die ('Erreur SQL : ' .$sql .mysqli_connect_error() );
     $row_client = mysqli_fetch_row($result);
     mysqli_free_result($result);

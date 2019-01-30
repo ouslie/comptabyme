@@ -250,16 +250,3 @@ function SetBase()
     }
     require CHEMIN_VUE . 'dashboard.php';
 }
-
-
-function CountItems()
-{
-    
-        $FactureManager = new FactureManager();
-        $count = $FactureManager->CountItems($id_facture);
-        echo $count;
-        print_r($count);
-    
-   // require CHEMIN_VUE . 'dashboard.php';
-}
-
