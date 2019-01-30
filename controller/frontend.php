@@ -2,6 +2,8 @@
 
 // Chargement des classes
 require_once 'model/JobManager.php';
+require_once 'model/FactureManager.php';
+
 require_once 'lib/pdo2.php';
 
 function utilisateur_est_connecte()
@@ -248,5 +250,14 @@ function SetBase()
 }
 
 
-
+function CountItems()
+{
+    
+        $FactureManager = new FactureManager();
+        $count = $FactureManager->CountItems($id_facture);
+        echo $count;
+        print_r($count);
+    
+   // require CHEMIN_VUE . 'dashboard.php';
+}
 
