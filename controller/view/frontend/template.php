@@ -165,11 +165,24 @@
     <a class="nav-link <?php if ($_GET['module'] == 'facture' && $_GET['action'] == 'list') {
                             echo 'active';
                         } ?>"
-        href="index.php?module=facture&action=list"><i class="fas fa-fw fa-table"></i>Factures</a>
+        href="index.php?module=factures&action=list"><i class="fas fa-fw fa-table"></i>Factures</a>
 
 </li>
 <?php 
 } ?>
+
+                       <?php if ($_SESSION['activeca'] == 1) { ?>
+
+<li class="nav-item">
+    <a class="nav-link <?php if ($_GET['module'] == 'clients' && $_GET['action'] == 'list') {
+                            echo 'active';
+                        } ?>"
+        href="index.php?module=clients&action=list"><i class="fas fa-fw fa-table"></i>Clients</a>
+
+</li>
+<?php 
+} ?>
+
 
                             <li class="nav-divider">
                                 Configuration
