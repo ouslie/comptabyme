@@ -120,9 +120,10 @@ DatabaseGrid.prototype.addRow = function (id) {
 			solde: $("#solde").val()
 		},
 		success: function (response) {
-			if (response == "ok") {
+			if (response > 0) {
 				message("success", "Transaction ajouté");
-				self.fetchGrid();
+				window.location = '/index.php?module=item&action=list&id=' + response;
+
 			} else
 				message("error", "Error occured");
 		},
