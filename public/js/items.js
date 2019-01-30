@@ -123,9 +123,9 @@ DatabaseGrid.prototype.deleteRow = function (id) {
 DatabaseGrid.prototype.addRow = function (id) {
 
 	var self = this;
-
+	var id_fact = $_GET('id');
 	$.ajax({
-		url: 'index.php?module=items&action=add',
+		url: 'index.php?module=items&action=add&id_fact=' +id_fact,
 		type: 'POST',
 		dataType: "html",
 		data: {

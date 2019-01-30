@@ -18,7 +18,7 @@ $pdo->exec("set names utf8");
 $designation = $_POST['designation'];
 $amout = $_POST['amout'];
 $quantity = $_POST['quantity'];
-$id = $_GET['id'];
+$id = $_GET['id_fact'];
 
 echo $id;
 $amout = floatval(str_replace(',', '.', str_replace('.', '',$amout)));
