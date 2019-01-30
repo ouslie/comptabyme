@@ -15,7 +15,7 @@ class FactureManager extends Manager
     public function CountPage($row_client)
     {
         $db = $this->dbConnect();
-         $req = $db->prepare('SELECT abs(FLOOR(-:row/18)) AS page ');
+         $req = $db->prepare('SELECT abs(FLOOR(-:row/18)) AS pages ');
         $req->execute(array('row' => $row_client));
         $data = $req->fetch(PDO::FETCH_ASSOC);
        

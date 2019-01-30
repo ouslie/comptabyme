@@ -18,11 +18,11 @@
 
     $FactureManager = new FactureManager();
     $row_client = $FactureManager->CountItems($var_id_facture);
-    $nb_page = $row_client[0];
+    $nb_page = $row_client['itemsnum'];
     
     $row_client = $FactureManager->CountPage($nb_page);
-    $nb_page = $row_client[0];
-   
+    $nb_page = $row_client['pages'];
+    
 
     $num_page = 1; $limit_inf = 0; $limit_sup = 18;
     While ($num_page <= $nb_page)
