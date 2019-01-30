@@ -63,7 +63,7 @@
         $pdf->Cell( $pdf->GetPageWidth(), 5, "Arnaud GUY Webmaster", 0, 0, 'C');
         
         $pdf->SetXY( 1, $y1 + 8 );
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "5 rue de la rotonde 25000 Besançon", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5,utf8_decode('5 rue de la rotonde 25000 Besançon'), 0, 0, 'C');
 
         $pdf->SetXY( 1, $y1 + 12 );
         $pdf->Cell( $pdf->GetPageWidth(), 5, "07 86 25 09 40 contat@arnaudguy.fr ", 0, 0, 'C');
