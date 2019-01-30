@@ -1,5 +1,4 @@
 <?php
-require_once "model/Manager.php";
 class FactureManager extends Manager
 {
     public function CountItems($id_facture)
