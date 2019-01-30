@@ -7,7 +7,6 @@
 //
 
 
-    require('../../lib/pdf/fpdf.php');
     // le mettre au debut car plante si on declare $mysqli avant !
     $pdf = new FPDF( 'P', 'mm', 'A4' );
 

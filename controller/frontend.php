@@ -5,6 +5,8 @@ require_once 'model/JobManager.php';
 require_once 'model/FactureManager.php';
 
 require_once 'lib/pdo2.php';
+require_once 'lib/pdf/fpdf.php';
+
 
 function utilisateur_est_connecte()
 {
