@@ -37,6 +37,7 @@
         
         // n° facture, date echeance et reglement et obs
         $row = $FactureManager->GetFacture($var_id_facture);
+        print_r($row);
         
         $champ_date = date_create($row[0]); $annee = date_format($champ_date, 'Y');
         $num_fact = "FACTURE N° " . $annee .'-' . str_pad($row[1], 4, '0', STR_PAD_LEFT);
@@ -49,7 +50,7 @@
         // date facture
         $champ_date = date_create($row[0]); $date_fact = date_format($champ_date, 'd/m/Y');
         $pdf->SetFont('Arial','',11); $pdf->SetXY( 122, 30 );
-        $pdf->Cell( 60, 8, "MA VILLE, le " . $date_fact, 0, 0, '');
+        $pdf->Cell( 60, 8, "Besançon, le " . $date_fact, 0, 0, '');
         
       
         // **************************
@@ -82,5 +83,5 @@
         $num_page++; $limit_inf += 18; $limit_sup += 18; 
     }
     
-    $pdf->Output("I", $nom_file);
+  //  $pdf->Output("I", $nom_file);
 ?>
