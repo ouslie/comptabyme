@@ -7,7 +7,7 @@
     <div id="toolbar" class="card-header">
       <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <!-- Button trigger modal -->
-      <a href="index.php?module=facture&action=addfacture" class="btn btn-primary">
+      <a href="index.php?module=facture&action=addfact" class="btn btn-primary">
         Ajouter une facture
       </a>
     </div>
