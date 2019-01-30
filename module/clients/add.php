@@ -12,7 +12,7 @@ $pdo = PDO2::getInstance();
 $pdo->exec("set names utf8");
 
 // Get all parameter provided by the javascript
-$solde = $_POST['name'];
+$name = $_POST['name'];
 $address = $_POST['address'];
 $cp = $_POST['cp'];
 $city = $_POST['city'];
