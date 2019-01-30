@@ -36,6 +36,10 @@ try {
                 case 'list':
                     ModuleList($_GET['module']);
                     break;
+
+                case 'addfact':
+                    require("module/facture/addfact.php");
+                    break;
             }
         } else {
             if (isset($_GET['action'])) {

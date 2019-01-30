@@ -25,6 +25,7 @@ function ModuleAdd($module)
     require 'module/' . $module . '/add.php';
 }
 
+
 function ModuleUpdate($module)
 {
     require 'module/' . $module . '/update.php';
