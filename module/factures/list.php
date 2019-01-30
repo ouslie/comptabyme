@@ -54,7 +54,7 @@
               <div class="col-9 col-lg-10">
 
                 <select id="id_client" name="id_client" class="form-control">
-                  <option value="">--Type--</option>
+                  <option value="">--Clients--</option>
                   <?php
         $type = $jobManager->GetClients($_SESSION['activebase']);
         $type = $type->fetchAll(PDO::FETCH_ASSOC);
@@ -102,7 +102,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Banque</label>
+              <label class="col-3 col-lg-2 col-form-label text-right">Moyen de paiement</label>
               <div class="col-9 col-lg-10">
                 <select id="id_bank" name="id_bank" class="form-control">
                   <option value="">--Banque--</option>
