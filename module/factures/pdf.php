@@ -39,7 +39,7 @@
         $nom_file = "fact_" . $annee .'-' . str_pad($row[1], 4, '0', STR_PAD_LEFT) . ".pdf";
         
         // date facture
-        $date_fact = date("d-m-Y", strtotime($row["date"]));
+        $date_fact = date("d-m-Y", $row["date"]);
 
         $pdf->SetFont('Arial','',11); $pdf->SetXY( 122, 30 );
         $pdf->Cell( 60, 8, utf8_decode("Besançon, le ") . $date_fact, 0, 0, '');
