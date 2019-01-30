@@ -18,9 +18,8 @@ $pdo->exec("set names utf8");
 $designation = $_POST['designation'];
 $amout = $_POST['amout'];
 $quantity = $_POST['quantity'];
-$id = $_GET['id_fact'];
+$id_fact = $_GET['id_fact'];
 
-echo $id;
 $amout = floatval(str_replace(',', '.', str_replace('.', '',$amout)));
 
 $return = false;
@@ -28,11 +27,13 @@ $return = false;
 $requete = $pdo->prepare("INSERT INTO items SET
 		designation = :designation,
 		amount = :amount,
-		quantity = :quantity
+		quantity = :quantity,
+		id_facture = :id_fact
 		");
 $requete->bindValue(':designation', $designation);
 $requete->bindValue(':amount', $amout);
 $requete->bindValue(':quantity', $quantity);
+$requete->bindValue(':id_fact', $quantity);
 $return = $requete->execute();
 $requete = null;
 echo $return ? "ok" : "error";
