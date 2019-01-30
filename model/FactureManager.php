@@ -35,7 +35,7 @@ class FactureManager extends Manager
     public function GetClient($id_facture)
     {
         $db = $this->dbConnect();
-         $req = $db->prepare('SELECT * FROM factures INNER JOIN clients ON factures.id_client = clients.id WHERE id_facture = :id_facture ');
+         $req = $db->prepare('SELECT * FROM factures INNER JOIN clients ON factures.id_client = clients.id WHERE id = :id_facture ');
         $req->execute(array('id_facture' => $id_facture));
         $data = $req->fetch(PDO::FETCH_ASSOC);
        
