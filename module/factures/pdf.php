@@ -18,7 +18,7 @@ echo "poj";
     $pdf->SetMargins(0,0,0);
 
     $FactureManager = new FactureManager();
-    $count = $FactureManager->CountItems($id_facture);
+    $count = $FactureManager->CountItems($var_id_facture);
     echo $count;
     print_r($count);
 
