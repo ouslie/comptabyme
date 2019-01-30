@@ -29,11 +29,6 @@ $requete->bindValue(':id_base', $_SESSION['activebase']);
 
 $return = $requete->execute();
 
-$data = $pdo->lastInsertId();
-
-AddAccount($data);
-
-
 $requete = null;
 
 
