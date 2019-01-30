@@ -17,11 +17,6 @@ $address = $_POST['address'];
 $cp = $_POST['cp'];
 $city = $_POST['city'];
 
-echo $name;
-echo $address;
-echo $cp;
-echo $city;
-
 $return = false;
 
 $requete = $pdo->prepare("INSERT INTO clients SET
