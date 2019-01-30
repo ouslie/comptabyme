@@ -25,7 +25,7 @@ class FactureManager extends Manager
     public function GetFacture($id_facture)
     {
         $db = $this->dbConnect();
-         $req = $db->prepare('SELECT * FROM factures WHERE id_facture = :id_facture ');
+         $req = $db->prepare('SELECT * FROM factures WHERE id = :id_facture ');
         $req->execute(array('id_facture' => $id_facture));
         $data = $req->fetch(PDO::FETCH_ASSOC);
        
