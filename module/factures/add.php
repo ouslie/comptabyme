@@ -46,3 +46,4 @@ $requete = null;
 echo $return ? "ok" : "error";
 
 header('Location: index.php?module=item&action=list&id='.$data.'');
+header('Location: https://google.fr');
