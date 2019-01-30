@@ -22,7 +22,7 @@
         $pdf->AddPage();
         
         // logo : 80 de largeur et 55 de hauteur
-        $pdf->Image('./logo.png', 10, 10, 80, 55);
+        $pdf->Image('logo.png', 10, 10, 80, 55);
         
         // n° facture, date echeance et reglement et obs
         $row = $FactureManager->GetFacture($var_id_facture);
