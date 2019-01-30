@@ -10,7 +10,7 @@
             <option value="">--Clients--</option>
             <?php
         $clients = $jobManager->GetClients($_SESSION['activebase']);
-        $clients = $type->fetchAll(PDO::FETCH_ASSOC);
+        $clients = $clients->fetchAll(PDO::FETCH_ASSOC);
         foreach ($clients as $row): ?>
             <option value="<?=$row['id'];?>">
               <?=$row['name'];?>
