@@ -27,7 +27,7 @@ if ($colname == "solde") { $value = floatval(str_replace(',', '.', str_replace('
 // This very generic. So this script can be used to update several tables.
 $return = false;
 
-$requete = $pdo->prepare("UPDATE facture SET
+$requete = $pdo->prepare("UPDATE factures SET
       " . $colname . " = :colnamevalue
        WHERE id = :idvalue
 		");
