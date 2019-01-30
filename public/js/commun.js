@@ -38,7 +38,7 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
     }));
     grid.setCellRenderer("edit", new CellRenderer({
         render: function (cell, id) {
-            cell.innerHTML += "<a href=index.php?module=items&action=list&id="+id+ " <i class='fa fa-trash red' ></i>";
+            cell.innerHTML += "<i onclick=\"datagrid.deleteRow(" + id + ");\" class='fa fa-trash red' ></i>";
             cell.innerHTML += "<a href=index.php?module=items&action=list&id="+id+ " <i class='fa fa-trash red' ></i>";
 
         }

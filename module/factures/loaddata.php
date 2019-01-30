@@ -58,7 +58,6 @@ $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('id_client', 'Solde', 'string', null, true);
 $grid->addColumn('id_category', 'Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM category WHERE id_base = ' . $_SESSION['activebase'] . ' AND is_recette = 1'), true);
 $grid->addColumn('solde', 'Solde', 'string', null, true);
-$grid->addColumn('action', 'Action', 'html', null, false, 'id');
 $grid->addColumn('edit', 'Action', 'html', null, false, 'id');
 
 $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'factures';
