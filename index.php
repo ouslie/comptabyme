@@ -36,6 +36,9 @@ try {
                 case 'list':
                     ModuleList($_GET['module']);
                     break;
+                case 'pdf':
+                    require('module/factures/pdf.php');
+                    break;
             }
         } else {
             if (isset($_GET['action'])) {
