@@ -21,9 +21,7 @@ $id_client = $_POST['id_client'];
 $sole = $_POST['solde'];
 $date = $_POST['date'];
 
-$solde = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
-
-if ($id_type ==2){$amount = -$amount;}
+$solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
 
 $return = false;
 
