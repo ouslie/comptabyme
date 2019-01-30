@@ -13,7 +13,8 @@
     $pdf->SetMargins(0,0,0);
 
     $FactureManager = new FactureManager();
-    $nb_page = $FactureManager->CountItems($var_id_facture);
+    $row_client = $FactureManager->CountItems($var_id_facture);
+    $nb_page = $row_client['itemsnum'];
     echo $nb_page;
 
     $sql = 'select abs(FLOOR(-' . $nb_page . '/18))';
