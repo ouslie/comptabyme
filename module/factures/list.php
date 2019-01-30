@@ -1,13 +1,15 @@
-<?php ob_start();?>
+<?php ob_start();
+      $jobManager = new JobManager();
+      ?>
 
-<script src="public/js/facture.js"></script>
+<script src="public/js/factures.js"></script>
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
     <div id="toolbar" class="card-header">
       <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <!-- Button trigger modal -->
-      <a href="index.php?module=factures&action=add" class="btn btn-primary">
+      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Ajouter une facture
       </a>
     </div>
@@ -24,33 +26,102 @@
 
     </div>
   </div>
-  <div class="row">
-    <!-- ============================================================== -->
-    <!-- modal  -->
-    <!-- ============================================================== -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ajout d'un compte</h5>
-            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </a>
-          </div>
-          <div id="addform">
-            <div class="modal-body">
+</div>
+<div class="row">
+  <!-- ============================================================== -->
+  <!-- modal  -->
+  <!-- ============================================================== -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajout d'une facture</h5>
+          <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </a>
+        </div>
 
-              <div class="input-group input-group-lg mb-3">
-                <div class="input-group-prepend"><span class="input-group-text">@</span></div>
-                <input type="text" placeholder="Nom du compte" class="form-control" id="name" name="name">
-              </div>
-              <div class="input-group input-group-lg mb-3">
-                <div class="input-group-prepend"><span class="input-group-text">€</span></div>
-                <input type="text" placeholder="Solde" class="form-control" id="solde" name="solde">
+        <div id="addform">
+          <div class="modal-body">
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Date</label>
+              <div class="col-9 col-lg-10">
+                <input type="date" class="form-control" id="date" name="date">
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Clients</label>
+              <div class="col-9 col-lg-10">
+
+                <select id="id_client" name="id_client" class="form-control">
+                  <option value="">--Type--</option>
+                  <?php
+        $type = $jobManager->GetClients($_SESSION['activebase']);
+        $type = $type->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($type as $row): ?>
+                  <option value="<?=$row['id'];?>">
+                    <?=$row['name'];?>
+                  </option>
+                  <?php endforeach;?>
+
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Catégorie</label>
+              <div class="col-9 col-lg-10">
+
+
+                <select id="id_category" name="id_category" class="form-control">
+                  <option value="">--Catégorie--</option>
+                  <?php
+      $categories = $jobManager->GetCategory($_SESSION['activebase']);
+      $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
+
+      foreach ($categories as $row): ?>
+                  <option value="<?=$row['id'];?>">
+                    <?=$row['name'];?>
+                  </option>
+                  <?php endforeach;?>
+
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Montant</label>
+              <div class="col-9 col-lg-10">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend">€</span>
+                  </div>
+                  <input type="text" id="amount" name="amount" class="form-control" placeholder="Montant"
+                    aria-describedby="inputGroupPrepend">
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Banque</label>
+              <div class="col-9 col-lg-10">
+                <select id="id_bank" name="id_bank" class="form-control">
+                  <option value="">--Banque--</option>
+                  <?php
+    $bank = $jobManager->GetBankSys($_SESSION['activebase']);
+    $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($bank as $row): ?>
+                  <option value="<?=$row['id'];?>">
+                    <?=$row['name'];?>
+                  </option>
+                  <?php endforeach;?>
+
+                </select>
+              </div>
+            </div>
+
+         
+                     <div class="modal-footer">
               <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
               <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
             </div>
@@ -73,7 +144,7 @@
       $("#filter").keyup(function () {
         datagrid.editableGrid.filter($(this).val());
         // To filter on some columns, you can set an array of column index
-        //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+        datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
       });
       $("#addbutton").click(function () {
         datagrid.addRow();
