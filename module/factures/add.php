@@ -18,7 +18,7 @@ $pdo->exec("set names utf8");
 $id_category = $_POST['id_category'];
 $id_bank = $_POST['id_bank'];
 $id_client = $_POST['id_client'];
-$sole = $_POST['solde'];
+$solde = $_POST['solde'];
 $date = $_POST['date'];
 
 $solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
