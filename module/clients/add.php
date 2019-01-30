@@ -12,19 +12,25 @@ $pdo = PDO2::getInstance();
 $pdo->exec("set names utf8");
 
 // Get all parameter provided by the javascript
-$solde = $_POST['solde'];
-
-$solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
+$solde = $_POST['name'];
+$address = $_POST['address'];
+$cp = $_POST['cp'];
+$city = $_POST['city'];
 
 $return = false;
 
-$requete = $pdo->prepare("INSERT INTO facture SET
-		solde = :solde,
+$requete = $pdo->prepare("INSERT INTO clients SET
+		name = :name,
+		address = :address,
+		cp = :cp,
+		city = :city,
 		id_base= :id_base
 		");
 
-$requete->bindValue(':solde', $solde);
-
+$requete->bindValue(':name', $name);
+$requete->bindValue(':address', $address);
+$requete->bindValue(':cp', $cp);
+$requete->bindValue(':city', $city);
 $requete->bindValue(':id_base', $_SESSION['activebase']);
 
 $return = $requete->execute();

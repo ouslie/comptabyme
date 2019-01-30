@@ -38,7 +38,7 @@ try {
                     break;
 
                 case 'addfact':
-                    require("module/facture/addfact.php");
+                    require("module/factures/addfact.php");
                     break;
             }
         } else {

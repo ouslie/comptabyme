@@ -33,7 +33,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ajout d'un compte</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Ajout d'un client</h5>
             <a href="#" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </a>
@@ -42,12 +42,16 @@
             <div class="modal-body">
 
               <div class="input-group input-group-lg mb-3">
-                <div class="input-group-prepend"><span class="input-group-text">@</span></div>
-                <input type="text" placeholder="Nom du compte" class="form-control" id="name" name="name">
+                <input type="text" placeholder="Nom du client" class="form-control" id="name" name="name">
               </div>
               <div class="input-group input-group-lg mb-3">
-                <div class="input-group-prepend"><span class="input-group-text">€</span></div>
-                <input type="text" placeholder="Solde" class="form-control" id="solde" name="solde">
+                <input type="text" placeholder="Adresse" class="form-control" id="address" name="address">
+              </div>
+              <div class="input-group input-group-lg mb-3">
+                <input type="text" placeholder="CP" class="form-control" id="cp" name="cp">
+              </div>
+              <div class="input-group input-group-lg mb-3">
+                <input type="text" placeholder="Ville" class="form-control" id="city" name="city">
               </div>
             </div>
             <div class="modal-footer">
