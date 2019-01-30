@@ -21,13 +21,13 @@ $coltype = $_POST['coltype'];
 $value = $_POST['newvalue'];
 $tablename = $_POST['tablename'];
 
-if ($colname == "solde") { $value = floatval(str_replace(',', '.', str_replace('.', '',$value)));
+if ($colname == "amount") { $value = floatval(str_replace(',', '.', str_replace('.', '',$value)));
 }
 
 // This very generic. So this script can be used to update several tables.
 $return = false;
 
-$requete = $pdo->prepare("UPDATE factures SET
+$requete = $pdo->prepare("UPDATE items SET
       " . $colname . " = :colnamevalue
        WHERE id = :idvalue
 		");
