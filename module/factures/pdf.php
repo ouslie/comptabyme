@@ -23,23 +23,21 @@
     $row_client = $FactureManager->CountPage($nb_page);
     $nb_page = $row_client[0];
    
-    
+
     $num_page = 1; $limit_inf = 0; $limit_sup = 18;
     While ($num_page <= $nb_page)
     {
         $pdf->AddPage();
         
         // logo : 80 de largeur et 55 de hauteur
-        $pdf->Image('logo_societe.png', 10, 10, 80, 55);
+       // $pdf->Image('logo_societe.png', 10, 10, 80, 55);
 
         // n° page en haute à droite
         $pdf->SetXY( 120, 5 ); $pdf->SetFont( "Arial", "B", 12 ); $pdf->Cell( 160, 8, $num_page . '/' . $nb_page, 0, 0, 'C');
         
         // n° facture, date echeance et reglement et obs
-        $select = 'select date,numero,mnt_ttc,mnt_ht,mnt_tva,obs,reglement,date_echeance FROM facture where id_facture=' .$var_id_facture;
-        $result = mysqli_query($mysqli, $select)  or die ('Erreur SQL : ' .$select .mysqli_connect_error() );
-        $row = mysqli_fetch_row($result);
-        mysqli_free_result($result);
+        $row = $FactureManager->GetFacture($var_id_facture);
+
         
         $champ_date = date_create($row[0]); $annee = date_format($champ_date, 'Y');
         $num_fact = "FACTURE N° " . $annee .'-' . str_pad($row[1], 4, '0', STR_PAD_LEFT);
