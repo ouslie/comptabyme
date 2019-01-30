@@ -55,10 +55,10 @@ $grid = new EditableGrid();
 $base = $_SESSION['activebase'];
 
 $grid->addColumn('id', 'ID', 'integer', null, false);
-$grid->addColumn('name', 'Solde', 'string', null, true);
-$grid->addColumn('adress', 'Solde', 'string', null, true);
-$grid->addColumn('cp', 'Solde', 'string', null, true);
-$grid->addColumn('city', 'Solde', 'string', null, true);
+$grid->addColumn('name', 'Nom', 'string', null, true);
+$grid->addColumn('adress', 'Adresse', 'string', null, true);
+$grid->addColumn('cp', 'Code P', 'string', null, true);
+$grid->addColumn('city', 'Ville', 'string', null, true);
 
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
 $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'clients';
