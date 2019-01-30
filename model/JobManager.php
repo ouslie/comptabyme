@@ -65,6 +65,14 @@ class JobManager extends Manager
         return $req;
     }
 
+    public function GetClients()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, name FROM clients ORDER BY id');
+        return $req;
+    }
+
+
     public function GetBank($id_base)
     {
         $db = $this->dbConnect();
