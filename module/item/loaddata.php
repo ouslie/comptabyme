@@ -52,16 +52,18 @@ $grid = new EditableGrid();
  *  Add columns. The first argument of addColumn is the name of the field in the databse.
  *  The second argument is the label that will be displayed in the header
  */
-$base = $_SESSION['activebase'];
+$id_facture = $_GET['id'];
 
 $grid->addColumn('id', 'ID', 'integer', null, false);
-$grid->addColumn('solde', 'Solde', 'string', null, true);
+$grid->addColumn('designation', 'Designation', 'string', null, true);
+$grid->addColumn('quantity', 'Quantité', 'string', null, true);
+$grid->addColumn('amount', 'Montant', 'string', null, true);
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
-$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'factures';
+$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'items';
 
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT * FROM $mydb_tablename WHERE id_base = $base";
+$query = "SELECT * FROM $mydb_tablename WHERE id_facture = $id_facture ";
 $queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
 
 $totalUnfiltered = $pdo->query($queryCount)->fetch()[0];

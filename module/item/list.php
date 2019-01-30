@@ -2,7 +2,7 @@
       $jobManager = new JobManager();
       ?>
 
-<script src="public/js/factures.js"></script>
+<script src="public/js/items.js"></script>
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
