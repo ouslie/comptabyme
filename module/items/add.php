@@ -16,11 +16,11 @@ $pdo->exec("set names utf8");
 // Get all parameter provided by the javascript
 
 $designation = $_POST['designation'];
-$amout = $_POST['amout'];
+$amount = $_POST['amount'];
 $quantity = $_POST['quantity'];
 $id_fact = $_GET['id_fact'];
 
-$amout = floatval(str_replace(',', '.', str_replace('.', '',$amout)));
+$amount = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
 
 $return = false;
 
