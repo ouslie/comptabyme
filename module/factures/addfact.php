@@ -1,5 +1,4 @@
 <?php ob_start();?>
-<
 
         <select id="id_client" name="id_client" class="form-control">
           <option value="">--Clients--</option>
@@ -16,4 +15,4 @@
     
 <?php
 $content = ob_get_clean();
-require 'controller/view/frontend/template.php';?>
+require_once('controller/view/frontend/template.php');?>
