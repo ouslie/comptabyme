@@ -36,7 +36,11 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
             cell.innerHTML += "<i onclick=\"datagrid.deleteRow(" + id + ");\" class='fa fa-trash red' ></i>";
         }
     }));
-
+    grid.setCellRenderer("edit", new CellRenderer({
+        render: function (cell, id) {
+            cell.innerHTML += "<a href=index.php?module=items&action=list&id="+id+ " <i class='fa fa-trash red' ></i>";
+        }
+    }));
     grid.setCellRenderer("amount", new CellRenderer({
         render: function (cell, id) {
             if (id >= 0) {
