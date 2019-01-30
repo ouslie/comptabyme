@@ -25,7 +25,7 @@
         $pdf->Image('logo.png', 10, 10, 50, 30);
         
         // n° facture, date echeance et reglement et obs
-        $row = $FactureManager->GetFacture($var_id_facture);
+        row_client$row = $FactureManager->GetFacture($var_id_facture);
         
         $champ_date = date_create($row[0]); $annee = date_format($champ_date, 'Y');
         $num_fact = utf8_decode("FACTURE N° "). $annee .'-' . str_pad($row["id"], 4, '0', STR_PAD_LEFT);
@@ -41,6 +41,17 @@
         $pdf->SetFont('Arial','',11); $pdf->SetXY( 122, 30 );
         $pdf->Cell( 60, 8, utf8_decode("Besançon, le ") . $date_fact, 0, 0, '');
         
+
+        	// adr fact du client
+    
+        $row_client = $FactureManager->GetClient($var_id_facture);  
+		$pdf->SetFont('Arial','B',11); $x = 110 ; $y = 50;
+		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["name"], 0, 0, ''); $y += 4;
+		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["address"], 0, 0, ''); $y += 4;
+		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["cp"] . ' ' .$row_client["city"] , 0, 0, ''); $y += 4;
+        if ($row_client[6]) { $pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, 'N� TVA Intra : ' . $row_client[6], 0, 0, '');}
+        
+
       
         // **************************
         // pied de page
