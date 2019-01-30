@@ -27,7 +27,6 @@ $requete->bindValue(':solde', $solde);
 
 $requete->bindValue(':id_base', $_SESSION['activebase']);
 
-print_r($requete);
 $return = $requete->execute();
 
 $requete = null;
