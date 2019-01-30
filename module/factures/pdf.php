@@ -16,11 +16,12 @@
     $pdf->SetAutoPagebreak(False);
     $pdf->SetMargins(0,0,0);
 
-    $FactureManager = new FactureManager();
-    $count = $FactureManager->CountItems($id_facture);
-    echo $count;
-    print_r($count);
-    
+     $FactureManager = new FactureManager();
+        $count = $FactureManager->CountItems($id_facture);
+        echo $count;
+        print_r($count);
+
+        echo "poj";
     // nb de page pour le multi-page : 18 lignes
     $sql = 'select count(*) FROM items where id_facture=' .$var_id_facture;
 
