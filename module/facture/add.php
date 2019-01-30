@@ -24,7 +24,6 @@ $requete = $pdo->prepare("INSERT INTO facture SET
 		system = 0
 		");
 
-$requete->bindValue(':name', $name);
 $requete->bindValue(':solde', $solde);
 
 $requete->bindValue(':id_base', $_SESSION['activebase']);
