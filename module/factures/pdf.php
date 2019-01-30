@@ -1,13 +1,5 @@
 <?php
 
-//
-// exemple de facture avec mysqli
-// gere le multi-page
-// Ver 1.0 THONGSOUME Jean-Paul
-//
-
-
-    // le mettre au debut car plante si on declare $mysqli avant !
     $pdf = new FPDF( 'P', 'mm', 'A4' );
 
     $var_id_facture = $_GET['id_fact'];
@@ -68,16 +60,17 @@
         $pdf->SetFont('Arial','',10);
         
         $pdf->SetXY( 1, $y1 + 4 ); 
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "NOM SOCIETE", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, "Arnaud GUY Webmaster", 0, 0, 'C');
         
         $pdf->SetXY( 1, $y1 + 8 );
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "ADRESSE 1 + CP + VILLE", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, "5 rue de la rotonde 25000 Besançon", 0, 0, 'C');
 
         $pdf->SetXY( 1, $y1 + 12 );
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "Tel + Mail + SIRET", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, "07 86 25 09 40 contat@arnaudguy.fr ", 0, 0, 'C');
 
         $pdf->SetXY( 1, $y1 + 16 );
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "Adresse web", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, "https://www.arnaudguy.fr"
+        , 0, 0, 'C');
         
         // par page de 18 lignes
         $num_page++; $limit_inf += 18; $limit_sup += 18; 
