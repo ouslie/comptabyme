@@ -3,7 +3,7 @@
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse) {
 	$.ajax({
-		url: 'index.php?module=facture&action=update',
+		url: 'index.php?module=factures&action=update',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -66,7 +66,7 @@ function DatabaseGrid() {
 
 DatabaseGrid.prototype.fetchGrid = function () {
 	// call a PHP script to get the data
-	this.editableGrid.loadJSON("module/facture/loaddata.php?db_tablename=facture");
+	this.editableGrid.loadJSON("module/factures/loaddata.php?db_tablename=facture");
 };
 
 
@@ -78,7 +78,7 @@ DatabaseGrid.prototype.deleteRow = function (id) {
 	if (confirm('Voulez vous bien suprimer la transaction ' + id)) {
 
 		$.ajax({
-			url: 'index.php?module=facture&action=delete',
+			url: 'index.php?module=factures&action=delete',
 			type: 'POST',
 			dataType: "html",
 			data: {
@@ -108,7 +108,7 @@ DatabaseGrid.prototype.addRow = function (id) {
 	var self = this;
 
 	$.ajax({
-		url: 'index.php?module=facture&action=add',
+		url: 'index.php?module=factures&action=add',
 		type: 'POST',
 		dataType: "html",
 		data: {
