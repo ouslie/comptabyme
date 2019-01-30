@@ -21,7 +21,6 @@ $return = false;
 $requete = $pdo->prepare("INSERT INTO facture SET
 		solde = :solde,
 		id_base= :id_base,
-		system = 0
 		");
 
 $requete->bindValue(':solde', $solde);
