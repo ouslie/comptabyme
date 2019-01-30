@@ -5,12 +5,7 @@
 // gere le multi-page
 // Ver 1.0 THONGSOUME Jean-Paul
 //
-
-echo "poj";
-
-    // le mettre au debut car plante si on declare $mysqli avant !
     $pdf = new FPDF( 'P', 'mm', 'A4' );
-
     $var_id_facture = $_GET['id_fact'];
 
     // on sup les 2 cm en bas
@@ -18,8 +13,7 @@ echo "poj";
     $pdf->SetMargins(0,0,0);
 
     $FactureManager = new FactureManager();
-    $row_client = $FactureManager->CountItems($var_id_facture);
-    $nb_page = $row_client[0];
+    $nb_page = $FactureManager->CountItems($var_id_facture);
     echo $nb_page;
 
     $sql = 'select abs(FLOOR(-' . $nb_page . '/18))';
