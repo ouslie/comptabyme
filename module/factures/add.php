@@ -27,7 +27,7 @@ if ($id_type ==2){$amount = -$amount;}
 
 $return = false;
 
-$requete = $pdo->prepare("INSERT INTO demo SET
+$requete = $pdo->prepare("INSERT INTO factures SET
 		id_category = :id_category,
 		id_client = :id_client,
 		id_bank = :id_bank,
