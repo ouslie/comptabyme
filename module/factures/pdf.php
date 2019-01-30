@@ -50,12 +50,13 @@
         // **************************
         $pdf->SetLineWidth(0.1); $pdf->Rect(5, 260, 200, 6, "D");
         $pdf->SetXY( 1, 260 ); $pdf->SetFont('Arial','',7);
-        $pdf->Cell( $pdf->GetPageWidth(), 7, "Clause de réserve de propriété (loi 80.335 du 12 mai 1980) : Les marchandises vendues demeurent notre propriété jusqu'au paiement intégral de celles-ci.", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 7, utf8_decode("Conformément au décret n° 2012-1115 du 2 octobre 2012, et dans le cas d’une facture émise vers un professionnel, le montant de l’indemnité
+        forfaitaire pour frais de recouvrement due au créancier en cas de retard de paiement est fixé à 40 euros."), 0, 0, 'C');
         
         $y1 = 270;
         //Positionnement en bas et tout centrer
         $pdf->SetXY( 1, $y1 ); $pdf->SetFont('Arial','B',10);
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "REF BANCAIRE : FR76 xxx - BIC : xxxx", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, utf8_decode("IBAN : FR76 1254 8029 9846 9953 3150 529 BIC : AXABFRPP PAYPAL : contact@arnaudguy.fr"), 0, 0, 'C');
         
         $pdf->SetFont('Arial','',10);
         
