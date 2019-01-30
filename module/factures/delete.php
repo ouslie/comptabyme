@@ -13,7 +13,7 @@ $pdo = PDO2::getInstance();
 
 // This very generic. So this script can be used to update several tables.
 $return = false;
-$requete = $pdo->prepare("DELETE FROM items WHERE id_fact = :idvalue");
+$requete = $pdo->prepare("DELETE FROM items WHERE id_facture = :idvalue");
 $requete->bindValue(':idvalue', $_POST['id']);
 
 $return = $requete->execute();
