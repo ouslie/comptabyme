@@ -53,7 +53,7 @@ $grid = new EditableGrid();
  *  The second argument is the label that will be displayed in the header
  */
 $id_facture = $_GET['id'];
-
+echo $id_facture;
 $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('designation', 'Designation', 'string', null, true);
 $grid->addColumn('quantity', 'Quantité', 'string', null, true);
