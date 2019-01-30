@@ -7,8 +7,8 @@
     <div id="toolbar" class="card-header">
       <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <!-- Button trigger modal -->
-      <a href="index.php?module=clients&action=addfact" class="btn btn-primary">
-        Ajouter une clients
+      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Ajouter un client
       </a>
     </div>
     <div class="card-body">
