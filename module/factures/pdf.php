@@ -5,7 +5,11 @@
 // gere le multi-page
 // Ver 1.0 THONGSOUME Jean-Paul
 //
+
+
+    // le mettre au debut car plante si on declare $mysqli avant !
     $pdf = new FPDF( 'P', 'mm', 'A4' );
+
     $var_id_facture = $_GET['id_fact'];
 
     // on sup les 2 cm en bas
@@ -14,15 +18,12 @@
 
     $FactureManager = new FactureManager();
     $row_client = $FactureManager->CountItems($var_id_facture);
-    $nb_page = $row_client['itemsnum'];
-    echo $nb_page;
-
-    $sql = 'select abs(FLOOR(-' . $nb_page . '/18))';
-    $result = mysqli_query($mysqli, $sql)  or die ('Erreur SQL : ' .$sql .mysqli_connect_error() );
-    $row_client = mysqli_fetch_row($result);
-    mysqli_free_result($result);
     $nb_page = $row_client[0];
-
+    
+    $row_client = $FactureManager->CountPage($nb_page);
+    $nb_page = $row_client[0];
+   
+    
     $num_page = 1; $limit_inf = 0; $limit_sup = 18;
     While ($num_page <= $nb_page)
     {
