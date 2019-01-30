@@ -1,27 +1,47 @@
-<?php ob_start();
- $jobManager = new JobManager();
- ?>
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-  <div class="card">
-    <div class="card-body">
-      <form>
-        <div class="form-group">
-          <select id="input-select" name="id_client" class="form-control">
-            <option value="">--Clients--</option>
-            <?php
-        $clients = $jobManager->GetClients($_SESSION['activebase']);
-        $clients = $clients->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($clients as $row): ?>
-            <option value="<?=$row['id'];?>">
-              <?=$row['name'];?>
-            </option>
-            <?php endforeach;?>
-          </select>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 <?php
-$content = ob_get_clean();
-require_once('controller/view/frontend/template.php');?>
+/*
+ *
+ * http://editablegrid.net
+ *
+ * Copyright (c) 2011 Webismymind SPRL
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://editablegrid.net/license
+ */
+
+$pdo = PDO2::getInstance();
+$pdo->exec("SET GLOBAL sql_mode = NO_ENGINE_SUBSTITUTION");
+
+$pdo->exec("set names utf8");
+
+// Get all parameter provided by the javascript
+
+$id_category = $_POST['id_category'];
+$id_bank = $_POST['id_bank'];
+$id_client = $_POST['id_client'];
+$sole = $_POST['solde'];
+$date = $_POST['date'];
+
+$solde = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
+
+if ($id_type ==2){$amount = -$amount;}
+
+$return = false;
+
+$requete = $pdo->prepare("INSERT INTO demo SET
+		id_category = :id_category,
+		id_client = :id_client,
+		id_bank = :id_bank,
+		solde = :solde,
+		date = :date,
+		id_base= :id_base
+		");
+
+$requete->bindValue(':id_category', $id_category);
+$requete->bindValue(':id_client', $id_client);
+$requete->bindValue(':id_bank', $id_bank);
+$requete->bindValue(':solde', $solde);
+$requete->bindValue(':date', $date);
+$requete->bindValue(':id_base', $_SESSION['activebase']);
+$return = $requete->execute();
+$requete = null;
+echo $return ? "ok" : "error";

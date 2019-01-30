@@ -96,7 +96,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupPrepend">€</span>
                   </div>
-                  <input type="text" id="amount" name="amount" class="form-control" placeholder="Montant"
+                  <input type="text" id="solde" name="solde" class="form-control" placeholder="Montant"
                     aria-describedby="inputGroupPrepend">
                 </div>
               </div>

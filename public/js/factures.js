@@ -113,8 +113,11 @@ DatabaseGrid.prototype.addRow = function (id) {
 		dataType: "html",
 		data: {
 			tablename: self.editableGrid.name,
+			date: $("#date").val(),
+			id_client: $("#id_client").val(),
+			id_category: $("#id_category").val(),
+			id_bank: $("#id_bank").val(),
 			solde: $("#solde").val()
-
 		},
 		success: function (response) {
 			if (response == "ok") {
