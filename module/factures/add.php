@@ -1,11 +1,11 @@
-<?php ob_start();?>
-
+<?php ob_start();
+ $jobManager = new JobManager();
+ ?>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
     <div class="card-body">
       <form>
         <div class="form-group">
-          <label for="input-select">Example Select</label>
           <select id="input-select" name="id_client" class="form-control">
             <option value="">--Clients--</option>
             <?php
