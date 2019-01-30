@@ -37,7 +37,6 @@
         
         // n° facture, date echeance et reglement et obs
         $row = $FactureManager->GetFacture($var_id_facture);
-        print_r($row);
         
         $champ_date = date_create($row[0]); $annee = date_format($champ_date, 'Y');
         $num_fact = "FACTURE N° " . $annee .'-' . str_pad($row[1], 4, '0', STR_PAD_LEFT);
