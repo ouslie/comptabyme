@@ -45,5 +45,4 @@ $data = $pdo->lastInsertId();
 
 $requete = null;
 //echo $return ? "ok" : "error";
-
-echo $data;
+header('Location: index.php?module=item&action=list&id='.$data.'');
