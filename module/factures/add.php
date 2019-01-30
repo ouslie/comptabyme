@@ -2,18 +2,20 @@
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
-<select id="id_client" name="id_client">
-          <option value="">--Clients--</option>
-          <?php
-        $clients = $jobManager->GetClients($_SESSION['activebase']);
-        $clients = $type->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($clients as $row): ?>
-          <option value="<?=$row['id'];?>">
-            <?=$row['name'];?>
-          </option>
-          <?php endforeach;?>
 
-        </select>
+  <div class="card-body">
+<form>
+<div class="form-group">
+<label for="input-select">Example Select</label>
+<select class="form-control" id="input-select">
+<option>Choose Example</option>
+</select>
+</div>
+</form>
+</div>
+
+
+
     </div>
 
   </div>
