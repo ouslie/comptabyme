@@ -36,10 +36,10 @@
         $pdf->SetXY( 120, 15 ); $pdf->SetFont( "Arial", "B", 12 ); $pdf->Cell( 85, 8, $num_fact, 0, 0, 'C');
         
         // nom du fichier final
-        $nom_file = "fact_" . $annee .'-' . str_pad($row[1], 4, '0', STR_PAD_LEFT) . ".pdf";
+        $nom_file = "fact_" . $annee .'-' . str_pad($row[date], 4, '0', STR_PAD_LEFT) . ".pdf";
         
         // date facture
-        $date_fact = date("d-m-Y", $row["date"]);
+        $date_fact = date("d-m-Y", strtotime($row["date"]));
 
         $pdf->SetFont('Arial','',11); $pdf->SetXY( 122, 30 );
         $pdf->Cell( 60, 8, utf8_decode("Besançon, le ") . $date_fact, 0, 0, '');
