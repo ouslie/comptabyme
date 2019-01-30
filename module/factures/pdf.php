@@ -31,7 +31,7 @@
         $row = $FactureManager->GetFacture($var_id_facture);
         
         $champ_date = date_create($row[0]); $annee = date_format($champ_date, 'Y');
-        $num_fact = "FACTURE N° " . $annee .'-' . str_pad($row[1], 4, '0', STR_PAD_LEFT);
+        $num_fact = utf8_decode("FACTURE N° "). $annee .'-' . str_pad($row["id"], 4, '0', STR_PAD_LEFT);
         $pdf->SetLineWidth(0.1); $pdf->SetFillColor(192); $pdf->Rect(120, 15, 85, 8, "DF");
         $pdf->SetXY( 120, 15 ); $pdf->SetFont( "Arial", "B", 12 ); $pdf->Cell( 85, 8, $num_fact, 0, 0, 'C');
         
