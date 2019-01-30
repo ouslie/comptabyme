@@ -85,5 +85,5 @@
         $num_page++; $limit_inf += 18; $limit_sup += 18; 
     }
     
-   $pdf->Output("I", $nom_file);
+ //  $pdf->Output("I", $nom_file);
 ?>
