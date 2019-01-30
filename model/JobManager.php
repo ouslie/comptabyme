@@ -58,6 +58,14 @@ class JobManager extends Manager
         return $req;
     }
 
+    public function GetCategoryIsRecette($id_base)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, name FROM category WHERE id_base = :id_base AND is_recette = 1 ORDER BY name');
+        $req->execute(array('id_base' => $id_base));
+        return $req;
+    }
+
     public function GetType()
     {
         $db = $this->dbConnect();

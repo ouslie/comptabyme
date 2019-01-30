@@ -32,7 +32,7 @@
   <!-- modal  -->
   <!-- ============================================================== -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" style="max-width : 900px!important" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ajout d'une facture</h5>
@@ -76,7 +76,7 @@
                 <select id="id_category" name="id_category" class="form-control">
                   <option value="">--Catégorie--</option>
                   <?php
-      $categories = $jobManager->GetCategory($_SESSION['activebase']);
+      $categories = $jobManager->GetCategoryIsRecette($_SESSION['activebase']);
       $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($categories as $row): ?>
@@ -88,7 +88,25 @@
                 </select>
               </div>
             </div>
-            
+            <table>
+            <tr> Designation </tr>
+            <tr> Quantité </tr>
+            <tr> Montant </tr>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            <td> 1 </td>
+            </table>
             <div class="form-group row">
               <label class="col-3 col-lg-2 col-form-label text-right">Montant</label>
               <div class="col-9 col-lg-10">
