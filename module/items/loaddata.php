@@ -52,9 +52,11 @@ $grid = new EditableGrid();
  *  Add columns. The first argument of addColumn is the name of the field in the databse.
  *  The second argument is the label that will be displayed in the header
  */
+echo "zepofj";
 $id_facture = $_GET['id'];
 echo $id_facture;
 $grid->addColumn('id', 'ID', 'integer', null, false);
+$grid->addColumn('id_facture', 'ID Facture', 'integer', null, false);
 $grid->addColumn('designation', 'Designation', 'string', null, true);
 $grid->addColumn('quantity', 'Quantité', 'string', null, true);
 $grid->addColumn('amount', 'Montant', 'string', null, true);
