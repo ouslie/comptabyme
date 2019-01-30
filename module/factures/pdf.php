@@ -22,10 +22,7 @@
         $pdf->AddPage();
         
         // logo : 80 de largeur et 55 de hauteur
-       // $pdf->Image('logo_societe.png', 10, 10, 80, 55);
-
-        // n° page en haute à droite
-        $pdf->SetXY( 120, 5 ); $pdf->SetFont( "Arial", "B", 12 ); $pdf->Cell( 160, 8, $num_page . '/' . $nb_page, 0, 0, 'C');
+        $pdf->Image('logo.png', 10, 10, 80, 55);
         
         // n° facture, date echeance et reglement et obs
         $row = $FactureManager->GetFacture($var_id_facture);
@@ -50,8 +47,7 @@
         // **************************
         $pdf->SetLineWidth(0.1); $pdf->Rect(5, 260, 200, 6, "D");
         $pdf->SetXY( 1, 260 ); $pdf->SetFont('Arial','',7);
-        $pdf->Cell( $pdf->GetPageWidth(), 7, utf8_decode("Conformément au décret n° 2012-1115 du 2 octobre 2012, et dans le cas d’une facture émise vers un professionnel, le montant de l’indemnité
-        forfaitaire pour frais de recouvrement due au créancier en cas de retard de paiement est fixé à 40 euros."), 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 7, utf8_decode("Conformément au décret n° 2012-1115 du 2 octobre 2012, et dans le cas d’une facture émise vers un professionnel, le montant de l’indemnité forfaitaire pour frais de recouvrement due au créancier en cas de retard de paiement est fixé à 40 euros."), 0, 0, 'C');
         
         $y1 = 270;
         //Positionnement en bas et tout centrer
