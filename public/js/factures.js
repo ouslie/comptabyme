@@ -116,13 +116,11 @@ DatabaseGrid.prototype.addRow = function (id) {
 			date: $("#date").val(),
 			id_client: $("#id_client").val(),
 			id_category: $("#id_category").val(),
-			id_bank: $("#id_bank").val(),
-			solde: $("#solde").val()
 		},
 		success: function (response) {
 			if (response > 0) {
 				message("success", "Transaction ajouté");
-				window.location = '/index.php?module=item&action=list&id=' + response;
+				window.location = '/index.php?module=items&action=list&id=' + response;
 
 			} else
 				message("error", "Error occured");

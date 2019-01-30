@@ -88,37 +88,7 @@
                 </select>
               </div>
            
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Montant</label>
-              <div class="col-9 col-lg-10">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend">€</span>
-                  </div>
-                  <input type="text" id="solde" name="solde" class="form-control" placeholder="Montant"
-                    aria-describedby="inputGroupPrepend">
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-3 col-lg-2 col-form-label text-right">Moyen de paiement</label>
-              <div class="col-9 col-lg-10">
-                <select id="id_bank" name="id_bank" class="form-control">
-                  <option value="">--Banque--</option>
-                  <?php
-    $bank = $jobManager->GetBankSys($_SESSION['activebase']);
-    $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($bank as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
-                  </option>
-                  <?php endforeach;?>
-
-                </select>
-              </div>
-            </div>
-
+            
          
                      <div class="modal-footer">
               <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>

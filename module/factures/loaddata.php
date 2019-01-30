@@ -55,6 +55,7 @@ $grid = new EditableGrid();
 $base = $_SESSION['activebase'];
 
 $grid->addColumn('id', 'ID', 'integer', null, false);
+$grid->addColumn('id_client', 'Solde', 'string', null, true);
 $grid->addColumn('solde', 'Solde', 'string', null, true);
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
 $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'factures';
