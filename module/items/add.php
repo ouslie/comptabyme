@@ -18,18 +18,20 @@ $pdo->exec("set names utf8");
 $designation = $_POST['designation'];
 $amout = $_POST['amout'];
 $quantity = $_POST['quantity'];
+$id = $_GET['id'];
 
+echo $id;
 $amout = floatval(str_replace(',', '.', str_replace('.', '',$amout)));
 
 $return = false;
 
-$requete = $pdo->prepare("INSERT INTO factures SET
+$requete = $pdo->prepare("INSERT INTO items SET
 		designation = :designation,
 		amount = :amount,
 		quantity = :quantity
 		");
 $requete->bindValue(':designation', $designation);
-$requete->bindValue(':amout', $amout);
+$requete->bindValue(':amount', $amout);
 $requete->bindValue(':quantity', $quantity);
 $return = $requete->execute();
 $requete = null;
