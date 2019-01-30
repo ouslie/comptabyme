@@ -12,14 +12,6 @@
     // le mettre au debut car plante si on declare $mysqli avant !
     $pdf = new FPDF( 'P', 'mm', 'A4' );
 
-    // on declare $mysqli apres !
-    $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
-    // cnx a la base
-    mysqli_select_db($mysqli, DATABASE) or die('Erreur de connection à la BDD : ' .mysqli_connect_error());
-    // FORCE UTF-8
-//    mysqli_query($mysqli, "SET NAMES UTF8");
-    
-
     $var_id_facture = $_GET['id_fact'];
 
     // on sup les 2 cm en bas
