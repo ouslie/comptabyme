@@ -25,9 +25,9 @@
         $pdf->Image('logo.png', 10, 10, 50, 30);
         
         // n° facture, date echeance et reglement et obs
-        $row_client = $FactureManager->GetFacture($var_id_facture);
+        $row = $FactureManager->GetFacture($var_id_facture);
         
-        $champ_date = date_create($row[0]); $annee = date_format($champ_date, 'Y');
+        $champ_date = date_create($row["date"]); $annee = date_format($champ_date, 'Y');
         $num_fact = utf8_decode("FACTURE N° "). $annee .'-' . str_pad($row["id"], 4, '0', STR_PAD_LEFT);
         $pdf->SetLineWidth(0.1); $pdf->SetFillColor(192); $pdf->Rect(120, 15, 85, 8, "DF");
         $pdf->SetXY( 120, 15 ); $pdf->SetFont( "Arial", "B", 12 ); $pdf->Cell( 85, 8, $num_fact, 0, 0, 'C');
@@ -49,7 +49,6 @@
 		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["name"], 0, 0, ''); $y += 4;
 		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["address"], 0, 0, ''); $y += 4;
 		$pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, $row_client["cp"] . ' ' .$row_client["city"] , 0, 0, ''); $y += 4;
-        if ($row_client[6]) { $pdf->SetXY( $x, $y ); $pdf->Cell( 100, 8, 'N� TVA Intra : ' . $row_client[6], 0, 0, '');}
         
 
       
@@ -63,18 +62,18 @@
         $y1 = 270;
         //Positionnement en bas et tout centrer
         $pdf->SetXY( 1, $y1 ); $pdf->SetFont('Arial','B',10);
-        $pdf->Cell( $pdf->GetPageWidth(), 5, utf8_decode("IBAN : FR76 1254 8029 9846 9953 3150 529 BIC : AXABFRPP PAYPAL : contact@arnaudguy.fr"), 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, utf8_decode("IBAN : FR76 1254 8029 9846 9953 3150 529          BIC : AXABFRPP      PAYPAL : contact@arnaudguy.fr"), 0, 0, 'C');
         
         $pdf->SetFont('Arial','',10);
         
         $pdf->SetXY( 1, $y1 + 4 ); 
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "Arnaud GUY Webmaster", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, "Arnaud GUY | Webmaster", 0, 0, 'C');
         
         $pdf->SetXY( 1, $y1 + 8 );
         $pdf->Cell( $pdf->GetPageWidth(), 5,utf8_decode('5 rue de la rotonde 25000 Besançon'), 0, 0, 'C');
 
         $pdf->SetXY( 1, $y1 + 12 );
-        $pdf->Cell( $pdf->GetPageWidth(), 5, "07 86 25 09 40 contat@arnaudguy.fr ", 0, 0, 'C');
+        $pdf->Cell( $pdf->GetPageWidth(), 5, "07 86 25 09 40 -- contact@arnaudguy.fr ", 0, 0, 'C');
 
         $pdf->SetXY( 1, $y1 + 16 );
         $pdf->Cell( $pdf->GetPageWidth(), 5, "https://www.arnaudguy.fr"
