@@ -57,15 +57,7 @@ $FactureManager = new FactureManager();
   // les articles
     $pdf->SetFont('Arial', '', 8);
     $y = 97;
-    $row_items = $FactureManager->GetItems($var_id_facture);
-
- 
-        
-        
-        
-        
-        
-        
+    $row_items = $FactureManager->GetItems($var_id_facture);        
         // nom du fichier final
     $nom_file = "fact_" . $row["num"] . ".pdf";
         
@@ -130,12 +122,5 @@ $FactureManager = new FactureManager();
         0,
         'C'
     );
-        
-        // par page de 18 lignes
-    $num_page++;
-    $limit_inf += 18;
-    $limit_sup += 18;
-
-
 $pdf->Output("I", $nom_file);
 ?>
