@@ -1,15 +1,31 @@
 <?php ob_start();
-      $jobManager = new JobManager();
+      $FactureManager = new FactureManager();
+      $id_fact = $_GET['id_fact'];
+      $row = $FactureManager->GetFacture($id_fact);
       ?>
 
 <script src="public/js/items.js"></script>
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+<div class="row">
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+<div class="page-header">
+<h2 class="pageheader-title">Facture N° <? echo $row['num']; ?></h2>
+<div class="page-breadcrumb">
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="index.php?module=factures&action=list" class="breadcrumb-link">Factures</a></li>
+<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Items</a></li>
+</ol>
+</nav>
+</div>
+</div>
+</div>
+</div>
   <div class="card">
     <div id="toolbar" class="card-header">
-      <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <!-- Button trigger modal -->
-      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <a href="#" class="btn btn-brand" data-toggle="modal" data-target="#exampleModal">
         Ajouter un item
       </a>
     </div>

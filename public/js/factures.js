@@ -120,7 +120,7 @@ DatabaseGrid.prototype.addRow = function (id) {
 		success: function (response) {
 			if (response > 0) {
 				message("success", "Transaction ajouté");
-				window.location = '/index.php?module=items&action=list&id=' + response;
+				window.location = 'index.php?module=items&action=list&id_fact=' + response;
 
 			} else
 				message("error", "Error occured");

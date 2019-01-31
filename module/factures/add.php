@@ -18,9 +18,6 @@ $pdo->exec("set names utf8");
 $id_category = $_POST['id_category'];
 $id_client = $_POST['id_client'];
 $date = $_POST['date'];
-
-$solde = floatval(str_replace(',', '.', str_replace('.', '',$solde)));
-
 $return = false;
 
 $requete = $pdo->prepare("INSERT INTO factures SET
@@ -36,5 +33,20 @@ $requete->bindValue(':date', $date);
 $requete->bindValue(':id_base', $_SESSION['activebase']);
 $return = $requete->execute();
 $data = $pdo->lastInsertId();
+
+$num = date_create($date); 
+$year = date_format($num, 'Y');
+$month = date_format($num, 'm');
+
+$num_fact = $year .'-' . $month . str_pad($data, 2, '0', STR_PAD_LEFT);
+
+$requete = $pdo->prepare("UPDATE factures SET
+		num = :num
+		WHERE
+		id = :id
+		");
+$requete->bindValue(':num', $num_fact);
+$requete->bindValue(':id', $data);
+$return = $requete->execute();
 $requete = null;
 echo $data;

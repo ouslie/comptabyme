@@ -54,7 +54,9 @@ $grid = new EditableGrid();
  */
 $base = $_SESSION['activebase'];
 
-$grid->addColumn('id', 'ID', 'integer', null, false);
+//$grid->addColumn('id', 'ID', 'integer', null, false);
+$grid->addColumn('num', 'Numéro', 'string', null, false);
+$grid->addColumn('date', 'Date', 'date', null, true);
 $grid->addColumn('id_client', 'Solde', 'string', null, true);
 $grid->addColumn('id_category', 'Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM category WHERE id_base = ' . $_SESSION['activebase'] . ' AND is_recette = 1'), true);
 $grid->addColumn('solde', 'Solde', 'string', null, true);

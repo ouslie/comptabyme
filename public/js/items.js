@@ -81,7 +81,7 @@ function DatabaseGrid() {
 
 DatabaseGrid.prototype.fetchGrid = function () {
 	// call a PHP script to get the data
-	var id_fact = $_GET('id');
+	var id_fact = $_GET('id_fact');
 
 	this.editableGrid.loadJSON("module/items/loaddata.php?db_tablename=items&id_fact="+id_fact);
 };
@@ -123,7 +123,7 @@ DatabaseGrid.prototype.deleteRow = function (id) {
 DatabaseGrid.prototype.addRow = function (id) {
 
 	var self = this;
-	var id_fact = $_GET('id');
+	var id_fact = $_GET('id_fact');
 	$.ajax({
 		url: 'index.php?module=items&action=add&id_fact=' +id_fact,
 		type: 'POST',
