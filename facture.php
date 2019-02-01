@@ -1,5 +1,7 @@
 <?php
-
+require('lib/pdf/fpdf.php');
+require('global/config.php');
+require('model/FactureManager.php');
 $pdf = new FPDF('P', 'mm', 'A4');
 
 $var_id_facture = $_GET['id_fact'];
@@ -150,4 +152,4 @@ $pdf->Cell($pdf->GetPageWidth(), 5, utf8_decode('5 rue de la rotonde 25000 Besan
 
 $pdf->SetXY(1, $y1 + 16);
 $pdf->Cell($pdf->GetPageWidth(), 5, "07 86 25 09 40 -- contact@arnaudguy.fr -- https://www.arnaudguy.fr", 0, 0, 'C');
-$pdf->Output("I", $nom_file);
+$pdf->Output("D", $nom_file);
