@@ -11,7 +11,7 @@ require ('lib/invoicr/invoicr.php');
 require ('global/config.php');
 require ('model/FactureManager.php');
 
-$var_id_facture = 25;
+$var_id_facture = $_GET['id_fact'];
 $FactureManager = new FactureManager;
 $facture_infos = $FactureManager->GetFacture($var_id_facture);
 
@@ -86,9 +86,9 @@ $invoice->template("blueberry");
 /*****************************************************************************/
 // 3C - PDF OUTPUT
 // DEFAULT DISPLAY IN BROWSER | 1 DISPLAY IN BROWSER | 2 FORCE DOWNLOAD | 3 SAVE ON SERVER
-$invoice->outputPDF();
+//$invoice->outputPDF();
 // $invoice->outputPDF(1);
-//$invoice->outputPDF(2, "invoice.pdf");
+$invoice->outputPDF(2, "facture_".$facture_infos['num'].".pdf");
 //$invoice->outputPDF(3, __DIR__ . DIRECTORY_SEPARATOR . "invoice.pdf");
 /*****************************************************************************/
 // 3D - DOCX OUTPUT

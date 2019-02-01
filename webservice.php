@@ -14,13 +14,14 @@ if (isset($_POST['token'])) {
 
         //creation items
         $nomcontrat = $_POST['nomcontrat'];
-        $date_debut = $_POST['date_debut'];
-        $date_fin = $_POST['date_fin'];
+        $date_debut = date("d-m-Y", strtotime($_POST['date_debut']));
+        $date_fin = date("d-m-Y", strtotime($_POST['date_fin']));
         $tarif = $_POST['tarif'];
-
         $designation = $nomcontrat;
-        $FactureManager->WebserviceInsertItem($id_facture,$tarif,$designation);
+        $designation .= "<br> Du : ".$date_debut;
+        $designation .= "&nbsp;Au : ".$date_fin;
 
+        $FactureManager->WebserviceInsertItem($id_facture,$tarif,$designation);
 
         //génération numéro de facture
         $year = date('Y');
