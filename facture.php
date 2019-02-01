@@ -1,155 +1,100 @@
 <?php
-require('lib/pdf/fpdf.php');
-require('global/config.php');
-require('model/FactureManager.php');
-$pdf = new FPDF('P', 'mm', 'A4');
+/*
+ * INVOICR : THE PHP INVOICE GENERATOR (HTML, DOCX, PDF)
+ * Visit https://code-boxx.com/invoicr-php-invoice-generator for more
+ * 
+ * ! YOU CAN DELETE THE ENTIRE EXAMPLE FOLDER IF YOU DON'T NEED IT... !
+ */
 
-$var_id_facture = $_GET['id_fact'];
-define('EURO',chr(128));
+/* [STEP 1 - CREATE NEW INVOICR OBJECT] */
+require ('lib/invoicr/invoicr.php');
+require ('global/config.php');
+require ('model/FactureManager.php');
 
-// on sup les 2 cm en bas
-$pdf->SetAutoPagebreak(false);
-$pdf->SetMargins(0, 0, 0);
+$var_id_facture = 25;
+$FactureManager = new FactureManager;
+$facture_infos = $FactureManager->GetFacture($var_id_facture);
 
-$FactureManager = new FactureManager();
+$invoice = new Invoicr();
 
-$pdf->AddPage();
+/* [STEP 2 - FEED ALL THE INFORMATION] */
+// 2A - COMPANY INFORMATION
+// OR YOU CAN PERMANENTLY CODE THIS INTO THE LIBRARY ITSELF
+$invoice->set("company", [
+	"logo.png", 
+	"Anaud GUY | Webmaster", 
+	"5 rue de la rotonde 25000 Besançon France",
+	"Téléphone: 07 86 25 09 40",
+	"https://www.arnaudguy.fr",
+	"contact@arnaudguy.fr"
+]);
 
-// logo : 80 de largeur et 55 de hauteur
-$pdf->Image('logo.png', 10, 10, 50, 30);
+// 2B - INVOICE INFO
+$date_fact = date("d-m-Y", strtotime($facture_infos["date"]));
+$invoice->set("invoice", [
+	["Facture #", $facture_infos["num"]],
+	["Date", $date_fact]
+]);
+$row_client = $FactureManager->GetClient($var_id_facture);
+// 2C - BILL TO
+$invoice->set("billto", [
+	$row_client['name'],
+	$row_client['address'], 
+	$row_client['cp'] . "&nbsp;	" . $row_client['city'],
+	"France"
 
-// n° facture, date echeance et reglement et obs
-$row = $FactureManager->GetFacture($var_id_facture);
+]);
 
-$champ_date = date_create($row["date"]);
-$annee = date_format($champ_date, 'Y');
-$num_fact = utf8_decode("FACTURE N° ") . $row["num"];
-$pdf->SetLineWidth(0.1);
-$pdf->SetFillColor(192);
-$pdf->Rect(120, 15, 85, 8, "DF");
-$pdf->SetXY(120, 15);
-$pdf->SetFont("Arial", "B", 12);
-$pdf->Cell(85, 8, $num_fact, 0, 0, 'C');
+// 2E - ITEMS
+// YOU CAN JUST DUMP THE ENTIRE ARRAY IN USING SET, BUT HERE IS HOW TO ADD ONE AT A TIME... 
 
-// ***********************
-// le cadre des articles
-// ***********************
-// cadre avec 18 lignes max ! et 118 de hauteur --> 95 + 118 = 213 pour les traits verticaux
-$pdf->SetLineWidth(0.1);
-$pdf->Rect(5, 95, 200, 118, "D");
-// cadre titre des colonnes
-$pdf->Line(5, 105, 205, 105);
-// les traits verticaux colonnes
-$pdf->Line(145, 95, 145, 213);
-$pdf->Line(158, 95, 158, 213);
-$pdf->Line(187, 95, 187, 213);
-// titre colonne
-$pdf->SetXY(1, 96);
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(140, 8, utf8_decode("Désignation"), 0, 0, 'C');
-$pdf->SetXY(145, 96);
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(13, 8, utf8_decode("Quantité"), 0, 0, 'C');
-$pdf->SetXY(160, 96);
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(22, 8, utf8_decode("Prix unitaire HT"), 0, 0, 'C');
-$pdf->SetXY(185, 96);
-$pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(22, 8, utf8_decode("Total HT"), 0, 0, 'C');
-
-// les articles
-$pdf->SetFont('Arial', '', 8);
-$y = 97;
 $row_items = $FactureManager->GetItems($var_id_facture);
-// print_R($row_items);
+foreach ($row_items as $i) { $invoice->add("items", $i); }
 
-foreach ($row_items as $value) {
-
-    // libelle
-    $pdf->SetXY(7, $y + 9);
-    $pdf->MultiCell(140, 5, utf8_decode($value['designation']), 0, 1, '');
-
-    // qte
-    $pdf->SetXY(145, $y + 9);
-    $pdf->Cell(13, 5, strrev(wordwrap(strrev($value['quantity']), 3, ' ', true)), 0, 0, 'R');
-    // PU
-    $nombre_format_francais = number_format($value['amount'] , 2, ',', ' ');
-    $pdf->SetXY(158, $y + 9);
-    $pdf->Cell(18, 5, $nombre_format_francais . EURO, 0, 0, 'R');
-
-    // total
-    $nombre_format_francais = number_format($value['amount'] * $value['quantity'], 2, ',', ' ');
-    $pdf->SetXY(187, $y + 9);
-    $pdf->Cell(18, 5, $nombre_format_francais . EURO, 0, 0, 'R');
-    $pdf->Line(5, $y + 30, 205, $y + 30);
-
-    $y += 30;
-}
-
+// 2F - TOTALS
 $sum_items = $FactureManager->SumItems($var_id_facture);
 
-//  print_r($sum_items);
-$pdf->SetFont('Arial', 'I', 8);
-$pdf->SetXY(135, 215);
-$pdf->Cell(90, 8,utf8_decode('TVA non applicable, art. 293 B du CGI'), 0, 0, 'C');
+$invoice->set("totals", [
+	["Total HT", $sum_items['total']],
+]);
 
-$nombre_format_francais = utf8_decode("Total: ") . number_format($sum_items['total'], 2, ',', ' ') . "";
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->SetXY(140, 225);
-$pdf->Cell(90, 8, $nombre_format_francais . EURO, 0, 0, 'C');
+// 2G - NOTES, IF ANY
+$invoice->set("notes", [
+	"<b>Condition de réglement</b> : 30 jours",
+	"<b>Intérêt de retard</b> : 1% par mois",
+	"<b>IBAN </b> : FR76 1254 8029 9846 9953 3150 529",
+	"<b>BIC</b> : AXABFRPP ",
+	"<b>Paypal</b> : contact@arnaudguy.fr ",
+	"<b>Notes</b> :<br/> Conformément au décret n° 2012-1115 du 2 octobre 2012, et dans le cas d’une facture émise vers un professionnel, le montant de l’indemnité
+	forfaitaire pour frais de recouvrement due au créancier en cas de retard de paiement est fixé à 40 euros.",
+	
 
-// nom du fichier final
-$nom_file = "fact_" . $row["num"] . ".pdf";
+]);
 
-// date facture
-$date_fact = date("d-m-Y", strtotime($row["date"]));
 
-$pdf->SetFont('Arial', '', 11);
-$pdf->SetXY(122, 30);
-$pdf->Cell(60, 8, utf8_decode("Besançon, le ") . $date_fact, 0, 0, '');
+/* [STEP 3 - OUTPUT] */
+// 3A - CHOOSE TEMPLATE, DEFAULTS TO SIMPLE IF NOT SPECIFIED
+$invoice->template("blueberry");
 
-// adr fact du client
-
-$row_client = $FactureManager->GetClient($var_id_facture);
-$pdf->SetFont('Arial', 'B', 11);
-$x = 110;
-$y = 50;
-$pdf->SetXY($x, $y);
-$pdf->Cell(100, 8, $row_client["name"], 0, 0, '');
-$y += 4;
-$pdf->SetXY($x, $y);
-$pdf->Cell(100, 8, $row_client["address"], 0, 0, '');
-$y += 4;
-$pdf->SetXY($x, $y);
-$pdf->Cell(100, 8, $row_client["cp"] . ' ' . $row_client["city"], 0, 0, '');
-$y += 4;
-
-// **************************
-// pied de page
-// **************************
-$pdf->SetLineWidth(0.1);
-
-$pdf->SetXY(10, 250);
-$pdf->SetFont('Arial', '', 7);
-$pdf->MultiCell(190, 5, utf8_decode("Conformément au décret n° 2012-1115 du 2 octobre 2012, et dans le cas d’une facture émise vers un professionnel,le montant de l’indemnité forfaitaire pour frais de recouvrement due au créancier en cas de retard de paiement est fixé à 40 euros."),0,'C');
-//Positionnement en bas et tout centrer
-$pdf->SetXY(1, 265);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell($pdf->GetPageWidth(), 5, utf8_decode("IBAN : FR76 1254 8029 9846 9953 3150 529          BIC : AXABFRPP      PAYPAL : contact@arnaudguy.fr"), 0, 0, 'C');
-
-$y1 = 270;
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(1, $y1 + 4);
-$pdf->Cell($pdf->GetPageWidth(), 5, "Arnaud GUY | Webmaster", 0, 0, 'C');
-$pdf->SetFont('Arial', 'I', 10);
-
-$pdf->SetXY(1, $y1 + 8);
-$pdf->Cell($pdf->GetPageWidth(), 5, "Siret : 52796016500043", 0, 0, 'C');
-$pdf->SetFont('Arial', '', 10);
-
-$pdf->SetXY(1, $y1 + 12);
-$pdf->Cell($pdf->GetPageWidth(), 5, utf8_decode('5 rue de la rotonde 25000 Besançon'), 0, 0, 'C');
-
-$pdf->SetXY(1, $y1 + 16);
-$pdf->Cell($pdf->GetPageWidth(), 5, "07 86 25 09 40 -- contact@arnaudguy.fr -- https://www.arnaudguy.fr", 0, 0, 'C');
-$pdf->Output("D", $nom_file);
+/*****************************************************************************/
+// 3B - OUTPUT IN HTML
+// DEFAULT DISPLAY IN BROWSER | 1 DISPLAY IN BROWSER | 2 FORCE DOWNLOAD | 3 SAVE ON SERVER
+ //$invoice->outputHTML();
+// $invoice->outputHTML(1);
+// $invoice->outputHTML(2, "invoice.html");
+// $invoice->outputHTML(3, __DIR__ . DIRECTORY_SEPARATOR . "invoice.html");
+/*****************************************************************************/
+// 3C - PDF OUTPUT
+// DEFAULT DISPLAY IN BROWSER | 1 DISPLAY IN BROWSER | 2 FORCE DOWNLOAD | 3 SAVE ON SERVER
+$invoice->outputPDF();
+// $invoice->outputPDF(1);
+//$invoice->outputPDF(2, "invoice.pdf");
+//$invoice->outputPDF(3, __DIR__ . DIRECTORY_SEPARATOR . "invoice.pdf");
+/*****************************************************************************/
+// 3D - DOCX OUTPUT
+// DEFAULT FORCE DOWNLOAD| 1 FORCE DOWNLOAD | 2 SAVE ON SERVER
+// $invoice->outputDOCX();
+// $invoice->outputDOCX(1, "invoice.docx");
+// $invoice->outputDOCX(2, __DIR__ . DIRECTORY_SEPARATOR . "invoice.docx");
+/*****************************************************************************/
+?>

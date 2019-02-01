@@ -50,7 +50,17 @@ class FactureManager extends Manager
         $db = $this->dbConnect();
          $req = $db->prepare('SELECT * FROM items WHERE id_facture = :id_facture ');
         $req->execute(array('id_facture' => $id_facture));
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $data = $req->fetchAll();
+        $req->closeCursor();
+        return $data;
+    }
+
+    public function GetTokenInfo($token)
+    {
+        $db = $this->dbConnect();
+         $req = $db->prepare('SELECT id_base FROM token WHERE token = :token ');
+        $req->execute(array('token' => $token));
+        $data = $req->fetch(PDO::FETCH_COLUMN);
         $req->closeCursor();
         return $data;
     }
@@ -63,6 +73,32 @@ class FactureManager extends Manager
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $data;
+    }
+
+    public function WebserviceAddFacture($id_base,$useridfacture)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO factures SET id_base = :id_base, id_client = :useridfacture, date = NOW()');
+        $req->execute(array('id_base' => $id_base,'useridfacture' => $useridfacture));
+        $data = $db->lastInsertId();
+        $req->closeCursor();
+        return $data;
+    }
+
+    public function WebserviceUpdateNum($id_facture,$num_facture)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE factures SET num = :num_facture WHERE id = :id_facture');
+        $req->execute(array('num_facture' => $num_facture,'id_facture' => $id_facture));
+        $req->closeCursor();
+    }
+
+    public function WebserviceInsertItem($id_facture,$amount,$designation)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO items SET id_facture = :id_facture, quantity = 1, amount = :amount, designation =:designation');
+        $req->execute(array('id_facture' => $id_facture,'amount' => $amount,'designation' => $designation));
+        $req->closeCursor();
     }
 
 }
