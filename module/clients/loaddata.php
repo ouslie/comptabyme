@@ -56,7 +56,7 @@ $base = $_SESSION['activebase'];
 
 $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('name', 'Nom', 'string', null, true);
-$grid->addColumn('adress', 'Adresse', 'string', null, true);
+$grid->addColumn('address', 'Adresse', 'string', null, true);
 $grid->addColumn('cp', 'Code P', 'string', null, true);
 $grid->addColumn('city', 'Ville', 'string', null, true);
 
