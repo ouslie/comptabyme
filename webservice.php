@@ -9,7 +9,8 @@ if (isset($_POST['token'])) {
     if ($id_base > 0) {
         $useridfacture = $_POST['useridfacture'];
         //creation facture
-        $id_facture = $FactureManager->WebserviceAddFacture($id_base,$useridfacture);
+        $guid = com_create_guid();
+        $id_facture = $FactureManager->WebserviceAddFacture($id_base,$useridfacture,$guid);
         echo $id_facture;
         //creation items
         $nomcontrat = $_POST['nomcontrat'];
