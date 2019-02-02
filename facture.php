@@ -31,7 +31,12 @@ $invoice->set("company", [
 
 // 2B - INVOICE INFO
 $date_fact = date("d-m-Y", strtotime($facture_infos["date"]));
+
+
+if(isset($facture_infos["date_payment"])){
 $payment_date =  date("d-m-Y", strtotime($facture_infos["date_payment"]));
+}
+
 $invoice->set("invoice", [
 	["Facture #", $facture_infos["num"]],
 	["Date", $date_fact],
