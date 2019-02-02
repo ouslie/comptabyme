@@ -10,7 +10,7 @@ if (isset($_POST['token'])) {
         $useridfacture = $_POST['useridfacture'];
         //creation facture
         $id_facture = $FactureManager->WebserviceAddFacture($id_base,$useridfacture);
-      
+        echo $id_facture;
         //creation items
         $nomcontrat = $_POST['nomcontrat'];
         $date_debut = date("d-m-Y", strtotime($_POST['date_debut']));
@@ -26,9 +26,7 @@ if (isset($_POST['token'])) {
         $year = date('Y');
         $month = date('m');
         $num_facture = $year .'-' . $month . str_pad($id_facture, 2, '0', STR_PAD_LEFT);    
-
         $FactureManager->WebserviceUpdateNum($id_facture,$num_facture);
-        
     } else {
         echo "token invalide";
     }
