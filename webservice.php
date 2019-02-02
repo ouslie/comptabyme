@@ -29,9 +29,6 @@ if (isset($_POST['token'])) {
 
         $FactureManager->WebserviceUpdateNum($id_facture,$num_facture);
         
-        
-        
-        
     } else {
         echo "token invalide";
     }
