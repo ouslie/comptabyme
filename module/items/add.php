@@ -23,7 +23,6 @@ $id_fact = $_GET['id_fact'];
 $amount = floatval(str_replace(',', '.', str_replace('.', '',$amount)));
 
 $return = false;
-
 $requete = $pdo->prepare("INSERT INTO items SET
 		designation = :designation,
 		amount = :amount,
@@ -36,4 +35,10 @@ $requete->bindValue(':quantity', $quantity);
 $requete->bindValue(':id_fact', $id_fact);
 $return = $requete->execute();
 $requete = null;
+
+$FactureManager = new FactureManager;
+$soldefacture = $FactureManager->SumItems($id_fact);
+$FactureManager->SetSoldeFacture($soldefacture['total'],$id_fact);
+
+
 echo $return ? "ok" : "error";

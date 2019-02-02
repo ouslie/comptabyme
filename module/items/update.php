@@ -20,6 +20,7 @@ $id = $_POST['id'];
 $coltype = $_POST['coltype'];
 $value = $_POST['newvalue'];
 $tablename = $_POST['tablename'];
+$id_fact = $_GET['id_fact'];
 
 if ($colname == "amount") { $value = floatval(str_replace(',', '.', str_replace('.', '',$value)));
 }
@@ -37,4 +38,10 @@ $requete->bindValue(':idvalue', $id);
 
 $return = $requete->execute();
 $requete = null;
+
+
+$FactureManager = new FactureManager;
+$soldefacture = $FactureManager->SumItems($id_fact);
+$FactureManager->SetSoldeFacture($soldefacture['total'],$id_fact);
+
 echo $return ? "ok" : "error";

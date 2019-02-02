@@ -54,19 +54,21 @@ $grid = new EditableGrid();
  */
 $base = $_SESSION['activebase'];
 
-//$grid->addColumn('id', 'ID', 'integer', null, false);
+$grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('num', 'Numéro', 'string', null, false);
-$grid->addColumn('date', 'Date', 'date', null, true);
-$grid->addColumn('id_client', 'Solde', 'string', null, true);
+$grid->addColumn('date', 'Date', 'date','null','true');
+$grid->addColumn('id_client', 'Clients', 'string', fetch_pairs($pdo, 'SELECT id, name FROM clients WHERE id_base = ' . $_SESSION['activebase'] . ''), true);
 $grid->addColumn('id_category', 'Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM category WHERE id_base = ' . $_SESSION['activebase'] . ' AND is_recette = 1'), true);
-$grid->addColumn('solde', 'Solde', 'string', null, true);
+$grid->addColumn('solde', 'Solde', 'string', null, false);
+$grid->addColumn('date_payment', 'Date paiement', 'date');
+$grid->addColumn('id_transaction', 'Transaction', 'string', null, false);
 $grid->addColumn('edit', 'Action', 'html', null, false, 'id');
 
 $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'factures';
 
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT * FROM $mydb_tablename WHERE id_base = $base";
+$query = "SELECT id,num, date_format(date, '%d/%m/%Y') as date, id_client, id_category, solde, date_format(date_payment, '%d/%m/%Y') as date_payment, id_transaction FROM $mydb_tablename WHERE id_base = $base";
 $queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
 
 $totalUnfiltered = $pdo->query($queryCount)->fetch()[0];

@@ -20,8 +20,32 @@ $id = $_POST['id'];
 $coltype = $_POST['coltype'];
 $value = $_POST['newvalue'];
 $tablename = $_POST['tablename'];
+$id_transaction= $_POST['id_transaction'];
 
-if ($colname == "solde") { $value = floatval(str_replace(',', '.', str_replace('.', '',$value)));
+
+
+
+// Here, this is a little tips to manage date format before update the table
+if ($coltype == 'date') {
+    //echo $value;
+    if ($value === "") {
+        $value = null;
+    } else {
+        $date_info = date_parse_from_format('d/m/Y', $value);
+        $value = "{$date_info['year']}-{$date_info['month']}-{$date_info['day']}";
+        echo $value;
+    }
+}
+
+if($colname == "date_payment") {
+      $colname = "date";
+      $requete = $pdo->prepare("UPDATE demo SET
+      tally = 1, date = :date
+       WHERE id = :idvalue
+		");
+$requete->bindValue(':date', $value);
+$requete->bindValue(':idvalue', $id_transaction);
+$requete->execute();
 }
 
 // This very generic. So this script can be used to update several tables.

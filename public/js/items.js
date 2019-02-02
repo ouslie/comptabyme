@@ -17,8 +17,10 @@ function $_GET(param) {
    updateCellValue calls the PHP script that will update the database. 
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse) {
+	var id_fact = $_GET('id_fact');
+
 	$.ajax({
-		url: 'index.php?module=items&action=update',
+		url: 'index.php?module=items&action=update&id_fact=' +id_fact,
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -93,9 +95,10 @@ DatabaseGrid.prototype.deleteRow = function (id) {
 	var self = this;
 
 	if (confirm('Voulez vous bien suprimer la transaction ' + id)) {
+		var id_fact = $_GET('id_fact');
 
 		$.ajax({
-			url: 'index.php?module=items&action=delete',
+			url: 'index.php?module=items&action=delete&id_fact=' +id_fact,
 			type: 'POST',
 			dataType: "html",
 			data: {

@@ -168,6 +168,18 @@ class JobManager extends Manager
 
         return $data;
     }
+
+    public function AddTransaction($date, $type,$id_category,$third,$comment,$amount,$tally,$id_bank,$id_contrat,$id_base)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO demo SET date = :date, id_type = :type, id_category = :id_category, third = :third, comment = :comment, amount = :amount, tally = :tally, id_bank = :id_bank, id_contrat = :id_contrat, id_base = :id_base');
+        $req->execute(array('date' => $date, 'type' => $type, 'id_category' => $id_category, 'third' => $third, 'comment' => $comment, 'amount' => $amount, 'tally' => $tally, 'id_bank' => $id_bank, 'id_contrat' => $id_contrat, 'id_base' => $id_base));
+        $data = $db->lastInsertId();
+
+
+        return $data;
+    }
+
     public function AddBaseAccountTotal($id_base)
     {
         $db = $this->dbConnect();

@@ -22,10 +22,12 @@ $return = false;
 
 $requete = $pdo->prepare("INSERT INTO factures SET
 		id_category = :id_category,
+		date_payment = NULL,
 		id_client = :id_client,
 		date = :date,
 		id_base= :id_base
 		");
+		
 
 $requete->bindValue(':id_category', $id_category);
 $requete->bindValue(':id_client', $id_client);

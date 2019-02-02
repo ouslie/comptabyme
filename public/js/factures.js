@@ -11,7 +11,8 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 			id: editableGrid.getRowId(rowIndex),
 			newvalue: editableGrid.getColumnType(columnIndex) == "boolean" ? (newValue ? 1 : 0) : newValue,
 			colname: editableGrid.getColumnName(columnIndex),
-			coltype: editableGrid.getColumnType(columnIndex)
+			coltype: editableGrid.getColumnType(columnIndex),
+			id_transaction: editableGrid.getValueAt(rowIndex, 7),
 		},
 		success: function (response) {
 			// reset old value if failed then highlight row
@@ -30,7 +31,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 
 
 function DatabaseGrid() {
-	this.editableGrid = new EditableGrid("facture", {
+	this.editableGrid = new EditableGrid("factures", {
 		enableSort: true,
 
 

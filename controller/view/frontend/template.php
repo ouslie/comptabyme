@@ -266,6 +266,17 @@
         <script src="public/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
         <script src="public/assets/vendor/charts/morris-bundle/morris.js"></script>
         <script src="public/assets/vendor/charts/morris-bundle/Morrisjs.js"></script>
+        
+
+		<!-- include javascript and css files for jQuery, needed for the datepicker and autocomplete extensions -->
+		<script src="public/extensions/jquery/jquery-1.6.4.min.js" ></script>
+		<script src="public/extensions/jquery/jquery-ui-1.8.16.custom.min.js" ></script>
+		<link rel="stylesheet" href="public/extensions/jquery/jquery-ui-1.8.16.custom.css" type="text/css" media="screen">
+		
+		<!-- include javascript and css files for the autocomplete extension -->
+		<script src="public/extensions/autocomplete/autocomplete.js" ></script>
+		<link rel="stylesheet" href="public/extensions/autocomplete/autocomplete.css" type="text/css" media="screen">
+
 
 </body>
 

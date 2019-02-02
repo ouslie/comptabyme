@@ -33,6 +33,7 @@ class FactureManager extends Manager
 
         return $data;
     }
+    
 
     public function GetClient($id_facture)
     {
@@ -74,6 +75,23 @@ class FactureManager extends Manager
         $req->closeCursor();
         return $data;
     }
+
+    public function SetSoldeFacture($solde,$id_facture)
+    {
+        $db = $this->dbConnect();
+         $req = $db->prepare('UPDATE factures SET solde = :solde WHERE id = :id_facture ');
+        $req->execute(array('solde' => $solde,'id_facture'=>$id_facture));
+        $req->closeCursor();
+    }
+
+    public function SetTransactionFacture($id_transaction,$id_facture)
+    {
+        $db = $this->dbConnect();
+         $req = $db->prepare('UPDATE factures SET id_transaction = :id_transaction WHERE id = :id_facture ');
+        $req->execute(array('id_transaction' => $id_transaction,'id_facture'=>$id_facture));
+        $req->closeCursor();
+    }
+
 
     public function WebserviceAddFacture($id_base,$useridfacture)
     {

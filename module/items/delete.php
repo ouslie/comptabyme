@@ -10,6 +10,7 @@
  */
 
 $pdo = PDO2::getInstance();
+$id_fact = $_GET['id_fact'];
 
 // This very generic. So this script can be used to update several tables.
 $return = false;
@@ -18,4 +19,9 @@ $requete->bindValue(':idvalue', $_POST['id']);
 
 $return = $requete->execute();
 $requete = null;
+
+$FactureManager = new FactureManager;
+$soldefacture = $FactureManager->SumItems($id_fact);
+$FactureManager->SetSoldeFacture($soldefacture['total'],$id_fact);
+
 echo $return ? "ok" : "error";

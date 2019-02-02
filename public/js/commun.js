@@ -38,9 +38,10 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
     }));
     grid.setCellRenderer("edit", new CellRenderer({
         render: function (cell, id) {
-            cell.innerHTML += "<a style='margin:0px 10px 0px 10px' href=index.php?module=items&action=list&id_fact="+id+ " <i class='fas fa-edit' ></i>";
-            cell.innerHTML += "<a style='margin:0px 10px 0px 10px' href=facture.php?id_fact="+id+ " <i class='far fa-file-pdf' ></i>";
+            cell.innerHTML += "<a style='margin:0px 10px 0px 10px' href=index.php?module=items&action=list&id_fact="+id+ "<i class='fas fa-edit' ></i></a>";
+            cell.innerHTML += "<a style='margin:0px 10px 0px 10px' href=facture.php?id_fact="+id+ " <i class='far fa-file-pdf' ></i></a>";
             cell.innerHTML += "<i style='margin:0px 10px 0px 10px' onclick=\"datagrid.deleteRow(" + id + ");\" class='fa fa-trash red' ></i>";
+            cell.innerHTML += "<a style='margin:0px 10px 0px 10px'  href=index.php?module=factures&action=generate&id_fact="+id+ "  class='fas fa-cog red' ></i></a>";
 
         }
     }));

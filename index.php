@@ -36,8 +36,8 @@ try {
                 case 'list':
                     ModuleList($_GET['module']);
                     break;
-                case 'pdf':
-                    require('module/factures/pdf.php');
+                case 'generate':
+                    require('module/factures/generate.php');
                     break;
             }
         } else {
