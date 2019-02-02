@@ -31,9 +31,12 @@ $invoice->set("company", [
 
 // 2B - INVOICE INFO
 $date_fact = date("d-m-Y", strtotime($facture_infos["date"]));
+$payment_date =  date("d-m-Y", strtotime($facture_infos["date_payment"]));
 $invoice->set("invoice", [
 	["Facture #", $facture_infos["num"]],
-	["Date", $date_fact]
+	["Date", $date_fact],
+	["Moyen de paiement", $facture_infos['moyen_payment']],
+	["Date de paiement", $payment_date],
 ]);
 $row_client = $FactureManager->GetClient($var_id_facture);
 // 2C - BILL TO

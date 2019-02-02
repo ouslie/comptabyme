@@ -37,8 +37,8 @@ if ($coltype == 'date') {
     }
 }
 
+
 if($colname == "date_payment") {
-      $colname = "date";
       $requete = $pdo->prepare("UPDATE demo SET
       tally = 1, date = :date
        WHERE id = :idvalue
