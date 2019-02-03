@@ -93,11 +93,11 @@ class FactureManager extends Manager
     }
 
 
-    public function WebserviceAddFacture($id_base,$useridfacture)
+    public function WebserviceAddFacture($id_base,$useridfacture,$id_category)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO factures SET id_base = :id_base, id_client = :useridfacture, date = NOW()');
-        $req->execute(array('id_base' => $id_base,'useridfacture' => $useridfacture));
+        $req = $db->prepare('INSERT INTO factures SET id_base = :id_base, id_client = :useridfacture, date = NOW(), id_category = :id_category');
+        $req->execute(array('id_base' => $id_base,'useridfacture' => $useridfacture, 'id_category' => $id_category));
         $data = $db->lastInsertId();
         $req->closeCursor();
         return $data;
