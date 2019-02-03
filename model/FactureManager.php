@@ -111,11 +111,11 @@ class FactureManager extends Manager
         $req->closeCursor();
     }
 
-    public function WebserviceInsertItem($id_facture,$amount,$designation)
+    public function WebserviceInsertItem($id_facture,$amount,$designation,$quantity)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO items SET id_facture = :id_facture, quantity = 1, amount = :amount, designation =:designation');
-        $req->execute(array('id_facture' => $id_facture,'amount' => $amount,'designation' => $designation));
+        $req = $db->prepare('INSERT INTO items SET id_facture = :id_facture, quantity = :quantity, amount = :amount, designation =:designation');
+        $req->execute(array('id_facture' => $id_facture,'amount' => $amount,'designation' => $designation,'quantity' => $quantity));
         $req->closeCursor();
     }
 
