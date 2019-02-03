@@ -56,8 +56,8 @@
                 <select id="id_client" name="id_client" class="form-control">
                   <option value="">--Clients--</option>
                   <?php
-        $type = $jobManager->GetClients($_SESSION['activebase']);
-        $type = $type->fetchAll(PDO::FETCH_ASSOC);
+        $clients = $jobManager->GetClients($_SESSION['activebase']);
+        $clients = $clients->fetchAll(PDO::FETCH_ASSOC);
         foreach ($type as $row): ?>
                   <option value="<?=$row['id'];?>">
                     <?=$row['name'];?>
