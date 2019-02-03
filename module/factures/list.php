@@ -58,7 +58,7 @@
                   <?php
         $clients = $jobManager->GetClients($_SESSION['activebase']);
         $clients = $clients->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($type as $row): ?>
+        foreach ($clients as $row): ?>
                   <option value="<?=$row['id'];?>">
                     <?=$row['name'];?>
                   </option>
