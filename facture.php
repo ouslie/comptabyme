@@ -29,6 +29,7 @@ $invoice->set("company", [
 	"contact@arnaudguy.fr"
 ]);
 
+if ($facture_infos["date_payment"]=="0000-00-00"){ $facture_infos["date_payment"] = NULL;}
 // 2B - INVOICE INFO
 $date_fact = date("d-m-Y", strtotime($facture_infos["date"]));
 

@@ -69,7 +69,7 @@ class FactureManager extends Manager
     public function SumItems($id_facture)
     {
         $db = $this->dbConnect();
-         $req = $db->prepare('SELECT sum(quantity * amount) AS total FROM items WHERE id_facture = :id_facture ');
+         $req = $db->prepare('SELECT round(sum(quantity * amount),2) AS total FROM items WHERE id_facture = :id_facture ');
         $req->execute(array('id_facture' => $id_facture));
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
