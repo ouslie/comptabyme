@@ -12,6 +12,23 @@ class Factures extends Manager
         return $data;
     }
 
+    public function Update($colname, $colvalue, $id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE factures SET " . $colname . " = :colvalue WHERE id = :id");
+        $data = $req->execute(array('colvalue' => $colvalue, 'id' => $id));
+        return $data;
+    }
+  
+
+    public function Delete($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM factures WHERE id = :id');
+        $data = $req->execute(array('id' => $id));
+
+        return $data;
+    }
     public function CountItems($id_facture)
     {
         $db = $this->dbConnect();

@@ -67,4 +67,14 @@ class Transactions extends Manager
         $req = $db->query($query);
         return $req;
     }
+
+
+    public function UpdateDateFacture($id, $tally, $date)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE transactions SET tally = :tally, date=:date WHERE id = :id");
+        $data = $req->execute(array('tally' => $tally, 'date' => $date,'id' => $id));
+        return $data;
+    }
+
 }

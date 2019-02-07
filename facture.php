@@ -9,11 +9,11 @@
 /* [STEP 1 - CREATE NEW INVOICR OBJECT] */
 require ('lib/invoicr/invoicr.php');
 require ('global/config.php');
-require ('model/FactureManager.php');
+require ('model/Factures.php');
 
 $var_id_facture = $_GET['id_fact'];
-$FactureManager = new FactureManager;
-$facture_infos = $FactureManager->GetFacture($var_id_facture);
+$Factures = new Factures;
+$facture_infos = $Factures->GetFacture($var_id_facture);
 
 $invoice = new Invoicr();
 
@@ -44,7 +44,7 @@ $invoice->set("invoice", [
 	["Moyen de paiement", $facture_infos['moyen_payment']],
 	["Date de paiement", $payment_date],
 ]);
-$row_client = $FactureManager->GetClient($var_id_facture);
+$row_client = $Factures->GetClient($var_id_facture);
 // 2C - BILL TO
 $invoice->set("billto", [
 	$row_client['name'],
@@ -57,11 +57,11 @@ $invoice->set("billto", [
 // 2E - ITEMS
 // YOU CAN JUST DUMP THE ENTIRE ARRAY IN USING SET, BUT HERE IS HOW TO ADD ONE AT A TIME... 
 
-$row_items = $FactureManager->GetItems($var_id_facture);
+$row_items = $Factures->GetItems($var_id_facture);
 foreach ($row_items as $i) { $invoice->add("items", $i); }
 
 // 2F - TOTALS
-$sum_items = $FactureManager->SumItems($var_id_facture);
+$sum_items = $Factures->SumItems($var_id_facture);
 
 $invoice->set("totals", [
 	["Total HT", $sum_items['total']],
