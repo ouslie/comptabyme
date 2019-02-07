@@ -2,6 +2,7 @@
       $Factures = new Factures();
       $id_fact = $_GET['id_fact'];
       $row = $Factures->GetFacture($id_fact);
+      $client = $Factures->GetClient($id_fact);
       ?>
 
 <script src="public/js/items.js"></script>
@@ -24,10 +25,16 @@
 </div>
   <div class="card">
     <div id="toolbar" class="card-header">
-      <!-- Button trigger modal -->
-      <a href="#" class="btn btn-brand" data-toggle="modal" data-target="#exampleModal">
+      <h3 style="display:inline;margin:0% 60% 0% 0%"> Clients :  <? echo $client['name']; ?> </h3>
+      <h3 style="display:inline">   Date :  <? echo $row['date']; ?></h3>
+      <br/>
+      <br/>
+
+        <!-- Button trigger modal -->
+        <a href="#" style="margin:0% 61% 0% 0% "class="btn btn-brand" data-toggle="modal" data-target="#exampleModal">
         Ajouter un item
       </a>
+     <h3 style="text-align:right;display:inline"> Solde :  <? echo $row['solde']; ?> €</h3>
     </div>
     <div class="card-body">
       <div class="table-responsive">

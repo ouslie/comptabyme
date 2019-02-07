@@ -43,8 +43,8 @@ $from = ($page - 1) * $rowByPage;
 
 if (isset($_GET['filter']) && $_GET['filter'] != "") {
     $filter = $_GET['filter'];
-    $query .= '  WHERE third like "%' . $filter . '%"';
-    $queryCount .= '  WHERE third like "%' . $filter . '%"';
+    $query .= '  AND id_client like "%' . $filter . '%"';
+    $queryCount .= '  AND id_client like "%' . $filter . '%"';
     $total = $Factures->Loaddata($queryCount)->fetch()[0];
 }
 

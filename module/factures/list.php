@@ -4,7 +4,6 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
     <div id="toolbar" class="card-header">
-      <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <!-- Button trigger modal -->
       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Ajouter une facture
