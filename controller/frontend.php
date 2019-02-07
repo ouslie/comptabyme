@@ -6,7 +6,7 @@ require_once 'model/FactureManager.php';
 require_once 'model/Categories.php';
 require_once 'model/Contrats.php';
 require_once 'model/Bank.php';
-
+include 'model/EditableGrid.php';
 require_once 'lib/pdo2.php';
 require_once 'lib/pdf/fpdf.php';
 
@@ -41,6 +41,10 @@ function ModuleUpdate($module)
 function ModuleDelete($module)
 {
     require 'module/' . $module . '/delete.php';
+}
+function ModuleLoaddata($module)
+{
+    require 'module/' . $module . '/loaddata.php';
 }
 
 function Login()

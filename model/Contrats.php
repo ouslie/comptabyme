@@ -1,5 +1,4 @@
 <?php
-require_once "model/Manager.php";
 class Contrats extends Manager
 {
 
@@ -50,4 +49,13 @@ class Contrats extends Manager
         $data = $req->execute(array('colvalue' => $colvalue, 'id' => $id));
         return $data;
     }
+
+    public function Loaddata($query)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query($query);
+        return $req;
+    }
+    
+
 }
