@@ -10,6 +10,7 @@ require_once 'model/Items.php';
 require_once 'model/Transactions.php';
 require_once 'model/EditableGrid.php';
 require_once 'lib/pdf/fpdf.php';
+require_once 'lib/pdo2.php';
 
 
 function utilisateur_est_connecte()
