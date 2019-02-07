@@ -46,6 +46,10 @@
               <div class="input-group-prepend"><span class="input-group-text">@</span></div>
               <input type="text" placeholder="Nom de la catégorie" class="form-control" id="name" name="name">
             </div>
+            <div class="input-group input-group-lg mb-3">
+              IS_recette
+              <input type="checkbox" class="form-control" id="is_recette" name="is_recette" value="1">
+            </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
               <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
@@ -75,7 +79,6 @@
       $("#addbutton").click(function () {
         datagrid.addRow();
       });
-
     }
   </script>
 

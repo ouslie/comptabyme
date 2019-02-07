@@ -102,6 +102,8 @@ DatabaseGrid.prototype.deleteRow = function(id)
 DatabaseGrid.prototype.addRow = function(id) 
 {
 
+	
+
   var self = this;
 
         $.ajax({
@@ -111,7 +113,7 @@ DatabaseGrid.prototype.addRow = function(id)
 		data: {
 			tablename : self.editableGrid.name,
 			name:  $("#name").val(),
-
+			is_recette:  $("#is_recette").is(':checked') ? 1 : 0
 		},
 		success: function (response) 
 		{ 
@@ -126,8 +128,6 @@ DatabaseGrid.prototype.addRow = function(id)
 		async: true
 	});
 
-        
-			
 }; 
 
   
