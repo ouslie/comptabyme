@@ -1,5 +1,7 @@
 <?php ob_start();
       $jobManager = new JobManager();
+      $Categories = new Categories();
+
       ?>
 
 <script src="public/js/demo.js"></script>
@@ -76,10 +78,10 @@
                 <select id="id_category" name="id_category" class="form-control">
                   <option value="">--Catégorie--</option>
                   <?php
-      $categories = $jobManager->GetCategory($_SESSION['activebase']);
-      $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
 
-      foreach ($categories as $row): ?>
+      $Categories = $Categories->GetAll($_SESSION['activebase']);
+
+      foreach ($Categories as $row): ?>
                   <option value="<?=$row['id'];?>">
                     <?=$row['name'];?>
                   </option>
