@@ -14,12 +14,11 @@ $grid->addColumn('amount', 'Dépenses', 'float', null, false);
 $grid->addColumn('paymentisok', 'Pointage', 'boolean');
 $grid->addColumn('id_cat', 'Catégorie', 'string', $Categories->ListAllMy($base), true);
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
-$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'contrats';
 
 //error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT date_format(debcontrat, '%d/%m/%Y') as debcontrat,date_format(endcontrat, '%d/%m/%Y') as endcontrat,date_format(paymentdate, '%d/%m/%Y') as paymentdate ,id, id_cat, id_base, name,salaire, amount, paymentisok FROM $mydb_tablename WHERE id_base = $base";
-$queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
+$query = "SELECT date_format(debcontrat, '%d/%m/%Y') as debcontrat,date_format(endcontrat, '%d/%m/%Y') as endcontrat,date_format(paymentdate, '%d/%m/%Y') as paymentdate ,id, id_cat, id_base, name,salaire, amount, paymentisok FROM contrats WHERE id_base = $base";
+$queryCount = "SELECT count(id) as nb FROM contrats WHERE id_base = $base";
 
 $totalUnfiltered = $Contrats->Loaddata($queryCount)->fetch()[0];
 $total = $totalUnfiltered;

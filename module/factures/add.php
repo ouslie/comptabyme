@@ -1,54 +1,17 @@
 <?php
-/*
- *
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
-
-$pdo = PDO2::getInstance();
-$pdo->exec("SET GLOBAL sql_mode = NO_ENGINE_SUBSTITUTION");
-
-$pdo->exec("set names utf8");
-
-// Get all parameter provided by the javascript
+$return = false;
+$Factures = new Factures;
 
 $id_category = $_POST['id_category'];
 $id_client = $_POST['id_client'];
 $date = $_POST['date'];
-$return = false;
-
-$requete = $pdo->prepare("INSERT INTO factures SET
-		id_category = :id_category,
-		date_payment = NULL,
-		id_client = :id_client,
-		date = :date,
-		id_base= :id_base
-		");
-		
-
-$requete->bindValue(':id_category', $id_category);
-$requete->bindValue(':id_client', $id_client);
-$requete->bindValue(':date', $date);
-$requete->bindValue(':id_base', $_SESSION['activebase']);
-$return = $requete->execute();
-$data = $pdo->lastInsertId();
+$base = $_SESSION['activebase'];
+$id_facture = $Factures->Set($date,$id_client,$id_category,'',$base);
+echo $id_facture;
 
 $num = date_create($date); 
 $year = date_format($num, 'Y');
 $month = date_format($num, 'm');
+$num_fact = $year .'-' . $month . str_pad($id_facture, 2, '0', STR_PAD_LEFT);
 
-$num_fact = $year .'-' . $month . str_pad($data, 2, '0', STR_PAD_LEFT);
-
-$requete = $pdo->prepare("UPDATE factures SET
-		num = :num
-		WHERE
-		id = :id
-		");
-$requete->bindValue(':num', $num_fact);
-$requete->bindValue(':id', $data);
-$return = $requete->execute();
-$requete = null;
-echo $data;
+$id_facture = $Factures->SetNumFacture($id_facture,$num_fact);

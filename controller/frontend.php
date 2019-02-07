@@ -1,14 +1,14 @@
 <?php
-
 // Chargement des classes
 require_once 'model/JobManager.php';
-require_once 'model/FactureManager.php';
+require_once 'model/Factures.php';
+require_once 'model/Clients.php';
 require_once 'model/Categories.php';
 require_once 'model/Contrats.php';
 require_once 'model/Bank.php';
+require_once 'model/Items.php';
 require_once 'model/Transactions.php';
-include 'model/EditableGrid.php';
-require_once 'lib/pdo2.php';
+require_once 'model/EditableGrid.php';
 require_once 'lib/pdf/fpdf.php';
 
 
@@ -32,7 +32,6 @@ function ModuleAdd($module)
 {
     require 'module/' . $module . '/add.php';
 }
-
 
 function ModuleUpdate($module)
 {

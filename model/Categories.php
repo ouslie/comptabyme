@@ -76,4 +76,36 @@ class Categories extends Manager
         }
         return $rows;
     }
+    public function ListRecetteMy($base)
+    {
+        $db = $this->dbConnect();
+
+        if (!($res = $db->query('SELECT id, name FROM category WHERE id_base = ' . $base . ' AND is_recette = 1'))) {
+            return false;
+        }
+
+        $rows = array();
+        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+            $first = true;
+            $key = $value = null;
+            foreach ($row as $val) {
+                if ($first) {
+                    $key = $val;
+                    $first = false;
+                } else {
+                    $value = $val;
+                    break;
+                }
+            }
+            $rows[$key] = $value;
+        }
+        return $rows;
+    }
+    public function Loaddata($query)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query($query);
+        return $req;
+    }
+    
 }

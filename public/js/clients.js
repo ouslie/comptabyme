@@ -66,7 +66,7 @@ function DatabaseGrid() {
 
 DatabaseGrid.prototype.fetchGrid = function () {
 	// call a PHP script to get the data
-	this.editableGrid.loadJSON("module/clients/loaddata.php?db_tablename=clients");
+	this.editableGrid.loadJSON("index.php?module=clients&action=loaddata");
 };
 
 

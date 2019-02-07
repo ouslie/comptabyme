@@ -63,7 +63,7 @@ function DatabaseGrid()
 
 DatabaseGrid.prototype.fetchGrid = function()  {
 	// call a PHP script to get the data
-	this.editableGrid.loadJSON('index.php?module=transactions&action=loaddata&db_tablename=transactions');
+	this.editableGrid.loadJSON('index.php?module=transactions&action=loaddata');
 };
 
 DatabaseGrid.prototype.deleteRow = function(id) 

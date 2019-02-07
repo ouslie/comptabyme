@@ -1,64 +1,17 @@
 <?php
-
-/*
- * examples/mysql/loaddata.php
- *
- * This file is part of EditableGrid.
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
-
-/**
- * This script loads data from the database and returns it to the js
- *
- */
-include '../../global/config.php';
-include '../../model/EditableGrid.php';
-require_once '../../lib/pdo2.php';
-
-$pdo = PDO2::getInstance();
-$pdo->exec("set names utf8");
-
-/**
- * fetch_pairs is a simple method that transforms a mysqli_result object in an array.
- * It will be used to generate possible values for some columns.
- */
-function fetch_pairs($pdo, $query)
-{
-    if (!($res = $pdo->query($query))) {
-        return false;
-    }
-
-    $rows = array();
-    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        $first = true;
-        $key = $value = null;
-        foreach ($row as $val) {
-            if ($first) {$key = $val;
-                $first = false;} else { $value = $val;
-                break;}
-        }
-        $rows[$key] = $value;
-    }
-    return $rows;
-}
+$Factures = new Factures;
+$Clients = new Clients;
+$Categories = new Categories;
 
 $grid = new EditableGrid();
 
-/*
- *  Add columns. The first argument of addColumn is the name of the field in the databse.
- *  The second argument is the label that will be displayed in the header
- */
 $base = $_SESSION['activebase'];
 
 $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('num', 'Numéro', 'string', null, false);
 $grid->addColumn('date', 'Date', 'date','null','true');
-$grid->addColumn('id_client', 'Clients', 'string', fetch_pairs($pdo, 'SELECT id, name FROM clients WHERE id_base = ' . $_SESSION['activebase'] . ''), true);
-$grid->addColumn('id_category', 'Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM category WHERE id_base = ' . $_SESSION['activebase'] . ' AND is_recette = 1'), true);
+$grid->addColumn('id_client', 'Clients', 'string', $Clients->ListMy($base), true);
+$grid->addColumn('id_category', 'Catégorie', 'string',$Categories->ListRecetteMy($base), true);
 $grid->addColumn('solde', 'Solde', 'string', null, false);
 $grid->addColumn('date_payment', 'Date paiement', 'date');
 $moyen = [ "Virement" => "Virement", "Paypal" => "Paypal" ];
@@ -66,14 +19,12 @@ $grid->addColumn('moyen_payment', 'Moyen', 'string', $moyen, true);
 $grid->addColumn('id_transaction', 'Transaction', 'string', null, false);
 $grid->addColumn('edit', 'Action', 'html', null, false, 'id');
 
-$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'factures';
-
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT id,num, date_format(date, '%d/%m/%Y') as date, id_client, id_category, solde, date_format(date_payment, '%d/%m/%Y') as date_payment, id_transaction, moyen_payment FROM $mydb_tablename WHERE id_base = $base";
-$queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
+$query = "SELECT id,num, date_format(date, '%d/%m/%Y') as date, id_client, id_category, solde, date_format(date_payment, '%d/%m/%Y') as date_payment, id_transaction, moyen_payment FROM factures WHERE id_base = $base";
+$queryCount = "SELECT count(id) as nb FROM factures WHERE id_base = $base";
 
-$totalUnfiltered = $pdo->query($queryCount)->fetch()[0];
+$totalUnfiltered = $Factures->Loaddata($queryCount)->fetch()[0];
 $total = $totalUnfiltered;
 
 /* SERVER SIDE */
@@ -94,7 +45,7 @@ if (isset($_GET['filter']) && $_GET['filter'] != "") {
     $filter = $_GET['filter'];
     $query .= '  WHERE third like "%' . $filter . '%"';
     $queryCount .= '  WHERE third like "%' . $filter . '%"';
-    $total = $pdo->query($queryCount)->fetch()[0];
+    $total = $Factures->Loaddata($queryCount)->fetch()[0];
 }
 
 if (isset($_GET['sort']) && $_GET['sort'] != "") {
@@ -113,10 +64,7 @@ $grid->setPaginator(ceil($total / $rowByPage), (int) $total, (int) $totalUnfilte
 
 error_log($query);
 //echo $query
-$result = $pdo->query($query);
-
-// close PDO
-$pdo = null;
+$result = $Factures->Loaddata($query);
 
 // send data to the browser
 

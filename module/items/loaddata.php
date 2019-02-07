@@ -1,71 +1,19 @@
 <?php
-
-/*
- * examples/mysql/loaddata.php
- *
- * This file is part of EditableGrid.
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
-
-/**
- * This script loads data from the database and returns it to the js
- *
- */
-include '../../global/config.php';
-include '../../model/EditableGrid.php';
-require_once '../../lib/pdo2.php';
-
-$pdo = PDO2::getInstance();
-$pdo->exec("set names utf8");
-
-/**
- * fetch_pairs is a simple method that transforms a mysqli_result object in an array.
- * It will be used to generate possible values for some columns.
- */
-function fetch_pairs($pdo, $query)
-{
-    if (!($res = $pdo->query($query))) {
-        return false;
-    }
-
-    $rows = array();
-    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        $first = true;
-        $key = $value = null;
-        foreach ($row as $val) {
-            if ($first) {$key = $val;
-                $first = false;} else { $value = $val;
-                break;}
-        }
-        $rows[$key] = $value;
-    }
-    return $rows;
-}
-
+$Items = new Items;
 $grid = new EditableGrid();
-
-/*
- *  Add columns. The first argument of addColumn is the name of the field in the databse.
- *  The second argument is the label that will be displayed in the header
- */
 $id_facture = $_GET['id_fact'];
 $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('designation', 'Désignation', 'string', null, true);
 $grid->addColumn('quantity', 'Quantité', 'string', null, true);
 $grid->addColumn('amount', 'Montant', 'string', null, true);
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
-$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'items';
 
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT * FROM $mydb_tablename WHERE id_facture = $id_facture ";
-$queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_facture = $id_facture";
+$query = "SELECT * FROM items WHERE id_facture = $id_facture ";
+$queryCount = "SELECT count(id) as nb FROM items WHERE id_facture = $id_facture";
 
-$totalUnfiltered = $pdo->query($queryCount)->fetch()[0];
+$totalUnfiltered = $Items->Loaddata($queryCount)->fetch()[0];
 $total = $totalUnfiltered;
 
 /* SERVER SIDE */
@@ -86,7 +34,7 @@ if (isset($_GET['filter']) && $_GET['filter'] != "") {
     $filter = $_GET['filter'];
     $query .= '  WHERE third like "%' . $filter . '%"';
     $queryCount .= '  WHERE third like "%' . $filter . '%"';
-    $total = $pdo->query($queryCount)->fetch()[0];
+    $total = $Items->Loaddata($queryCount)->fetch()[0];
 }
 
 if (isset($_GET['sort']) && $_GET['sort'] != "") {
@@ -105,7 +53,7 @@ $grid->setPaginator(ceil($total / $rowByPage), (int) $total, (int) $totalUnfilte
 
 error_log($query);
 //echo $query
-$result = $pdo->query($query);
+$result = $Items->Loaddata($query);
 
 // close PDO
 $pdo = null;

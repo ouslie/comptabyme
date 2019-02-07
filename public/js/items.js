@@ -85,7 +85,7 @@ DatabaseGrid.prototype.fetchGrid = function () {
 	// call a PHP script to get the data
 	var id_fact = $_GET('id_fact');
 
-	this.editableGrid.loadJSON("module/items/loaddata.php?db_tablename=items&id_fact="+id_fact);
+	this.editableGrid.loadJSON("index.php?module=items&action=loaddata&id_fact="+id_fact);
 };
 
 
@@ -95,10 +95,9 @@ DatabaseGrid.prototype.deleteRow = function (id) {
 	var self = this;
 
 	if (confirm('Voulez vous bien suprimer la transaction ' + id)) {
-		var id_fact = $_GET('id_fact');
 
 		$.ajax({
-			url: 'index.php?module=items&action=delete&id_fact=' +id_fact,
+			url: 'index.php?module=items&action=delete',
 			type: 'POST',
 			dataType: "html",
 			data: {

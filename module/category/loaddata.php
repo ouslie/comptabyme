@@ -1,57 +1,8 @@
 <?php
 
-/*
- * examples/mysql/loaddata.php
- *
- * This file is part of EditableGrid.
- * http://editablegrid.net
- *
- * Copyright (c) 2011 Webismymind SPRL
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://editablegrid.net/license
- */
-
-/**
- * This script loads data from the database and returns it to the js
- *
- */
-include '../../global/config.php';
-include '../../model/EditableGrid.php';
-require_once '../../lib/pdo2.php';
-
-$pdo = PDO2::getInstance();
-$pdo->exec("set names utf8");
-
-/**
- * fetch_pairs is a simple method that transforms a mysqli_result object in an array.
- * It will be used to generate possible values for some columns.
- */
-function fetch_pairs($pdo, $query)
-{
-    if (!($res = $pdo->query($query))) {
-        return false;
-    }
-
-    $rows = array();
-    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        $first = true;
-        $key = $value = null;
-        foreach ($row as $val) {
-            if ($first) {$key = $val;
-                $first = false;} else { $value = $val;
-                break;}
-        }
-        $rows[$key] = $value;
-    }
-    return $rows;
-}
-
+$Categories = new Categories;
 $grid = new EditableGrid();
 
-/*
- *  Add columns. The first argument of addColumn is the name of the field in the databse.
- *  The second argument is the label that will be displayed in the header
- */
 $base = $_SESSION['activebase'];
 
 $grid->addColumn('id', 'ID', 'integer', null, false);
@@ -65,7 +16,7 @@ $base = $_SESSION['activebase'];
 $query = "SELECT * FROM $mydb_tablename WHERE id_base = $base";
 $queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
 
-$totalUnfiltered = $pdo->query($queryCount)->fetch()[0];
+$totalUnfiltered = $Categories->Loaddata($queryCount)->fetch()[0];
 $total = $totalUnfiltered;
 
 $page = 0;
@@ -86,7 +37,7 @@ if (isset($_GET['filter']) && $_GET['filter'] != "") {
     $filter = $_GET['filter'];
     $query .= '  AND name like "%' . $filter . '%"';
     $queryCount .= '  AND name like "%' . $filter . '%"';
-    $total = $pdo->query($queryCount)->fetch()[0];
+    $total = $Categories->Loaddata($queryCount)->fetch()[0];
 }
 $query .= " LIMIT " . $from . ", " . $rowByPage;
 
@@ -100,7 +51,7 @@ $grid->setPaginator(ceil($total / $rowByPage), (int) $total, (int) $totalUnfilte
 
 error_log($query);
 //echo $query
-$result = $pdo->query($query);
+$result = $Categories->Loaddata($query);
 
 // close PDO
 $pdo = null;

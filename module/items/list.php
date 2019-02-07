@@ -1,7 +1,7 @@
 <?php ob_start();
-      $FactureManager = new FactureManager();
+      $Factures = new Factures();
       $id_fact = $_GET['id_fact'];
-      $row = $FactureManager->GetFacture($id_fact);
+      $row = $Factures->GetFacture($id_fact);
       ?>
 
 <script src="public/js/items.js"></script>

@@ -1,9 +1,6 @@
-<?php ob_start();
-      $jobManager = new JobManager();
-      ?>
+<?php ob_start();?>
 
 <script src="public/js/factures.js"></script>
-
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
     <div id="toolbar" class="card-header">
@@ -56,11 +53,11 @@
                 <select id="id_client" name="id_client" class="form-control">
                   <option value="">--Clients--</option>
                   <?php
-        $clients = $jobManager->GetClients($_SESSION['activebase']);
-        $clients = $clients->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($clients as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
+        $Clients = new Clients;
+        $clients = $Clients->ListMy($_SESSION['activebase']);
+        foreach ($clients as $row => $clientname): ?>
+                  <option value="<?=$row;?>">
+                    <?=$clientname;?>
                   </option>
                   <?php endforeach;?>
 
@@ -76,12 +73,12 @@
                 <select id="id_category" name="id_category" class="form-control">
                   <option value="">--Catégorie--</option>
                   <?php
-      $categories = $jobManager->GetCategoryIsRecette($_SESSION['activebase']);
-      $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
-
-      foreach ($categories as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
+      $Categories = new Categories;
+      $categories = $Categories->ListRecetteMy($_SESSION['activebase']);
+      
+      foreach ($categories as $row => $catname): ?>
+                  <option value="<?=$row;?>">
+                    <?=$catname;?>
                   </option>
                   <?php endforeach;?>
 
