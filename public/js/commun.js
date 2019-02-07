@@ -1,6 +1,3 @@
-/**
- *  highlightRow and highlight are used to show a visual feedback. If the row has been successfully modified, it will be highlighted in green. Otherwise, in red
- */
 function highlightRow(rowId, bgColor, after) {
     var rowSelector = $("#" + rowId);
     rowSelector.css("background-color", bgColor);
@@ -16,7 +13,6 @@ function highlight(div_id, style) {
 }
 
 
-
 function message(type, message) {
     if (type == "error") {
         type = "danger"
@@ -29,8 +25,6 @@ function message(type, message) {
 DatabaseGrid.prototype.initializeGrid = function (grid) {
 
     var self = this;
-
-    // render for the action column
     grid.setCellRenderer("action", new CellRenderer({
         render: function (cell, id) {
             cell.innerHTML += "<i onclick=\"datagrid.deleteRow(" + id + ");\" class='fa fa-trash red' ></i>";
@@ -42,7 +36,6 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
             cell.innerHTML += "<a style='margin:0px 10px 0px 10px' href=facture.php?id_fact="+id+" <i class='far fa-file-pdf' ></i></a>";
             cell.innerHTML += "<i style='margin:0px 10px 0px 10px' onclick=\"datagrid.deleteRow(" + id + ");\" class='fa fa-trash red' ></i>";
             cell.innerHTML += "<a style='margin:0px 10px 0px 10px'  href=index.php?module=factures&action=generate&id_fact="+id+ "  class='fas fa-cog red' ></i></a>";
-
         }
     }));
     grid.setCellRenderer("amount", new CellRenderer({
@@ -51,14 +44,11 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
                 cell.innerHTML += "<p class='text-success'> " + id + "  </p>";
             } else {
                 cell.innerHTML += "<p class='text-danger'> " + id + "  </p>";
-
             }
-
         }
     }));
 
     grid.renderGrid("tablecontent", "table table-hover table-striped table-bordered first");
-
 };
 
 function updatePaginator(grid, divId) {
