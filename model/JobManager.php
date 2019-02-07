@@ -5,7 +5,7 @@ class JobManager extends Manager
     public function GetRecetteAVenir($base_active)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM demo WHERE id_type = 1 AND id_base = :active_base AND tally = 0');
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE id_type = 1 AND id_base = :active_base AND tally = 0');
         $req->execute(array('active_base' => $base_active));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
@@ -17,7 +17,7 @@ class JobManager extends Manager
     public function GetDepenseAVenir($base_active)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM demo WHERE id_type = 2 AND id_base = :active_base AND tally = 0');
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE id_type = 2 AND id_base = :active_base AND tally = 0');
         $req->execute(array('active_base' => $base_active));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
@@ -29,7 +29,7 @@ class JobManager extends Manager
     public function GetRecetteMonth($date, $base_active)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM demo WHERE  MONTH(date) = :date AND id_type = 1 AND id_base = :active_base');
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 1 AND id_base = :active_base');
         $req->execute(array('date' => $date, 'active_base' => $base_active));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
@@ -41,7 +41,7 @@ class JobManager extends Manager
     public function GetDepenseMonth($date, $base_active)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM demo WHERE  MONTH(date) = :date AND id_type = 2 AND id_base = :active_base');
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 2 AND id_base = :active_base');
         $req->execute(array('date' => $date, 'active_base' => $base_active));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
@@ -149,9 +149,9 @@ class JobManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT MONTH(date) AS month, category.name,id_type, SUM(amount) AS amountbycategory
-        FROM demo
-        INNER JOIN category ON demo.id_category = category.id
-        WHERE demo.id_base = :id_base
+        FROM transactions
+        INNER JOIN category ON transactions.id_category = category.id
+        WHERE transactions.id_base = :id_base
         GROUP BY month, category.name,id_type');
         $req->execute(array('id_base' => $id_base));
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -172,7 +172,7 @@ class JobManager extends Manager
     public function AddTransaction($date, $type,$id_category,$third,$comment,$amount,$tally,$id_bank,$id_contrat,$id_base)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO demo SET date = :date, id_type = :type, id_category = :id_category, third = :third, comment = :comment, amount = :amount, tally = :tally, id_bank = :id_bank, id_contrat = :id_contrat, id_base = :id_base');
+        $req = $db->prepare('INSERT INTO transactions SET date = :date, id_type = :type, id_category = :id_category, third = :third, comment = :comment, amount = :amount, tally = :tally, id_bank = :id_bank, id_contrat = :id_contrat, id_base = :id_base');
         $req->execute(array('date' => $date, 'type' => $type, 'id_category' => $id_category, 'third' => $third, 'comment' => $comment, 'amount' => $amount, 'tally' => $tally, 'id_bank' => $id_bank, 'id_contrat' => $id_contrat, 'id_base' => $id_base));
         $data = $db->lastInsertId();
 
@@ -328,7 +328,7 @@ class JobManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT SUM(amount) AS amount
-                  FROM demo
+                  FROM transactions
                   WHERE id_base = :id_base
                   AND MONTH(date) = :month
                   AND id_type = :id_type
@@ -346,7 +346,7 @@ class JobManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT SUM(amount) AS amount
-                  FROM demo
+                  FROM transactions
                   WHERE id_base = :id_base
                   AND id_type = :id_type
                   AND id_contrat = :id_contrat
@@ -382,12 +382,12 @@ class JobManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT MONTH(date) AS month, SUM(amount) AS amount
-                  FROM demo
-                  INNER JOIN category ON demo.id_category = category.id
-                  WHERE demo.id_base = :id_base
-                  AND demo.id_type = 1
+                  FROM transactions
+                  INNER JOIN category ON transactions.id_category = category.id
+                  WHERE transactions.id_base = :id_base
+                  AND transactions.id_type = 1
                   AND category.is_recette = 1
-                  AND demo.tally = "1"
+                  AND transactions.tally = "1"
                   GROUP BY  month
                   ');
         $req->execute(array('id_base' => $id_base));
