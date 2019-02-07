@@ -97,8 +97,8 @@ function ByJob()
 {
 
     $jobManager = new JobManager();
-    $categories = $jobManager->GetCategory($_SESSION['activebase']);
-    $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
+    $Categories = new Categories();
+    $categories = $Categories->GetAll($_SESSION['activebase']);
     $recettes = $jobManager->SumTransactionByCategories($_SESSION['activebase']);
     $date = $jobManager->GetDate();
     foreach ($recettes as $row) 
