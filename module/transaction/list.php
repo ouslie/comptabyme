@@ -1,6 +1,8 @@
 <?php ob_start();
       $jobManager = new JobManager();
       $Categories = new Categories();
+      $Bank = new Bank();
+      $Contrats = new Contrats();
 
       ?>
 
@@ -120,8 +122,7 @@
                 <select id="id_bank" name="id_bank" class="form-control">
                   <option value="">--Banque--</option>
                   <?php
-    $bank = $jobManager->GetBankSys($_SESSION['activebase']);
-    $bank = $bank->fetchAll(PDO::FETCH_ASSOC);
+    $bank = $Bank->GetAllWithoutSystem($_SESSION['activebase']);
 
     foreach ($bank as $row): ?>
                   <option value="<?=$row['id'];?>">
@@ -142,8 +143,7 @@
 
                   <option value="">--Contrats--</option>
                   <?php
-$contrats = $jobManager->GetContrats($_SESSION['activebase']);
-$contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
+$contrats = $Contrats->GetAll($_SESSION['activebase']);
 
 foreach ($contrats as $row): ?>
                   <option value="<?=$row['id'];?>">

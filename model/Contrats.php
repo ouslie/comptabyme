@@ -3,11 +3,11 @@ require_once "model/Manager.php";
 class Contrats extends Manager
 {
 
-    public function Set($name, $is_recette, $id_base)
+    public function Set($name, $debcontrat, $endcontrat, $id_cat, $salaire, $id_base)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO contrats SET name = :name, is_recette = :is_recette, id_base = :id_base');
-        $req->execute(array('name' => $name, 'is_recette' => $is_recette, 'id_base' => $id_base));
+        $req = $db->prepare('INSERT INTO contrats SET name = :name, debcontrat = :debcontrat,endcontrat = :endcontrat,id_cat = :id_cat,salaire = :salaire, id_base = :id_base');
+        $req->execute(array('name' => $name, 'debcontrat' => $debcontrat, 'endcontrat' => $endcontrat, 'id_cat' => $id_cat,'salaire' => $salaire,  'id_base' => $id_base));
         $data = $db->lastInsertId();
 
         return $data;
@@ -43,11 +43,11 @@ class Contrats extends Manager
         return $data;
     }
 
-    public function Update($colname,$colvalue,$id)
+    public function Update($colname, $colvalue, $id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare("UPDATE contrats SET ".$colname." = :colvalue WHERE id = :id");
-        $data = $req->execute(array('colvalue' => $colvalue,'id' => $id));
+        $req = $db->prepare("UPDATE contrats SET " . $colname . " = :colvalue WHERE id = :id");
+        $data = $req->execute(array('colvalue' => $colvalue, 'id' => $id));
         return $data;
     }
 }

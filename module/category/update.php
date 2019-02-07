@@ -9,5 +9,4 @@ $tablename = $_POST['tablename'];
 $return = false;
 
 $return = $Categories->Update($colname,$value,$id);
-echo $return;
 echo $return ? "ok" : "error";
