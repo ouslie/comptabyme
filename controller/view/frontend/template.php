@@ -110,7 +110,7 @@
                                 <a class="nav-link <?php if ($_GET['module'] == 'transaction' && $_GET['action'] == 'list') {
                                                         echo 'active';
                                                     } ?>"
-                                    href="index.php?module=transaction&action=list"><i class="fa fa-fw fa-rocket"></i>Transaction</a>
+                                    href="index.php?module=transactions&action=list"><i class="fa fa-fw fa-rocket"></i>Transactions</a>
 
                             </li>
                             <li class="nav-item">

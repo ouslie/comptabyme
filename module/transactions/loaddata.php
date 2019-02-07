@@ -1,58 +1,35 @@
 <?php
-include '../../global/config.php';
-include '../../model/EditableGrid.php';
-require_once '../../lib/pdo2.php';
-
-$pdo = PDO2::getInstance();
-$pdo->exec("set names utf8");
-
-function fetch_pairs($pdo, $query)
-{
-    if (!($res = $pdo->query($query))) {
-        return false;
-    }
-
-    $rows = array();
-    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        $first = true;
-        $key = $value = null;
-        foreach ($row as $val) {
-            if ($first) {$key = $val;
-                $first = false;} else { $value = $val;
-                break;}
-        }
-        $rows[$key] = $value;
-    }
-    return $rows;
-}
+$Transactions = new Transactions;
+$Categories = new Categories;
+$Bank = new Bank;
+$Contrats = new Contrats;
 
 $grid = new EditableGrid();
+$base = $_SESSION['activebase'];
 
-//$grid->addColumn('id', 'ID', 'integer', null, false);
+$grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('date2', 'Date', 'date');
-$grid->addColumn('id_type', 'Type', 'string', fetch_pairs($pdo, 'SELECT id, name FROM type'), true);
-$grid->addColumn('id_category', 'Catégorie', 'string', fetch_pairs($pdo, 'SELECT id, name FROM category WHERE id_base = ' . $_SESSION['activebase'] . ''), true);
+$grid->addColumn('id_type', 'Type', 'string',["2" => "Dépense","1" => "Recette"], true);
+$grid->addColumn('id_category', 'Catégorie', 'string', $Categories->ListAllMy($base), true);
 $grid->addColumn('third', 'Tiers', 'string');
 $grid->addColumn('comment', 'Commentaire', 'string');
 $grid->addColumn('amount', 'Montant', 'float');
 $grid->addColumn('tally', 'Pointage', 'boolean');
-$base = $_SESSION['activebase'];
-$sql = "SELECT id, name FROM bank WHERE id_base = $base AND system = 0";
-$grid->addColumn('id_bank', 'Banque', 'string', fetch_pairs($pdo, $sql), true);
+$grid->addColumn('id_bank', 'Banque', 'string', $Bank->ListMyWithoutSys($base), true);
 if ($_SESSION['activecontrats'] == 1) 
 {
-    $grid->addColumn('id_contrat', 'Contrats', 'string', fetch_pairs($pdo, 'SELECT id, name FROM contrats WHERE id_base = ' . $_SESSION['activebase'] . ''), true);
+    $grid->addColumn('id_contrat', 'Contrats', 'string', $Contrats->ListMy($base), true);
 }
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
 
-$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'demo';
+$mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'transactions';
 
 error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
 $query = "SELECT id, third, comment, id_type, amount, tally, id_bank, id_category, id_base, date_format(date, '%d/%m/%Y') as date2, date, id_contrat FROM $mydb_tablename WHERE id_base = $base";
 $queryCount = "SELECT count(id) as nb FROM $mydb_tablename WHERE id_base = $base";
 
-$totalUnfiltered = $pdo->query($queryCount)->fetch()[0];
+$totalUnfiltered = $Transactions->Loaddata($queryCount)->fetch()[0];
 $total = $totalUnfiltered;
 
 $page = 0;
@@ -69,7 +46,7 @@ if (isset($_GET['filter']) && $_GET['filter'] != "")
     $filter = $_GET['filter'];
     $query .= ' AND third like "%'.$filter.'%"';
     $queryCount .= ' AND third like "%'.$filter.'%"';
-    $total = $pdo->query($queryCount)->fetch()[0];
+    $total = $Transactions->Loaddata($queryCount)->fetch()[0];
 }
 
 if ($_GET['sort'] == "date2") {$_GET['sort'] = "date";}
@@ -86,10 +63,7 @@ error_log("totalUnfiltered = " . $totalUnfiltered);
 
 $grid->setPaginator(ceil($total / $rowByPage), (int) $total, (int) $totalUnfiltered, null);
 error_log($query);
-$result = $pdo->query($query);
-
-// close PDO
-$pdo = null;
+$result = $Transactions->Loaddata($query);
 
 // envoie data
 $grid->renderJSON($result, false, false, !isset($_GET['data_only']));

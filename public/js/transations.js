@@ -4,7 +4,7 @@
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse)
 {      
 	$.ajax({
-		url: 'index.php?module=transaction&action=update',
+		url: 'index.php?module=transactions&action=update',
 		type: 'POST',
 		dataType: "html",
 	   		data: {
@@ -63,7 +63,7 @@ function DatabaseGrid()
 
 DatabaseGrid.prototype.fetchGrid = function()  {
 	// call a PHP script to get the data
-	this.editableGrid.loadJSON("module/transaction/loaddata.php?db_tablename=demo");
+	this.editableGrid.loadJSON('index.php?module=transactions&action=loaddata&db_tablename=transactions');
 };
 
 DatabaseGrid.prototype.deleteRow = function(id) 
@@ -74,7 +74,7 @@ DatabaseGrid.prototype.deleteRow = function(id)
   if ( confirm('Voulez vous bien suprimer la transaction ' + id )  ) {
 
         $.ajax({
-		url: 'index.php?module=transaction&action=delete',
+		url: 'index.php?module=transactions&action=delete',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -104,7 +104,7 @@ DatabaseGrid.prototype.addRow = function(id)
   var self = this;
 
         $.ajax({
-		url: 'index.php?module=transaction&action=add',
+		url: 'index.php?module=transactions&action=add',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -116,7 +116,8 @@ DatabaseGrid.prototype.addRow = function(id)
 			id_type:  $("#id_type").val(),
 			amount:  $("#amount").val(),
 			date:  $("#date").val(),
-			id_contrat:  $("#id_contrat").val()
+			id_contrat:  $("#id_contrat").val(),
+			tally:  $("#tally").is(':checked') ? 1 : 0
 
 
 

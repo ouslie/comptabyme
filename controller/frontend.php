@@ -6,6 +6,7 @@ require_once 'model/FactureManager.php';
 require_once 'model/Categories.php';
 require_once 'model/Contrats.php';
 require_once 'model/Bank.php';
+require_once 'model/Transactions.php';
 include 'model/EditableGrid.php';
 require_once 'lib/pdo2.php';
 require_once 'lib/pdf/fpdf.php';

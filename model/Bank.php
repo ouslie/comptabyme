@@ -33,17 +33,6 @@ class Bank extends Manager
         return $data;
     }
 
-    public function GetAllWithoutSystem($id_base)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM bank WHERE id_base = :id_base AND system = 0');
-        $req->execute(array('id_base' => $id_base));
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-
-        return $data;
-    }
-
-
     public function Delete($id)
     {
         $db = $this->dbConnect();
@@ -59,5 +48,31 @@ class Bank extends Manager
         $req = $db->prepare("UPDATE bank SET " . $colname . " = :colvalue WHERE id = :id");
         $data = $req->execute(array('colvalue' => $colvalue, 'id' => $id));
         return $data;
+    }
+
+    public function ListMyWithoutSys($base)
+    {
+        $db = $this->dbConnect();
+
+        if (!($res = $db->query('SELECT id, name FROM bank WHERE id_base = ' . $base . ' AND system = 0'))) {
+            return false;
+        }
+
+        $rows = array();
+        while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+            $first = true;
+            $key = $value = null;
+            foreach ($row as $val) {
+                if ($first) {
+                    $key = $val;
+                    $first = false;
+                } else {
+                    $value = $val;
+                    break;
+                }
+            }
+            $rows[$key] = $value;
+        }
+        return $rows;
     }
 }

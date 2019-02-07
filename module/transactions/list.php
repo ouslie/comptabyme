@@ -81,11 +81,11 @@
                   <option value="">--Catégorie--</option>
                   <?php
 
-      $Categories = $Categories->GetAll($_SESSION['activebase']);
+      $Categories = $Categories->ListAllMy($_SESSION['activebase']);
 
-      foreach ($Categories as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
+      foreach ($Categories as $row => $cat_name): ?>
+                  <option value="<?=$row;?>">
+                    <?=$cat_name;?>
                   </option>
                   <?php endforeach;?>
 
@@ -122,11 +122,10 @@
                 <select id="id_bank" name="id_bank" class="form-control">
                   <option value="">--Banque--</option>
                   <?php
-    $bank = $Bank->GetAllWithoutSystem($_SESSION['activebase']);
-
-    foreach ($bank as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
+    $bank = $Bank->ListMyWithoutSys($_SESSION['activebase']);
+    foreach ($bank as $row => $bank_name): ?>
+                  <option value="<?=$row;?>">
+                    <?=$bank_name;?>
                   </option>
                   <?php endforeach;?>
 
@@ -143,11 +142,11 @@
 
                   <option value="">--Contrats--</option>
                   <?php
-$contrats = $Contrats->GetAll($_SESSION['activebase']);
+$contrats = $Contrats->ListMy($_SESSION['activebase']);
 
-foreach ($contrats as $row): ?>
-                  <option value="<?=$row['id'];?>">
-                    <?=$row['name'];?>
+foreach ($contrats as $row => $contrat_name): ?>
+                  <option value="<?=$row;?>">
+                    <?=$contrat_name;?>
                   </option>
                   <?php endforeach;?>
 
@@ -157,12 +156,12 @@ foreach ($contrats as $row): ?>
               </div>
             </div>
             <?php }?>
-
-
-
-
-
-
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right">Pointage</label>
+              <div class="col-9 col-lg-10">
+                <input type="checkbox" class="form-control" id="tally" name="tally">
+              </div>
+            </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
               <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
@@ -196,5 +195,7 @@ foreach ($contrats as $row): ?>
   </script>
 
   <?php
+    print_r($bank);
+
 $content = ob_get_clean();
 require 'controller/view/frontend/template.php';?>
