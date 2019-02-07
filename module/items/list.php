@@ -11,7 +11,7 @@
 <div class="row">
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="page-header">
-<h2 class="pageheader-title">Facture N° <? echo $row['num']; ?></h2>
+<h2 class="pageheader-title">Facture N° <?php echo  $row['num']; ?></h2>
 <div class="page-breadcrumb">
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
@@ -25,8 +25,8 @@
 </div>
   <div class="card">
     <div id="toolbar" class="card-header">
-      <h3 style="display:inline;margin:0% 60% 0% 0%"> Clients :  <? echo $client['name']; ?> </h3>
-      <h3 style="display:inline">   Date :  <? echo $row['date']; ?></h3>
+      <h3 style="display:inline;margin:0% 60% 0% 0%"> Clients :  <?php echo  $client['name']; ?> </h3>
+      <h3 style="display:inline">   Date :  <?php echo  $row['date']; ?></h3>
       <br/>
       <br/>
 
@@ -34,7 +34,7 @@
         <a href="#" style="margin:0% 61% 0% 0% "class="btn btn-brand" data-toggle="modal" data-target="#exampleModal">
         Ajouter un item
       </a>
-     <h3 style="text-align:right;display:inline"> Solde :  <? echo $row['solde']; ?> €</h3>
+     <h3 style="text-align:right;display:inline"> Solde :  <?php echo $row['solde']; ?> €</h3>
     </div>
     <div class="card-body">
       <div class="table-responsive">
