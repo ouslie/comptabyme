@@ -195,7 +195,5 @@ foreach ($contrats as $row => $contrat_name): ?>
   </script>
 
   <?php
-    print_r($bank);
-
 $content = ob_get_clean();
 require 'controller/view/frontend/template.php';?>
