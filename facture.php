@@ -46,13 +46,24 @@ $invoice->set("invoice", [
 ]);
 $row_client = $Factures->GetClient($var_id_facture);
 // 2C - BILL TO
-$invoice->set("billto", [
-	$row_client['name'],
-	$row_client['address'], 
-	$row_client['cp'] . "&nbsp;	" . $row_client['city'],
-	"France"
+if($row_client["company"]==NULL){
+	$invoice->set("billto", [
+		$row_client['name'],
+		$row_client['address'], 
+		$row_client['cp'] . "&nbsp;	" . $row_client['city'],
+		"France"
+	]);
+} else {
+	$invoice->set("billto", [
+		$row_client['company'],
+		$row_client['name'],
+		$row_client['address'], 
+		$row_client['cp'] . "&nbsp;	" . $row_client['city'],
+		"France"
+	
+	]);
+}
 
-]);
 
 // 2E - ITEMS
 // YOU CAN JUST DUMP THE ENTIRE ARRAY IN USING SET, BUT HERE IS HOW TO ADD ONE AT A TIME... 
