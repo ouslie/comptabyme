@@ -48,16 +48,14 @@ $row_client = $Factures->GetClient($var_id_facture);
 // 2C - BILL TO
 if($row_client["company"]==NULL){
 	$invoice->set("billto", [
-		$row_client['company'],
 		$row_client['name'],
 		$row_client['address'], 
 		$row_client['cp'] . "&nbsp;	" . $row_client['city'],
 		"France"
-	
 	]);
-
 } else {
 	$invoice->set("billto", [
+		$row_client['company'],
 		$row_client['name'],
 		$row_client['address'], 
 		$row_client['cp'] . "&nbsp;	" . $row_client['city'],
