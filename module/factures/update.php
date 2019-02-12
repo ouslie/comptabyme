@@ -30,7 +30,7 @@ if($colname == "date_payment") {
     }
 }
 
-if($colname == "id_client" ||$colname == "id_category" || $colname == "date" 
+if($colname == "id_client" ||$colname == "id_category" || $colname == "date" || $colname == "moyen_payment" 
     ) {
         $return = $Factures->Update($colname,$value,$id);
 
