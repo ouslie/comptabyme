@@ -29,7 +29,7 @@ class JobManager extends Manager
     public function GetRecetteMonth($date, $base_active)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 1 AND id_base = :active_base');
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 1 AND id_category <> 31 AND id_base = :active_base');
         $req->execute(array('date' => $date, 'active_base' => $base_active));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
@@ -41,7 +41,7 @@ class JobManager extends Manager
     public function GetDepenseMonth($date, $base_active)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 2 AND id_base = :active_base');
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 2 AND id_category <> 31 AND id_base = :active_base');
         $req->execute(array('date' => $date, 'active_base' => $base_active));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
