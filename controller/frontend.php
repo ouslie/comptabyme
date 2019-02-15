@@ -89,9 +89,10 @@ function GetDashboard()
     }
     
     $internal_cat = $Categories->GetInternal($_SESSION['activebase']);
-    if (isset($internal_cat['is_internal']))
+
+    if (isset($internal_cat['id']))
     {
-        $internal_cat = $internal_cat['is_internal'];
+        $internal_cat = $internal_cat['id'];
     } else 
     {
         $internal_cat = 0;
@@ -99,8 +100,8 @@ function GetDashboard()
     }
     //Widget init 
     $month = date('m');
-    $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase'],$internal_cat['is_internal']); // Appel d'une fonction de cet objet
-    $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase'],$internal_cat['is_internal']); // Appel d'une fonction de cet objet
+    $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase'],$internal_cat); // Appel d'une fonction de cet objet
+    $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase'],$internal_cat); // Appel d'une fonction de cet objet
     $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
     $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
 
@@ -109,8 +110,10 @@ function GetDashboard()
     $GraphTypeMonth = $jobManager->GraphTypeMonth($totalbank['id']);
     $phpobj = json_encode($GraphTypeMonth);
     require 'view/frontend/dashboard.php';
+  echo  $internal_cat;
 
 }
+
 
 function ByJob()
 {
