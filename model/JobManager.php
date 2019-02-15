@@ -26,11 +26,11 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function GetRecetteMonth($date, $base_active)
+    public function GetRecetteMonth($date, $base_active,$excludecat)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 1 AND id_category <> 31 AND id_base = :active_base');
-        $req->execute(array('date' => $date, 'active_base' => $base_active));
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 1 AND id_category <> :excludecat AND id_base = :active_base');
+        $req->execute(array('date' => $date, 'active_base' => $base_active, 'excludecat' => $excludecat));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
             $data['amount'] = 0;
@@ -38,11 +38,11 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function GetDepenseMonth($date, $base_active)
+    public function GetDepenseMonth($date, $base_active,$excludecat)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 2 AND id_category <> 31 AND id_base = :active_base');
-        $req->execute(array('date' => $date, 'active_base' => $base_active));
+        $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 2 AND id_category <> :excludecat AND id_base = :active_base');
+        $req->execute(array('date' => $date, 'active_base' => $base_active, 'excludecat' => $excludecat));
         $data = $req->fetch();
         if (!isset($data['amount'])) {
             $data['amount'] = 0;

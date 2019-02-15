@@ -73,21 +73,27 @@ function ValidRegister()
 function GetDashboard()
 {
     $jobManager = new JobManager();
+    $Categories = new Categories();
 
     //base par défaut
     $defaultbase = $jobManager->GetBaseDefault($_SESSION['id']);
+
     $base = $jobManager->GetBaseName($defaultbase['id']);
+
     if (!isset($_SESSION['activebase'])) {
         $_SESSION['activebase'] = $defaultbase['id'];
         $_SESSION['activebasename'] = $base['name'];
         $_SESSION['activecontrats'] = $base['activecontrats'];
         $_SESSION['activeca'] = $base['activeca'];
+        $_SESSION['is_internal'] = $base['is_internal'];
     }
     
+    $internal_cat = $Categories->GetInternal($_SESSION['activebase']);
+
     //Widget init 
     $month = date('m');
-    $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
-    $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase']); // Appel d'une fonction de cet objet
+    $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase'],$internal_cat['is_internal']); // Appel d'une fonction de cet objet
+    $DepenseMonth = $jobManager->GetDepenseMonth($month, $_SESSION['activebase'],$internal_cat['is_internal']); // Appel d'une fonction de cet objet
     $RecetteAVenir = $jobManager->GetRecetteAVenir($_SESSION['activebase']);
     $DepenseAVenir = $jobManager->GetDepenseAVenir($_SESSION['activebase']);
 
@@ -96,6 +102,7 @@ function GetDashboard()
     $GraphTypeMonth = $jobManager->GraphTypeMonth($totalbank['id']);
     $phpobj = json_encode($GraphTypeMonth);
     require 'view/frontend/dashboard.php';
+
 }
 
 function ByJob()

@@ -33,6 +33,15 @@ class Categories extends Manager
         return $data;
     }
 
+    public function GetInternal($id_base)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT is_internal FROM category WHERE id_base = :id_base AND is_internal = 1');
+        $req->execute(array('id_base' => $id_base));
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
 
     public function Delete($id_category)
     {
