@@ -89,7 +89,14 @@ function GetDashboard()
     }
     
     $internal_cat = $Categories->GetInternal($_SESSION['activebase']);
+    if (isset($internal_cat['is_internal']))
+    {
+        $internal_cat = $internal_cat['is_internal'];
+    } else 
+    {
+        $internal_cat = 0;
 
+    }
     //Widget init 
     $month = date('m');
     $RecetteMonth = $jobManager->GetRecetteMonth($month, $_SESSION['activebase'],$internal_cat['is_internal']); // Appel d'une fonction de cet objet
