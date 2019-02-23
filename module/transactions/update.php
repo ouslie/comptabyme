@@ -11,9 +11,11 @@ $return = false;
 if ($colname == "amount") {
     $value = floatval(str_replace(',', '.', str_replace('.', '', $value)));
     $result = $Transactions->GetType($id);
-
-    if ($result['id_type'] == 2) {
-        $value = -$value;
+    if ($result['0']['id_type'] == 2) {
+        if ((substr($value, 0, 1))=="-"){
+        } else {
+            $value = -$value;
+        }
     }
 }
 
