@@ -9,9 +9,8 @@ $this->data = "<!DOCTYPE html><html><head><style>" . "html,body{font-family:Deja
 
 // COMPANY LOGO + INFORMATION
 $this->data .= "<table id='company'><tr><td id='co-left'><div id='bigi'>Facture #" . $this->invoice[0][1] . "</div><div id='co-addr'>";
-for ($i = 2;
+for ($i = 1;
     $i < count($this->company);
-
     $i++) {
     $this->data .= $this->company[$i] . "<br>";
 }

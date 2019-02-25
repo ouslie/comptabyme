@@ -9,6 +9,7 @@
 /* [STEP 1 - CREATE NEW INVOICR OBJECT] */
 require 'lib/invoicr/invoicr.php';
 require 'global/config.php';
+require 'model/Bases.php';
 require 'model/Factures.php';
 
 if (isset($_GET['hash'])) {
@@ -33,13 +34,15 @@ $invoice = new Invoicr();
 /* [STEP 2 - FEED ALL THE INFORMATION] */
 // 2A - COMPANY INFORMATION
 // OR YOU CAN PERMANENTLY CODE THIS INTO THE LIBRARY ITSELF
+$Bases = New Bases;
+$compagny = $Bases->GetCompagny($facture_infos['id_base']);
 $invoice->set("company", [
-    "logo.png",
-    "Anaud GUY | Webmaster",
-    "5 rue de la rotonde 25000 Besançon France",
-    "Téléphone: 07 86 25 09 40",
-    "https://www.arnaudguy.fr",
-    "contact@arnaudguy.fr",
+    "public/logo/".$compagny['logo'],
+    $compagny['compagnyname'],
+    $compagny['compagnyadress'],
+    $compagny['compagnyphone'],
+    $compagny['compagnymail'],
+    $compagny['compagnyweb'],
 ]);
 
 if ($facture_infos["date_payment"] == "0000-00-00") {$facture_infos["date_payment"] = null;}
@@ -93,9 +96,9 @@ $invoice->set("totals", [
 $invoice->set("notes", [
     "<b>Condition de réglement</b> : 30 jours",
     "<b>Intérêt de retard</b> : 1% par mois",
-    "<b>IBAN </b> : FR76 1254 8029 9846 9953 3150 529",
-    "<b>BIC</b> : AXABFRPP ",
-    "<b>Paypal</b> : contact@arnaudguy.fr ",
+    "<b>IBAN : </b>".$compagny['iban'],
+    "<b>BIC : </b>".$compagny['bic'],
+    "<b>Paypall : </b>".$compagny['paypal'],
     "<b>Notes</b> :<br/> Conformément au décret n° 2012-1115 du 2 octobre 2012, et dans le cas d’une facture émise vers un professionnel, le montant de l’indemnité
 	forfaitaire pour frais de recouvrement due au créancier en cas de retard de paiement est fixé à 40 euros.",
 

@@ -57,6 +57,15 @@ $grid->addColumn('name', 'Nom', 'string');
 $grid->addColumn('defaultbase', 'Base par défaut', 'boolean');
 $grid->addColumn('activeca', 'Module CA', 'boolean');
 $grid->addColumn('activecontrats', 'Module contrats', 'boolean');
+$grid->addColumn('compagnyname', 'Société', 'string');
+$grid->addColumn('compagnyadress', 'Adresse', 'string');
+$grid->addColumn('compagnymail', 'Mail', 'string');
+$grid->addColumn('compagnyphone', 'Téléphone', 'string');
+$grid->addColumn('compagnyweb', 'Web', 'string');
+$grid->addColumn('iban', 'iban', 'string');
+$grid->addColumn('bic', 'bic', 'string');
+$grid->addColumn('paypal', 'paypal', 'string');
+$grid->addColumn('logo', 'logo', 'string');
 
 //$grid->addColumn('action', 'Action', 'html', null, false, 'id');
 

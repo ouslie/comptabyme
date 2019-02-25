@@ -2,6 +2,7 @@
 // Chargement des classes
 require_once 'model/JobManager.php';
 require_once 'model/Factures.php';
+require_once 'model/Bases.php';
 require_once 'model/Clients.php';
 require_once 'model/Categories.php';
 require_once 'model/Contrats.php';
