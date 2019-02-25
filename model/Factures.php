@@ -61,6 +61,17 @@ class Factures extends Manager
         return $data;
     }
 
+    public function GetFactureByHash($hash)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM factures WHERE hash = :hash ');
+        $req->execute(array('hash' => $hash));
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
 
     public function GetClient($id_facture)
     {
@@ -127,6 +138,14 @@ class Factures extends Manager
         $req->closeCursor();
     }
 
+    public function SetHashFacture($id_facture, $hash)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE factures SET hash = :hash WHERE id = :id_facture ');
+        $req->execute(array('hash' => $hash, 'id_facture' => $id_facture));
+        $req->closeCursor();
+    }
+
 
 
     public function WebserviceAddFacture($id_base, $useridfacture, $id_category)
@@ -145,6 +164,12 @@ class Factures extends Manager
         $req = $db->prepare('UPDATE factures SET num = :num_facture WHERE id = :id_facture');
         $req->execute(array('num_facture' => $num_facture, 'id_facture' => $id_facture));
         $req->closeCursor();
+        $hash = sha1($num_facture);
+        $req = $db->prepare('UPDATE factures SET hash = :hash WHERE id = :id_facture');
+        $req->execute(array('hash' => $hash,'id_facture' => $id_facture));
+        $req->closeCursor();
+        return $hash;
+
     }
 
     public function WebserviceInsertItem($id_facture, $amount, $designation, $quantity)
@@ -165,4 +190,3 @@ class Factures extends Manager
     }
 
 }
-

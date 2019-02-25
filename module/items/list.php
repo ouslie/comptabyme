@@ -25,16 +25,18 @@
 </div>
   <div class="card">
     <div id="toolbar" class="card-header">
-      <h3 style="display:inline;margin:0% 60% 0% 0%"> Clients :  <?php echo  $client['name']; ?> </h3>
+      <h3 style="display:inline;margin:0% 50% 0% 0%"> Clients :  <?php echo  $client['name']; ?> </h3>
       <h3 style="display:inline">   Date :  <?php echo  $row['date']; ?></h3>
       <br/>
       <br/>
 
         <!-- Button trigger modal -->
-        <a href="#" style="margin:0% 61% 0% 0% "class="btn btn-brand" data-toggle="modal" data-target="#exampleModal">
+        <a href="#" style="margin:0% 61% 0% 0% " class="btn btn-brand" data-toggle="modal" data-target="#exampleModal">
         Ajouter un item
       </a>
      <h3 style="text-align:right;display:inline"> Solde :  <?php echo $row['solde']; ?> €</h3>
+      <button onclick="Copypubliclink()" class="btn btn-brand" >Lien public</button>
+      <input type="text" value="https://gestion.arnaudguy.fr/facture.php?hash=<?= $row['hash'] ?>" id="hash">
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -125,6 +127,19 @@
       });
 
     }
+    function Copypubliclink() {
+  /* Get the text field */
+  var copyText = document.getElementById("hash");
+
+  /* Select the text field */
+  copyText.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
   </script>
 
   <?php
