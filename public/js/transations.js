@@ -115,3 +115,34 @@ DatabaseGrid.prototype.addRow = function (id) {
 		async: true
 	});
 };
+
+
+DatabaseGrid.prototype.addRowInternal = function (id) {
+
+	var self = this;
+
+	$.ajax({
+		url: 'index.php?module=transactions&action=add&category=internal',
+		type: 'POST',
+		dataType: "html",
+		data: {
+			tablename: self.editableGrid.name,
+			id_bank_recette: $("#id_bank_recette").val(),
+			id_bank_depense: $("#id_bank_depense").val(),
+			amountinternal: $("#amountinternal").val(),
+			dateinternal: $("#dateinternal").val(),
+			tallyinternal: $("#tallyinternal").is(':checked') ? 1 : 0
+		},
+		success: function (response) {
+			if (response == "ok") {
+				message("success", "Transaction interne ajouté");
+				self.fetchGrid();
+			} else
+				message("error", "Error occured");
+		},
+		error: function (XMLHttpRequest, textStatus, exception) {
+			alert("Ajax failure\n" + errortext);
+		},
+		async: true
+	});
+};

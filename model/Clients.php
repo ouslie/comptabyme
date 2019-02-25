@@ -63,7 +63,7 @@ class Clients extends Manager
     {
         $db = $this->dbConnect();
 
-        if (!($res = $db->query('SELECT id, name FROM clients WHERE id_base = ' . $base . ''))) {
+        if (!($res = $db->query('SELECT id, name FROM clients WHERE id_base = ' . $base . ' ORDER BY name ASC'))) {
             return false;
         }
 

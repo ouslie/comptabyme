@@ -28,6 +28,9 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 if (isset($_GET['sort']) && $_GET['sort'] != "") 
 {
     $query .= " ORDER BY " . $_GET['sort'] . ($_GET['asc'] == "0" ? " DESC " : "");
+} else {
+    $query .= " ORDER BY name";
+
 }
 
 $rowByPage = 50;

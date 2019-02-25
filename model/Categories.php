@@ -26,7 +26,7 @@ class Categories extends Manager
     public function GetAll($id_base)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM category WHERE id_base = :id_base');
+        $req = $db->prepare('SELECT * FROM category WHERE id_base = :id_base ORDER BY name ASC');
         $req->execute(array('id_base' => $id_base));
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,7 +64,7 @@ class Categories extends Manager
     {
         $db = $this->dbConnect();
 
-        if (!($res = $db->query('SELECT id, name FROM category WHERE id_base = ' . $base . ''))) {
+        if (!($res = $db->query('SELECT id, name FROM category WHERE id_base = ' . $base . ' ORDER BY name ASC'))) {
             return false;
         }
 
@@ -89,7 +89,7 @@ class Categories extends Manager
     {
         $db = $this->dbConnect();
 
-        if (!($res = $db->query('SELECT id, name FROM category WHERE id_base = ' . $base . ' AND is_recette = 1'))) {
+        if (!($res = $db->query('SELECT id, name FROM category WHERE id_base = ' . $base . ' AND is_recette = 1 ORDER BY name ASC'))) {
             return false;
         }
 
