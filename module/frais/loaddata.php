@@ -12,12 +12,11 @@ $grid->addColumn('endcontrat', 'Date de fin', 'date', null, true);
 $grid->addColumn('paymentdate', 'Date de paiement', 'date', null, true);
 $grid->addColumn('amount', 'Montant', 'float', null, false);
 $grid->addColumn('id_cat', 'Cat', 'string', null, false);
-$grid->addColumn('paymentisok', 'Pointage', 'boolean');
 $grid->addColumn('editfrais', 'Action', 'html', null, false, 'id');
 
 //error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT date_format(debcontrat, '%d/%m/%Y') as debcontrat,date_format(endcontrat, '%d/%m/%Y') as endcontrat,date_format(paymentdate, '%d/%m/%Y') as paymentdate ,id, id_cat, id_base, name,comment,salaire, amount, paymentisok FROM frais WHERE id_base = $base";
+$query = "SELECT date_format(debcontrat, '%d/%m/%Y') as debcontrat,date_format(endcontrat, '%d/%m/%Y') as endcontrat,date_format(paymentdate, '%d/%m/%Y') as paymentdate ,id, id_cat, id_base, name,comment, amount FROM frais WHERE id_base = $base";
 $queryCount = "SELECT count(id) as nb FROM frais WHERE id_base = $base";
 
 $totalUnfiltered = $Frais->Loaddata($queryCount)->fetch()[0];
