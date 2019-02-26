@@ -56,55 +56,54 @@
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend"><span class="input-group-text">End</span></div>
               <input type="date" class="form-control" id="endcontrat" name="endcontrat">
-            </div>        
+            </div>
             <select id="id_category" name="id_category" class="form-control">
-                  <option value="">--Catégories--</option>
-                  <?php
-        $Categories = new Categories;
-        $categories = $Categories->ListFraisMy($_SESSION['activebase']);
-        foreach ($categories as $row => $categoriesname): ?>
-                  <option value="<?=$row;?>">
-                    <?=$categoriesname;?>
-                  </option>
-                  <?php endforeach;?>
+              <option value="">--Catégories--</option>
+              <?php
+$Categories = new Categories;
+$categories = $Categories->ListFraisMy($_SESSION['activebase']);
+foreach ($categories as $row => $categoriesname): ?>
+              <option value="<?=$row;?>">
+                <?=$categoriesname;?>
+              </option>
+              <?php endforeach;?>
 
-                </select>
-              </div>
-            </div>
-
-
-            <div class="modal-footer">
-              <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
-              <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
-            </div>
-
+            </select>
           </div>
         </div>
+
+
+        <div class="modal-footer">
+          <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+          <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
+        </div>
+
       </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- modal  -->
-    <!-- ============================================================== -->
   </div>
+</div>
+<!-- ============================================================== -->
+<!-- modal  -->
+<!-- ============================================================== -->
 
-  <script type="text/javascript">
-    var datagrid;
+<script type="text/javascript">
+  var datagrid;
 
-    window.onload = function () {
-      datagrid = new DatabaseGrid();
-      // key typed in the filter field
-      $("#filter").keyup(function () {
-        datagrid.editableGrid.filter($(this).val());
-        // To filter on some columns, you can set an array of column index
-        //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
-      });
-      $("#addbutton").click(function () {
-        datagrid.addRow();
-      });
+  window.onload = function () {
+    datagrid = new DatabaseGrid();
+    // key typed in the filter field
+    $("#filter").keyup(function () {
+      datagrid.editableGrid.filter($(this).val());
+      // To filter on some columns, you can set an array of column index
+      //datagrid.editableGrid.filter( $(this).val(), [0,3,5]);
+    });
+    $("#addbutton").click(function () {
+      datagrid.addRow();
+    });
 
-    }
-  </script>
+  }
+</script>
 
-  <?php
+<?php
 $content = ob_get_clean();
 require 'controller/view/frontend/template.php';?>

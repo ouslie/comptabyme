@@ -202,6 +202,13 @@
 
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link <?php if ($_GET['module'] == 'sscategories' && $_GET['action'] == 'list') {
+                                                        echo 'active';
+                                                    } ?>"
+                                    href="index.php?module=sscategories&action=list"><i class="fas fa-cog"></i>Sous Catégories</a>
+
+                            </li>
 
 
                             <li class="nav-item">

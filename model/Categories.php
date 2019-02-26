@@ -152,6 +152,4 @@ class Categories extends Manager
         return $req;
     }
 
-    
-    
 }

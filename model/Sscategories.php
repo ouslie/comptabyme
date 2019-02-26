@@ -3,7 +3,16 @@ require_once "model/Manager.php";
 class Sscategories extends Manager
 {
 
-  
+    public function Set($name, $id_parent, $id_base)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO sscategories SET name = :name, id_parent = :id_parent, id_base = :id_base');
+        $req->execute(array('name' => $name, 'id_parent' => $id_parent, 'id_base' => $id_base));
+        $data = $db->lastInsertId();
+
+        return $data;
+    }
+
     public function GetAll($id_parent)
     {
         $db = $this->dbConnect();
@@ -11,6 +20,23 @@ class Sscategories extends Manager
         $req->execute(array('id_parent' => $id_parent));
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
+        return $data;
+    }
+    
+    public function Delete($id_sscategory)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM sscategories WHERE id = :id');
+        $data = $req->execute(array('id' => $id_sscategory));
+
+        return $data;
+    }
+
+    public function Update($colname, $colvalue, $id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE sscategories SET " . $colname . " = :colvalue WHERE id = :id");
+        $data = $req->execute(array('colvalue' => $colvalue, 'id' => $id));
         return $data;
     }
 
