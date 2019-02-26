@@ -151,10 +151,10 @@
                             <?php if ($_SESSION['activecontrats'] == 1) { ?>
 
                             <li class="nav-item">
-                                <a class="nav-link <?php if ($_GET['module'] == 'contrats' && $_GET['action'] == 'list') {
+                                <a class="nav-link <?php if ($_GET['module'] == 'frais' && $_GET['action'] == 'list') {
                                                         echo 'active';
                                                     } ?>"
-                                    href="index.php?module=contrats&action=list"><i class="fas fa-fw fa-table"></i>Contrats</a>
+                                    href="index.php?module=frais&action=list"><i class="fas fa-fw fa-table"></i>Note de frais</a>
 
                             </li>
                             <?php 

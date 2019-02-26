@@ -1,6 +1,6 @@
 <?php ob_start();?>
 
-<script src="public/js/contrats.js"></script>
+<script src="public/js/frais.js"></script>
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
   <div class="card">
@@ -8,7 +8,7 @@
       <input type="text" id="filter" name="filter" placeholder="Filter par nom" />
       <!-- Button trigger modal -->
       <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Ajouter un contrat
+        Ajouter une note de frais
       </a>
     </div>
     <div class="card-body">
@@ -33,7 +33,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajout d'un contrat</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ajout d'une note de frais</h5>
           <a href="#" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </a>
@@ -43,7 +43,11 @@
 
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend"><span class="input-group-text">@</span></div>
-              <input type="text" placeholder="Nom du contrat" class="form-control" id="name" name="name">
+              <input type="text" placeholder="Destinataire" class="form-control" id="name" name="name">
+            </div>
+            <div class="input-group input-group-lg mb-3">
+              <div class="input-group-prepend"><span class="input-group-text"></span></div>
+              <input type="text" placeholder="Commentaire" class="form-control" id="comment" name="comment">
             </div>
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend"><span class="input-group-text">Deb</span></div>
@@ -52,28 +56,7 @@
             <div class="input-group input-group-lg mb-3">
               <div class="input-group-prepend"><span class="input-group-text">End</span></div>
               <input type="date" class="form-control" id="endcontrat" name="endcontrat">
-            </div>
-            <div class="input-group input-group-lg mb-3">
-              <div class="input-group-prepend"><span class="input-group-text">€</span></div>
-              <input type="text" placeholder="Salaire" class="form-control" id="salaire" name="salaire">
-            </div>
-
-
-            <select id="id_cat" name="id_cat" class="form-control form-control-lg">
-              <option value="">--Catégorie--</option>
-              <?php
-      $jobManager = new JobManager();
-      $categories = $jobManager->GetCategory($_SESSION['activebase']);
-      $categories = $categories->fetchAll(PDO::FETCH_ASSOC);
-
-      foreach ($categories as $row): ?>
-              <option value="<?=$row['id'];?>">
-                <?=$row['name'];?>
-              </option>
-              <?php endforeach;?>
-
-            </select>
-
+            </div>        
             <div class="modal-footer">
               <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
               <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>

@@ -9,6 +9,7 @@ $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('name', 'Nom', 'string', null, true);
 $grid->addColumn('is_recette', 'Est une recette ?', 'boolean');
 $grid->addColumn('is_internal', 'Est une catégorie interne ?', 'boolean');
+$grid->addColumn('is_frais', 'Est une catégorie frais ?', 'boolean');
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
 $mydb_tablename = (isset($_GET['db_tablename'])) ? stripslashes($_GET['db_tablename']) : 'category';
 

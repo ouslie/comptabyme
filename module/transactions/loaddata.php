@@ -2,7 +2,7 @@
 $Transactions = new Transactions;
 $Categories = new Categories;
 $Bank = new Bank;
-$Contrats = new Contrats;
+$Frais = new Frais;
 
 $grid = new EditableGrid();
 $base = $_SESSION['activebase'];
@@ -18,7 +18,7 @@ $grid->addColumn('tally', 'Pointage', 'boolean');
 $grid->addColumn('id_bank', 'Banque', 'string', $Bank->ListMyWithoutSys($base), true);
 if ($_SESSION['activecontrats'] == 1) 
 {
-    $grid->addColumn('id_contrat', 'Contrats', 'string', $Contrats->ListMy($base), true);
+    $grid->addColumn('id_contrat', 'Note de frais', 'string', $Frais->ListMy($base), true);
 }
 $grid->addColumn('action', 'Action', 'html', null, false, 'id');
 

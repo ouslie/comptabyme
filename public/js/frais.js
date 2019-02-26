@@ -3,7 +3,7 @@
  */
 function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue, row, onResponse) {
 	$.ajax({
-		url: 'index.php?module=contrats&action=update',
+		url: 'index.php?module=frais&action=update',
 		type: 'POST',
 		dataType: "html",
 		data: {
@@ -29,7 +29,7 @@ function updateCellValue(editableGrid, rowIndex, columnIndex, oldValue, newValue
 
 
 function DatabaseGrid() {
-	this.editableGrid = new EditableGrid("contrats", {
+	this.editableGrid = new EditableGrid("frais", {
 		enableSort: true,
 
 
@@ -65,7 +65,7 @@ function DatabaseGrid() {
 
 DatabaseGrid.prototype.fetchGrid = function () {
 	// call a PHP script to get the data
-	this.editableGrid.loadJSON("index.php?module=contrats&action=loaddata");
+	this.editableGrid.loadJSON("index.php?module=frais&action=loaddata");
 };
 
 
@@ -76,7 +76,7 @@ DatabaseGrid.prototype.deleteRow = function (id) {
 	if (confirm('Voulez vous bien suprimer la transaction ' + id)) {
 
 		$.ajax({
-			url: 'index.php?module=contrats&action=delete',
+			url: 'index.php?module=frais&action=delete',
 			type: 'POST',
 			dataType: "html",
 			data: {
@@ -106,17 +106,15 @@ DatabaseGrid.prototype.addRow = function (id) {
 	var self = this;
 
 	$.ajax({
-		url: 'index.php?module=contrats&action=add',
+		url: 'index.php?module=frais&action=add',
 		type: 'POST',
 		dataType: "html",
 		data: {
 			tablename: self.editableGrid.name,
 			name: $("#name").val(),
+			comment: $("#comment").val(),
 			debcontrat: $("#debcontrat").val(),
 			endcontrat: $("#endcontrat").val(),
-			salaire: $("#salaire").val(),
-			id_cat: $("#id_cat").val()
-
 
 
 		},

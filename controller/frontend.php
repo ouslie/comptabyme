@@ -5,7 +5,8 @@ require_once 'model/Factures.php';
 require_once 'model/Bases.php';
 require_once 'model/Clients.php';
 require_once 'model/Categories.php';
-require_once 'model/Contrats.php';
+require_once 'model/Sscategories.php';
+require_once 'model/Frais.php';
 require_once 'model/Bank.php';
 require_once 'model/Items.php';
 require_once 'model/Transactions.php';
@@ -33,6 +34,11 @@ function ModuleList($module)
 function ModuleAdd($module)
 {
     require 'module/' . $module . '/add.php';
+}
+
+function ModuleEdit($module)
+{
+    require 'module/' . $module . '/edit.php';
 }
 
 function ModuleUpdate($module)
@@ -224,16 +230,7 @@ function Cron()
             $jobManager->Hottresocron($_SESSION['activebase'], $tdate['id'], $totalmois, $idTotalBank['id']);
         }
     }
-    //Cron contrats
-    $contrats = $jobManager->GetContrats($_SESSION['activebase']);
-    $contrats = $contrats->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($contrats as $tcontrats) 
-    {
-        $recettecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '1', $tcontrats['id'], $tcontrats['id_cat']);
-        $depensecontrats = $jobManager->HotContratsCronSelect($_SESSION['activebase'], '2', $tcontrats['id'], $tcontrats['id_cat']);
-        $total = $recettecontrats['amount'] + $depensecontrats['amount'];
-        $jobManager->HotContratsCron($_SESSION['activebase'], $total, $tcontrats['id']);
-    }
+    
     header('Location: index.php');
 }
 

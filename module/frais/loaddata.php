@@ -1,26 +1,26 @@
 <?php
-$Contrats = new Contrats;
+$Frais = new Frais;
 $Categories = new Categories;
 $grid = new EditableGrid();
 $base = $_SESSION['activebase'];
 
 $grid->addColumn('id', 'ID', 'integer', null, false);
 $grid->addColumn('name', 'Nom', 'string', null, true);
+$grid->addColumn('comment', 'Commentaires', 'string', null, true);
 $grid->addColumn('debcontrat', 'Date de début', 'date', null, true);
 $grid->addColumn('endcontrat', 'Date de fin', 'date', null, true);
-$grid->addColumn('salaire', 'Salaire', 'float', null, true);
 $grid->addColumn('paymentdate', 'Date de paiement', 'date', null, true);
-$grid->addColumn('amount', 'Dépenses', 'float', null, false);
+$grid->addColumn('amount', 'Montant', 'float', null, false);
+$grid->addColumn('id_cat', 'Cat', 'string', null, false);
 $grid->addColumn('paymentisok', 'Pointage', 'boolean');
-$grid->addColumn('id_cat', 'Catégorie', 'string', $Categories->ListAllMy($base), true);
-$grid->addColumn('action', 'Action', 'html', null, false, 'id');
+$grid->addColumn('editfrais', 'Action', 'html', null, false, 'id');
 
 //error_log(print_r($_GET, true));
 $base = $_SESSION['activebase'];
-$query = "SELECT date_format(debcontrat, '%d/%m/%Y') as debcontrat,date_format(endcontrat, '%d/%m/%Y') as endcontrat,date_format(paymentdate, '%d/%m/%Y') as paymentdate ,id, id_cat, id_base, name,salaire, amount, paymentisok FROM contrats WHERE id_base = $base";
-$queryCount = "SELECT count(id) as nb FROM contrats WHERE id_base = $base";
+$query = "SELECT date_format(debcontrat, '%d/%m/%Y') as debcontrat,date_format(endcontrat, '%d/%m/%Y') as endcontrat,date_format(paymentdate, '%d/%m/%Y') as paymentdate ,id, id_cat, id_base, name,comment,salaire, amount, paymentisok FROM frais WHERE id_base = $base";
+$queryCount = "SELECT count(id) as nb FROM frais WHERE id_base = $base";
 
-$totalUnfiltered = $Contrats->Loaddata($queryCount)->fetch()[0];
+$totalUnfiltered = $Frais->Loaddata($queryCount)->fetch()[0];
 $total = $totalUnfiltered;
 
 $page = 0;
@@ -37,7 +37,7 @@ if (isset($_GET['filter']) && $_GET['filter'] != "") {
     $filter = $_GET['filter'];
     $query .= '  AND name like "%' . $filter . '%"';
     $queryCount .= '  AND name like "%' . $filter . '%"';
-    $total = $Contrats->Loaddata($queryCount)->fetch()[0];
+    $total = $Frais->Loaddata($queryCount)->fetch()[0];
 }
 if ($_GET['sort'] == "date2") {$_GET['sort'] = "date";}
 if (isset($_GET['sort']) && $_GET['sort'] != "") {
@@ -54,7 +54,7 @@ $grid->setPaginator(ceil($total / $rowByPage), (int) $total, (int) $totalUnfilte
 
 
 //error_log($query);
-$result = $Contrats->Loaddata($query);
+$result = $Frais->Loaddata($query);
 
 // close PDO
 $pdo = null;

@@ -100,14 +100,6 @@ class JobManager extends Manager
         return $req;
     }
 
-    public function GetContrats($id_base)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM contrats WHERE id_base = :id_base');
-        $req->execute(array('id_base' => $id_base));
-        return $req;
-    }
-
     public function GetBase($user_id)
     {
         $db = $this->dbConnect();

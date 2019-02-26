@@ -2,7 +2,7 @@
 $jobManager = new JobManager();
 $Categories = new Categories();
 $Bank = new Bank();
-$Contrats = new Contrats();
+$Frais = new Frais();
 
 ?>
 
@@ -142,11 +142,11 @@ foreach ($bank as $row => $bank_name): ?>
               <select id="id_contrat" name="id_contrat" class="form-control">
 
 
-                <option value="">--Contrats--</option>
+                <option value="">--Note de frais--</option>
                 <?php
-$contrats = $Contrats->ListMy($_SESSION['activebase']);
+$frais = $Frais->ListMy($_SESSION['activebase']);
 
-    foreach ($contrats as $row => $contrat_name): ?>
+    foreach ($frais as $row => $contrat_name): ?>
                 <option value="<?=$row;?>">
                   <?=$contrat_name;?>
                 </option>

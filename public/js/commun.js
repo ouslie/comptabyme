@@ -38,6 +38,13 @@ DatabaseGrid.prototype.initializeGrid = function (grid) {
             cell.innerHTML += "<a style='margin:0px 10px 0px 10px'  href=index.php?module=factures&action=generate&id_fact="+id+ "  class='fas fa-cog red' ></i></a>";
         }
     }));
+    grid.setCellRenderer("editfrais", new CellRenderer({
+        render: function (cell, id) {
+            cell.innerHTML += "<a style='margin:0px 10px 0px 10px' href=index.php?module=frais_items&action=list&id_notefrais="+id+" class='fas fa-edit'></i></a>";
+            cell.innerHTML += "<a style='margin:0px 10px 0px 10px' href=notedefrais.php?id_notefrais="+id+" <i class='far fa-file-pdf' ></i></a>";
+            cell.innerHTML += "<i style='margin:0px 10px 0px 10px' onclick=\"datagrid.deleteRow(" + id + ");\" class='fa fa-trash red' ></i>";
+        }
+    }));
     grid.setCellRenderer("amount", new CellRenderer({
         render: function (cell, id) {
             if (id >= 0) {

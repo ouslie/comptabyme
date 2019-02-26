@@ -39,6 +39,9 @@ try {
                     case 'loaddata':
                     ModuleLoaddata($_GET['module']);
                     break;
+                    case 'edit':
+                    ModuleEdit($_GET['module']);
+                    break;
                 case 'generate':
                     require('module/factures/generate.php');
                     break;
