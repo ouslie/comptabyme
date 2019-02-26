@@ -57,6 +57,22 @@
               <div class="input-group-prepend"><span class="input-group-text">End</span></div>
               <input type="date" class="form-control" id="endcontrat" name="endcontrat">
             </div>        
+            <select id="id_category" name="id_category" class="form-control">
+                  <option value="">--Catégories--</option>
+                  <?php
+        $Categories = new Categories;
+        $categories = $Categories->ListFraisMy($_SESSION['activebase']);
+        foreach ($categories as $row => $categoriesname): ?>
+                  <option value="<?=$row;?>">
+                    <?=$categoriesname;?>
+                  </option>
+                  <?php endforeach;?>
+
+                </select>
+              </div>
+            </div>
+
+
             <div class="modal-footer">
               <a href="#" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
               <a href="#" id="addbutton" data-dismiss="modal" class="btn btn-primary">Valider</a>
