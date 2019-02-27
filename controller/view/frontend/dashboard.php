@@ -64,7 +64,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card border-3 border-top border-top-primary">
+            <h5 class="card-header text-muted"> Total</h5>
+            <div class="card-body p-0">
+                <ul class="traffic-sales list-group list-group-flush">
 
+                    <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Total Treso</span><span
+                            class="traffic-sales-amount">
+                            <?=$treso['total']?>€
+                        </span>
+                    </li>
+
+
+            </div>
+        </div>
+    </div>
         <script src="public/js/jquery.js"></script>
         <script language="JavaScript" type="text/javascript">
             $(function () {

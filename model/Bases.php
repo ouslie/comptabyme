@@ -14,6 +14,6 @@ class Bases extends Manager
         return $data;
     }
 
-   
 
+   
 }

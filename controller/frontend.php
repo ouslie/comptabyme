@@ -7,6 +7,7 @@ require_once 'model/Clients.php';
 require_once 'model/Categories.php';
 require_once 'model/Sscategories.php';
 require_once 'model/Frais.php';
+require_once 'model/Treso.php';
 require_once 'model/Bank.php';
 require_once 'model/Items.php';
 require_once 'model/Transactions.php';
@@ -113,8 +114,14 @@ function GetDashboard()
     $totalbank = $jobManager->GetTotalAccount($_SESSION['activebase']);
     $GraphTypeMonth = $jobManager->GraphTypeMonth($totalbank['id']);
     $phpobj = json_encode($GraphTypeMonth);
+
+    //Total treso base
+
+  
+    $Treso = new Treso;
+    $treso = $Treso->GetLastMonthAmount($_SESSION['id']);
+
     require 'view/frontend/dashboard.php';
-    echo $internal_cat;
 
 }
 
