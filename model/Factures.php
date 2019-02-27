@@ -136,6 +136,11 @@ class Factures extends Manager
         $req = $db->prepare('UPDATE factures SET num = :num WHERE id = :id_facture ');
         $req->execute(array('num' => $num, 'id_facture' => $id_facture));
         $req->closeCursor();
+        $hash = sha1($num);
+        $req = $db->prepare('UPDATE factures SET hash = :hash WHERE id = :id_facture');
+        $req->execute(array('hash' => $hash,'id_facture' => $id_facture));
+        $req->closeCursor();
+        return $hash;
     }
 
     public function SetHashFacture($id_facture, $hash)
