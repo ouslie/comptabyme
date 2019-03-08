@@ -3,7 +3,7 @@ require_once "model/Manager.php";
 class Items extends Manager
 {
 
-    public function Set($designation, $quantity, $amount,$id_facture)
+    public function Set($designation, $quantity, $amount, $id_facture)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO items SET designation = :designation, quantity = :quantity, amount = :amount ,id_facture = :id_facture');
@@ -33,7 +33,6 @@ class Items extends Manager
         return $data;
     }
 
-
     public function Delete($id)
     {
         $db = $this->dbConnect();
@@ -57,5 +56,5 @@ class Items extends Manager
         $req = $db->query($query);
         return $req;
     }
-    
+
 }

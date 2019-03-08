@@ -3,11 +3,11 @@ require_once "model/Manager.php";
 class Clients extends Manager
 {
 
-    public function Set($name,$address,$cp,$city,$id_base)
+    public function Set($name, $address, $cp, $city, $id_base)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO clients SET name = :name, address = :address, cp = :cp,city = :city,id_base= :id_base');
-        $req->execute(array('name' => $name, 'address' => $address, 'cp' => $cp,'city' => $city, 'id_base' => $id_base));
+        $req->execute(array('name' => $name, 'address' => $address, 'cp' => $cp, 'city' => $city, 'id_base' => $id_base));
         $data = $db->lastInsertId();
 
         return $data;
@@ -33,7 +33,6 @@ class Clients extends Manager
         return $data;
     }
 
-
     public function Delete($id)
     {
         $db = $this->dbConnect();
@@ -50,7 +49,6 @@ class Clients extends Manager
         $data = $req->execute(array('colvalue' => $colvalue, 'id' => $id));
         return $data;
     }
-
 
     public function Loaddata($query)
     {

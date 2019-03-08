@@ -7,13 +7,13 @@ class Frais extends Manager
         $db = $this->dbConnect();
 
         $req = $db->prepare('INSERT INTO frais SET name = :name, debcontrat = :debcontrat,endcontrat = :endcontrat,id_cat = :id_cat,comment = :comment, id_base = :id_base');
-        $req->execute(array('name' => $name, 'debcontrat' => $debcontrat, 'endcontrat' => $endcontrat, 'id_cat' => $id_cat,'comment' => $comment,  'id_base' => $id_base));
+        $req->execute(array('name' => $name, 'debcontrat' => $debcontrat, 'endcontrat' => $endcontrat, 'id_cat' => $id_cat, 'comment' => $comment, 'id_base' => $id_base));
         $data = $db->lastInsertId();
 
         return $data;
     }
 
-    public function SetItems($id_notefrais,$date,$id_category_child_frais,$third,$amount)
+    public function SetItems($id_notefrais, $date, $id_category_child_frais, $third, $amount)
     {
         $db = $this->dbConnect();
 
@@ -63,7 +63,6 @@ class Frais extends Manager
         return $data;
     }
 
-
     public function Delete($id)
     {
         $db = $this->dbConnect();
@@ -97,14 +96,12 @@ class Frais extends Manager
         return $data;
     }
 
-
     public function Loaddata($query)
     {
         $db = $this->dbConnect();
         $req = $db->query($query);
         return $req;
     }
-    
 
     public function ListMy($base)
     {
@@ -135,7 +132,7 @@ class Frais extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE frais_items SET id_transaction = :id_transaction WHERE id = :id_items ');
-        $data =  $req->execute(array('id_transaction' => $id_transaction, 'id_items' => $id_items));
+        $data = $req->execute(array('id_transaction' => $id_transaction, 'id_items' => $id_items));
         $req->closeCursor();
         return $data;
     }
@@ -158,6 +155,4 @@ class Frais extends Manager
         $req->closeCursor();
     }
 
-
 }
-

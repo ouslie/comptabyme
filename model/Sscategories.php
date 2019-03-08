@@ -22,7 +22,7 @@ class Sscategories extends Manager
 
         return $data;
     }
-    
+
     public function Delete($id_sscategory)
     {
         $db = $this->dbConnect();
@@ -124,5 +124,4 @@ class Sscategories extends Manager
         }
         return $rows;
     }
-    
 }

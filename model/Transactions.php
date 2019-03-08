@@ -3,11 +3,11 @@ require_once "model/Manager.php";
 class Transactions extends Manager
 {
 
-    public function Set($third,$comment, $id_category,$id_bank, $id_type,$id_contrat, $amount,$date,$tally,$id_base)
+    public function Set($third, $comment, $id_category, $id_bank, $id_type, $id_contrat, $amount, $date, $tally, $id_base)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO transactions SET third = :third, comment = :comment, id_category = :id_category,id_bank = :id_bank,id_type = :id_type,id_contrat = :id_contrat,amount = :amount,date = :date,tally = :tally,id_base= :id_base');
-        $req->execute(array('third' => $third, 'comment' => $comment, 'id_category' => $id_category,'id_bank' => $id_bank,'id_type' => $id_type,'id_contrat' => $id_contrat,'amount' => $amount,'date' => $date,'tally' => $tally, 'id_base' => $id_base));
+        $req->execute(array('third' => $third, 'comment' => $comment, 'id_category' => $id_category, 'id_bank' => $id_bank, 'id_type' => $id_type, 'id_contrat' => $id_contrat, 'amount' => $amount, 'date' => $date, 'tally' => $tally, 'id_base' => $id_base));
         $data = $db->lastInsertId();
 
         return $data;
@@ -32,7 +32,6 @@ class Transactions extends Manager
 
         return $data;
     }
-
 
     public function Delete($id)
     {
@@ -68,12 +67,11 @@ class Transactions extends Manager
         return $req;
     }
 
-
     public function UpdateDateFacture($id, $tally, $date)
     {
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE transactions SET tally = :tally, date=:date WHERE id = :id");
-        $data = $req->execute(array('tally' => $tally, 'date' => $date,'id' => $id));
+        $data = $req->execute(array('tally' => $tally, 'date' => $date, 'id' => $id));
         return $data;
     }
 

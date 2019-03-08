@@ -1,6 +1,7 @@
 <?php
 require_once "model/Manager.php";
-class Treso extends Manager{
+class Treso extends Manager
+{
 
     public function GetLastMonthAmount($id_user)
     {

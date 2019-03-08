@@ -26,7 +26,7 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function GetRecetteMonth($date, $base_active,$excludecat)
+    public function GetRecetteMonth($date, $base_active, $excludecat)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 1 AND id_category <> :excludecat AND id_base = :active_base');
@@ -38,7 +38,7 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function GetDepenseMonth($date, $base_active,$excludecat)
+    public function GetDepenseMonth($date, $base_active, $excludecat)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT sum(amount) AS amount FROM transactions WHERE  MONTH(date) = :date AND id_type = 2 AND id_category <> :excludecat AND id_base = :active_base');
@@ -80,7 +80,6 @@ class JobManager extends Manager
         $req->execute(array('id_base' => $id_base));
         return $req;
     }
-
 
     public function GetBank($id_base)
     {
@@ -161,13 +160,12 @@ class JobManager extends Manager
         return $data;
     }
 
-    public function AddTransaction($date, $type,$id_category,$third,$comment,$amount,$tally,$id_bank,$id_contrat,$id_base)
+    public function AddTransaction($date, $type, $id_category, $third, $comment, $amount, $tally, $id_bank, $id_contrat, $id_base)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO transactions SET date = :date, id_type = :type, id_category = :id_category, third = :third, comment = :comment, amount = :amount, tally = :tally, id_bank = :id_bank, id_contrat = :id_contrat, id_base = :id_base');
         $req->execute(array('date' => $date, 'type' => $type, 'id_category' => $id_category, 'third' => $third, 'comment' => $comment, 'amount' => $amount, 'tally' => $tally, 'id_bank' => $id_bank, 'id_contrat' => $id_contrat, 'id_base' => $id_base));
         $data = $db->lastInsertId();
-
 
         return $data;
     }

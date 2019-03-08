@@ -19,7 +19,6 @@ class Factures extends Manager
         $data = $req->execute(array('colvalue' => $colvalue, 'id' => $id));
         return $data;
     }
-  
 
     public function Delete($id)
     {
@@ -71,7 +70,6 @@ class Factures extends Manager
 
         return $data;
     }
-
 
     public function GetClient($id_facture)
     {
@@ -138,7 +136,7 @@ class Factures extends Manager
         $req->closeCursor();
         $hash = sha1($num);
         $req = $db->prepare('UPDATE factures SET hash = :hash WHERE id = :id_facture');
-        $req->execute(array('hash' => $hash,'id_facture' => $id_facture));
+        $req->execute(array('hash' => $hash, 'id_facture' => $id_facture));
         $req->closeCursor();
         return $hash;
     }
@@ -150,8 +148,6 @@ class Factures extends Manager
         $req->execute(array('hash' => $hash, 'id_facture' => $id_facture));
         $req->closeCursor();
     }
-
-
 
     public function WebserviceAddFacture($id_base, $useridfacture, $id_category)
     {
@@ -171,7 +167,7 @@ class Factures extends Manager
         $req->closeCursor();
         $hash = sha1($num_facture);
         $req = $db->prepare('UPDATE factures SET hash = :hash WHERE id = :id_facture');
-        $req->execute(array('hash' => $hash,'id_facture' => $id_facture));
+        $req->execute(array('hash' => $hash, 'id_facture' => $id_facture));
         $req->closeCursor();
         return $hash;
 
@@ -184,8 +180,6 @@ class Factures extends Manager
         $req->execute(array('id_facture' => $id_facture, 'amount' => $amount, 'designation' => $designation, 'quantity' => $quantity));
         $req->closeCursor();
     }
-
-
 
     public function Loaddata($query)
     {
