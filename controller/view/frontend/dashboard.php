@@ -55,16 +55,16 @@
     </div>
 
 
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-            <div class="card">
-                <h5 class="card-header">Graph ta mére</h5>
-                <div class="card-body">
-                    <div id="morris_line">
-                    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Graph ta mére</h5>
+            <div class="card-body">
+                <div id="morris_line">
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="card border-3 border-top border-top-primary">
             <h5 class="card-header text-muted"> Total</h5>
             <div class="card-body p-0">
@@ -80,26 +80,26 @@
             </div>
         </div>
     </div>
-        <script src="public/js/jquery.js"></script>
-        <script language="JavaScript" type="text/javascript">
-            $(function () {
-                var jsobj = <?php echo $phpobj;?>;
-                Morris.Line({
-                    element: 'morris_line',
-                    behaveLikeLine: true,
-                    data: jsobj,
-                    xkey: 'namedate',
-                    parseTime: false,
-                    ykeys: ['depense', 'recette', 'total'],
-                    labels: ['Dépense', 'Recette', 'Balance'],
-                    lineColors: ['#5969ff', '#ff407b', '#64b764'],
-                    resize: true,
-                    gridTextSize: '14px',
-                    xLabelAngle: 45,
-                });
+    <script src="public/js/jquery.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        $(function () {
+            var jsobj = <?php echo $phpobj; ?>;
+            Morris.Line({
+                element: 'morris_line',
+                behaveLikeLine: true,
+                data: jsobj,
+                xkey: 'namedate',
+                parseTime: false,
+                ykeys: ['depense', 'recette', 'total'],
+                labels: ['Dépense', 'Recette', 'Balance'],
+                lineColors: ['#5969ff', '#ff407b', '#64b764'],
+                resize: true,
+                gridTextSize: '14px',
+                xLabelAngle: 45,
             });
-        </script>
-        </body>
-        <?php
+        });
+    </script>
+    </body>
+    <?php
 $content = ob_get_clean();
 require 'template.php';?>
